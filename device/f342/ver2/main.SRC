@@ -1,0 +1,5093 @@
+; main.SRC generated from: main.c
+; COMPILER INVOKED BY:
+;        E:\CD_WORK\Keil\C51\BIN\C51.exe main.c DB OE BR INCDIR(E:\!Hardware\!SiLabs\MCU\Inc) SRC
+
+$NOMOD51
+
+NAME	MAIN
+
+CCF2	BIT	0D8H.2
+TB80	BIT	098H.3
+SPI0CKR	DATA	0A2H
+CCF3	BIT	0D8H.3
+P0	DATA	080H
+SPIEN	BIT	0F8H.0
+CCF4	BIT	0D8H.4
+P1	DATA	090H
+P2	DATA	0A0H
+SEGMENT_POINT	BIT	080H.7
+ADC0CF	DATA	0BCH
+P3	DATA	0B0H
+EEPROM_SDA	BIT	080H.0
+AC	BIT	0D0H.6
+P4	DATA	0C7H
+PCA0	DATA	0F9H
+EIE1	DATA	0E6H
+EA	BIT	0A8H.7
+MCE0	BIT	098H.5
+EIE2	DATA	0E7H
+USB0XCN	DATA	0D7H
+LED1	BIT	090H.7
+LED2	BIT	0A0H.0
+PSCTL	DATA	08FH
+LED3	BIT	0A0H.1
+CF	BIT	0D8H.7
+IT01CF	DATA	0E4H
+LED4	BIT	0A0H.2
+LED5	BIT	0A0H.3
+ADC0CN	DATA	0E8H
+LED6	BIT	0A0H.4
+P0MDOUT	DATA	0A4H
+P1MDOUT	DATA	0A5H
+EEPROM_SCL	BIT	080H.1
+TMR2RLH	DATA	0CBH
+IE	DATA	0A8H
+P2MDOUT	DATA	0A6H
+T2CE	BIT	0C8H.4
+P3MDOUT	DATA	0A7H
+TMR3RLH	DATA	093H
+EIP1	DATA	0F6H
+P4MDOUT	DATA	0AEH
+TXBMT	BIT	0F8H.1
+EIP2	DATA	0F7H
+PCA0CPH0	DATA	0FCH
+TMR2RLL	DATA	0CAH
+PCA0CPH1	DATA	0EAH
+TMR3RLL	DATA	092H
+DP	DATA	082H
+PCA0CPH2	DATA	0ECH
+CR	BIT	0D8H.6
+T2SPLIT	BIT	0C8H.3
+TF2H	BIT	0C8H.7
+ADC0GT	DATA	0C3H
+PCA0CPH3	DATA	0EEH
+REN0	BIT	098H.4
+PCA0CPH4	DATA	0FEH
+PCA0CPL0	DATA	0FBH
+EMI0CF	DATA	085H
+PCA0CPL1	DATA	0E9H
+PCA0CPM0	DATA	0DAH
+PCA0MD	DATA	0D9H
+PCA0CN	DATA	0D8H
+PCA0CPL2	DATA	0EBH
+PCA0CPM1	DATA	0DBH
+TF2L	BIT	0C8H.6
+PCA0CPL3	DATA	0EDH
+PCA0CPM2	DATA	0DCH
+IP	DATA	0B8H
+ARBLOST	BIT	0C0H.2
+ADC0LT	DATA	0C5H
+PCA0CPL4	DATA	0FDH
+PCA0CPM3	DATA	0DDH
+KEY1	BIT	080H.4
+PCA0CPM4	DATA	0DEH
+KEY2	BIT	0A0H.5
+CY	BIT	0D0H.7
+SI	BIT	0C0H.0
+KEY3	BIT	080H.6
+XBR0	DATA	0E1H
+SMB0CF	DATA	0C1H
+KEY4	BIT	080H.5
+XBR1	DATA	0E2H
+PFE0CN	DATA	0AFH
+EMI0CN	DATA	0AAH
+XBR2	DATA	0E3H
+REF0CN	DATA	0D1H
+REG0CN	DATA	0C9H
+AD0INT	BIT	0E8H.5
+SP	DATA	081H
+EMI0TC	DATA	084H
+OV	BIT	0D0H.2
+SMB0CN	DATA	0C0H
+TMR2	DATA	0CCH
+MODF	BIT	0F8H.5
+TMR3	DATA	094H
+SBCON1	DATA	0ACH
+S0MODE	BIT	098H.7
+VDM0CN	DATA	0FFH
+P0MDIN	DATA	0F1H
+CPT0MD	DATA	09DH
+CPT0CN	DATA	09BH
+P1MDIN	DATA	0F2H
+CPT1MD	DATA	09CH
+CPT1CN	DATA	09AH
+P2MDIN	DATA	0F3H
+TF2LEN	BIT	0C8H.5
+P3MDIN	DATA	0F4H
+P4MDIN	DATA	0F5H
+SBRLH1	DATA	0B5H
+SPI0CN	DATA	0F8H
+PCON	DATA	087H
+SBRLL1	DATA	0B4H
+SPIF	BIT	0F8H.7
+TMOD	DATA	089H
+TCON	DATA	088H
+WCOL	BIT	0F8H.6
+SEGMENT_A	BIT	090H.0
+NSSMD0	BIT	0F8H.2
+SEGMENT_B	BIT	090H.1
+NSSMD1	BIT	0F8H.3
+TMR2CN	DATA	0C8H
+SEGMENT_C	BIT	090H.2
+P0SKIP	DATA	0D4H
+TMR3CN	DATA	091H
+SEGMENT_D	BIT	090H.3
+T2XCLK	BIT	0C8H.0
+P1SKIP	DATA	0D5H
+SEGMENT_E	BIT	090H.4
+P2SKIP	DATA	0D6H
+SEGMENT_F	BIT	090H.6
+P3SKIP	DATA	0DFH
+SEGMENT_G	BIT	090H.5
+IE0	BIT	088H.1
+CPT0MX	DATA	09FH
+IE1	BIT	088H.3
+OSCICL	DATA	0B3H
+CPT1MX	DATA	09EH
+CLKSEL	DATA	0A9H
+B	DATA	0F0H
+ADC0H	DATA	0BEH
+OSCICN	DATA	0B2H
+OSCLCN	DATA	086H
+TMR2RL	DATA	0CAH
+ADC0L	DATA	0BDH
+TMR3RL	DATA	092H
+ACC	DATA	0E0H
+ES0	BIT	0A8H.4
+AD0EN	BIT	0E8H.7
+ET0	BIT	0A8H.1
+PCA0CP0	DATA	0FBH
+ET1	BIT	0A8H.3
+TF0	BIT	088H.5
+PCA0CP1	DATA	0E9H
+CLKMUL	DATA	0B9H
+ET2	BIT	0A8H.5
+RI0	BIT	098H.0
+TF1	BIT	088H.7
+PCA0CP2	DATA	0EBH
+PCA0CP3	DATA	0EDH
+TH0	DATA	08CH
+EX0	BIT	0A8H.0
+TI0	BIT	098H.1
+IT0	BIT	088H.0
+PCA0CP4	DATA	0FDH
+PCA0H	DATA	0FAH
+TH1	DATA	08DH
+MASTER	BIT	0C0H.7
+EX1	BIT	0A8H.2
+IT1	BIT	088H.2
+P	BIT	0D0H.0
+ACK	BIT	0C0H.1
+OSCXCN	DATA	0B1H
+TL0	DATA	08AH
+PCA0L	DATA	0F9H
+TL1	DATA	08BH
+TXMODE	BIT	0C0H.6
+PS0	BIT	0B8H.4
+PT0	BIT	0B8H.1
+RS0	BIT	0D0H.3
+PT1	BIT	0B8H.3
+RS1	BIT	0D0H.4
+PT2	BIT	0B8H.5
+TR0	BIT	088H.4
+AD0TM	BIT	0E8H.6
+TR1	BIT	088H.6
+TR2	BIT	0C8H.2
+PX0	BIT	0B8H.0
+PX1	BIT	0B8H.2
+DPH	DATA	083H
+ADC0GTH	DATA	0C4H
+DPL	DATA	082H
+ADC0GTL	DATA	0C3H
+SBUF0	DATA	099H
+ESPI0	BIT	0A8H.6
+SBUF1	DATA	0D3H
+ADC0LTH	DATA	0C6H
+RSTSRC	DATA	0EFH
+SCON0	DATA	098H
+SBRL1	DATA	0B4H
+SMOD1	DATA	0E5H
+SCON1	DATA	0D2H
+AMX0N	DATA	0BAH
+ADC0LTL	DATA	0C5H
+AMX0P	DATA	0BBH
+STA	BIT	0C0H.5
+PSPI0	BIT	0B8H.6
+SMB0DAT	DATA	0C2H
+EXT_INT0	BIT	080H.2
+TMR2H	DATA	0CDH
+SPI0CFG	DATA	0A1H
+EXT_INT1	BIT	080H.3
+TMR3H	DATA	095H
+CKCON	DATA	08EH
+T2CSS	BIT	0C8H.1
+RXOVRN	BIT	0F8H.4
+TMR2L	DATA	0CCH
+ACKRQ	BIT	0C0H.3
+USB0ADR	DATA	096H
+TMR3L	DATA	094H
+F0	BIT	0D0H.5
+FLSCL	DATA	0B6H
+USB0DAT	DATA	097H
+AD0CM0	BIT	0E8H.0
+F1	BIT	0D0H.1
+STO	BIT	0C0H.4
+AD0CM1	BIT	0E8H.1
+SPI0DAT	DATA	0A3H
+AD0CM2	BIT	0E8H.2
+ADC0	DATA	0BDH
+AD0WINT	BIT	0E8H.3
+AD0BUSY	BIT	0E8H.4
+PSW	DATA	0D0H
+CCF0	BIT	0D8H.0
+RB80	BIT	098H.2
+FLKEY	DATA	0B7H
+CCF1	BIT	0D8H.1
+?PR?main?MAIN        SEGMENT CODE 
+?DT?main?MAIN        SEGMENT DATA OVERLAYABLE 
+?BI?main?MAIN        SEGMENT BIT OVERLAYABLE 
+?PR?EncoderScan2?MAIN                    SEGMENT CODE 
+?PR?EncoderScan1?MAIN                    SEGMENT CODE 
+?PR?EncoderScan3?MAIN                    SEGMENT CODE 
+?PR?EncoderScan4?MAIN                    SEGMENT CODE 
+?PR?EncoderScan5?MAIN                    SEGMENT CODE 
+?PR?_LcdOutputLine?MAIN                  SEGMENT CODE 
+?DT?_LcdOutputLine?MAIN                  SEGMENT DATA OVERLAYABLE 
+?PR?WriteCounterToEEprom?MAIN            SEGMENT CODE 
+?PR?WriteDiscretToEEprom?MAIN            SEGMENT CODE 
+?PR?ResetCounterToOutputBuffer?MAIN      SEGMENT CODE 
+?PR?OutputBufferToResetCounter?MAIN      SEGMENT CODE 
+?PR?_OutSymbol?MAIN  SEGMENT CODE 
+?DT?_OutSymbol?MAIN  SEGMENT DATA OVERLAYABLE 
+?PR?LedsSwitchOff?MAIN                   SEGMENT CODE 
+?PR?Initialize?MAIN  SEGMENT CODE 
+?PR?OSCILLATOR_Init?MAIN                 SEGMENT CODE 
+?PR?Timer0_Init?MAIN SEGMENT CODE 
+?PR?Timer1_Init?MAIN SEGMENT CODE 
+?PR?Timer3_Init?MAIN SEGMENT CODE 
+?PR?Port_Init?MAIN   SEGMENT CODE 
+?PR?SMBus_Init?MAIN  SEGMENT CODE 
+?PR?Ext_Interrupt_Init?MAIN              SEGMENT CODE 
+?PR?_EEPROM_ByteWrite?MAIN               SEGMENT CODE 
+?PR?_EEPROM_ByteRead?MAIN                SEGMENT CODE 
+?DT?_EEPROM_ByteRead?MAIN                SEGMENT DATA OVERLAYABLE 
+?PR?Suspend_Device?MAIN                  SEGMENT CODE 
+?PR?INT0_ISR?MAIN    SEGMENT CODE 
+?PR?INT1_ISR?MAIN    SEGMENT CODE 
+?PR?SMBus_ISR?MAIN   SEGMENT CODE 
+?DT?MAIN             SEGMENT DATA 
+?BI?MAIN             SEGMENT BIT 
+?BI?SMBus_ISR?MAIN   SEGMENT BIT OVERLAYABLE 
+?PR?Timer0_ISR?MAIN  SEGMENT CODE 
+?DT?Timer0_ISR?MAIN  SEGMENT DATA OVERLAYABLE 
+?PR?Timer2_ISR?MAIN  SEGMENT CODE 
+?PR?Timer3_ISR?MAIN  SEGMENT CODE 
+?PR?USB_API_TEST_ISR?MAIN                SEGMENT CODE 
+?DT?USB_API_TEST_ISR?MAIN                SEGMENT DATA OVERLAYABLE 
+?PR?_Del?MAIN        SEGMENT CODE 
+?C_INITSEG           SEGMENT CODE 
+?CO?MAIN             SEGMENT CODE 
+	EXTRN	CODE (Get_Interrupt_Source)
+	EXTRN	CODE (USB_Suspend)
+	EXTRN	CODE (_Block_Read)
+	EXTRN	CODE (?C_STARTUP)
+	EXTRN	CODE (?C?LSHL)
+	EXTRN	CODE (?C?ULCMP)
+	EXTRN	CODE (?C?ULDIV)
+	EXTRN	CODE (?C?LMUL)
+	EXTRN	CODE (?C?ULSHR)
+	EXTRN	CODE (?C?CLDPTR)
+	EXTRN	CODE (?C?CSTPTR)
+	PUBLIC	TempCounter
+	PUBLIC	Flag
+	PUBLIC	OutputBuffer
+	PUBLIC	In_Packet
+	PUBLIC	Rotate
+	PUBLIC	SMB_RW
+	PUBLIC	EncN
+	PUBLIC	Counter
+	PUBLIC	KeyFlag4
+	PUBLIC	KeyFlag3
+	PUBLIC	KeyFlag2
+	PUBLIC	KeyFlag1
+	PUBLIC	Discret
+	PUBLIC	SMB_SENDWORDADDR_HIGH
+	PUBLIC	SMB_ACKPOLL
+	PUBLIC	pSMB_DATA_IN
+	PUBLIC	WORD_ADDR_HIGH
+	PUBLIC	LongKeyFlag
+	PUBLIC	EncOld
+	PUBLIC	Low?
+	PUBLIC	EncTemp
+	PUBLIC	Flag1
+	PUBLIC	pSMB_DATA_OUT
+	PUBLIC	OldState
+	PUBLIC	SMB_RANDOMREAD
+	PUBLIC	LongKeyFlagCounter
+	PUBLIC	SMB_DATA_LEN
+	PUBLIC	Step
+	PUBLIC	SMB_SENDWORDADDR_LOW
+	PUBLIC	LcdMode
+	PUBLIC	EncState
+	PUBLIC	now_b
+	PUBLIC	SMB_SINGLEBYTE_OUT
+	PUBLIC	now_a
+	PUBLIC	EncData
+	PUBLIC	WORD_ADDR_LOW
+	PUBLIC	pre_b
+	PUBLIC	FlagPoint
+	PUBLIC	pre_a
+	PUBLIC	SMB_BUSY
+	PUBLIC	High?
+	PUBLIC	LCD_STRING
+	PUBLIC	DEVICE_SN_Str
+	PUBLIC	DEVICE_NAME_Str
+	PUBLIC	USB_bcdDevice
+	PUBLIC	USB_PwAttributes
+	PUBLIC	USB_MaxPower
+	PUBLIC	USB_SerialStr
+	PUBLIC	USB_ProductStr
+	PUBLIC	USB_MfrStr
+	PUBLIC	USB_PID
+	PUBLIC	USB_VID
+	PUBLIC	_Del
+	PUBLIC	USB_API_TEST_ISR
+	PUBLIC	Timer3_ISR
+	PUBLIC	Timer2_ISR
+	PUBLIC	Timer0_ISR
+	PUBLIC	SMBus_ISR
+	PUBLIC	INT1_ISR
+	PUBLIC	INT0_ISR
+	PUBLIC	Suspend_Device
+	PUBLIC	_EEPROM_ByteRead
+	PUBLIC	_EEPROM_ByteWrite
+	PUBLIC	Ext_Interrupt_Init
+	PUBLIC	SMBus_Init
+	PUBLIC	Port_Init
+	PUBLIC	Timer3_Init
+	PUBLIC	Timer1_Init
+	PUBLIC	Timer0_Init
+	PUBLIC	OSCILLATOR_Init
+	PUBLIC	Initialize
+	PUBLIC	LedsSwitchOff
+	PUBLIC	_OutSymbol
+	PUBLIC	OutputBufferToResetCounter
+	PUBLIC	ResetCounterToOutputBuffer
+	PUBLIC	WriteDiscretToEEprom
+	PUBLIC	WriteCounterToEEprom
+	PUBLIC	_LcdOutputLine
+	PUBLIC	EncoderScan5
+	PUBLIC	EncoderScan4
+	PUBLIC	EncoderScan3
+	PUBLIC	EncoderScan1
+	PUBLIC	EncoderScan2
+	PUBLIC	main
+
+	RSEG  ?DT?Timer0_ISR?MAIN
+?Timer0_ISR?BYTE:
+         i?2758:   DS   1
+
+	RSEG  ?DT?USB_API_TEST_ISR?MAIN
+?USB_API_TEST_ISR?BYTE:
+    INTVAL?3060:   DS   1
+
+	RSEG  ?BI?SMBus_ISR?MAIN
+?SMBus_ISR?BIT:
+      FAIL?2655:   DBIT   1
+
+	RSEG  ?DT?main?MAIN
+?main?BYTE:
+       temp?042:   DS   4
+
+	RSEG  ?BI?main?MAIN
+?main?BIT:
+     UpDown?041:   DBIT   1
+
+	RSEG  ?DT?_OutSymbol?MAIN
+?_OutSymbol?BYTE:
+ LedNumber?1149:   DS   1
+	ORG  1
+SymbolCode?1150:   DS   1
+
+	RSEG  ?DT?_LcdOutputLine?MAIN
+?_LcdOutputLine?BYTE:
+      delay?644:   DS   1
+
+	RSEG  ?DT?_EEPROM_ByteRead?MAIN
+?_EEPROM_ByteRead?BYTE:
+    retval?2254:   DS   1
+
+	RSEG  ?DT?MAIN
+low_counter?2759:   DS   2
+
+	RSEG  ?DT?MAIN
+         i?2656:   DS   1
+          High?:   DS   1
+  WORD_ADDR_LOW:   DS   1
+        EncData:   DS   1
+SMB_SINGLEBYTE_OUT:   DS   1
+       EncState:   DS   1
+        LcdMode:   DS   1
+           Step:   DS   1
+   SMB_DATA_LEN:   DS   1
+LongKeyFlagCounter:   DS   2
+       OldState:   DS   1
+       EncMinus:   DS   1
+  pSMB_DATA_OUT:   DS   3
+            New:   DS   1
+        EncTemp:   DS   1
+           Low?:   DS   1
+         EncOld:   DS   4
+ WORD_ADDR_HIGH:   DS   1
+        EncPlus:   DS   1
+   pSMB_DATA_IN:   DS   3
+        Discret:   DS   4
+        Counter:   DS   4
+           EncN:   DS   1
+      In_Packet:   DS   10
+   OutputBuffer:   DS   6
+           Flag:   DS   1
+    TempCounter:   DS   4
+
+	RSEG  ?BI?MAIN
+SEND_START?2657:   DBIT   1
+       SMB_BUSY:   DBIT   1
+          pre_a:   DBIT   1
+      FlagPoint:   DBIT   1
+          pre_b:   DBIT   1
+          now_a:   DBIT   1
+          now_b:   DBIT   1
+SMB_SENDWORDADDR_LOW:   DBIT   1
+ SMB_RANDOMREAD:   DBIT   1
+          Flag1:   DBIT   1
+    LongKeyFlag:   DBIT   1
+    SMB_ACKPOLL:   DBIT   1
+SMB_SENDWORDADDR_HIGH:   DBIT   1
+       KeyFlag1:   DBIT   1
+       KeyFlag2:   DBIT   1
+       KeyFlag3:   DBIT   1
+       KeyFlag4:   DBIT   1
+         SMB_RW:   DBIT   1
+         Rotate:   DBIT   1
+
+	RSEG  ?CO?MAIN
+USB_VID:
+	DW	010C4H
+
+USB_PID:
+	DW	0EA61H
+
+USB_MfrStr:
+	DB	01AH
+	DB	003H
+	DB	048H
+	DB	000H
+	DB	061H
+	DB	000H
+	DB	074H
+	DB	000H
+	DB	061H
+	DB	000H
+	DB	062H
+	DB	000H
+	DB	040H
+	DB	000H
+	DB	043H
+	DB	000H
+	DB	06FH
+	DB	000H
+	DB	020H
+	DB	000H
+
+USB_ProductStr:
+	DB	010H
+	DB	003H
+	DB	048H
+	DB	000H
+	DB	061H
+	DB	000H
+	DB	074H
+	DB	000H
+	DB	053H
+	DB	000H
+	DB	061H
+	DB	000H
+	DB	06DH
+	DB	000H
+	DB	077H
+	DB	000H
+	DB	069H
+	DB	000H
+	DB	06CH
+	DB	000H
+	DB	06CH
+	DB	000H
+
+USB_SerialStr:
+	DB	00AH
+	DB	003H
+	DB	030H
+	DB	000H
+	DB	030H
+	DB	000H
+	DB	030H
+	DB	000H
+	DB	031H
+	DB	000H
+
+USB_MaxPower:
+	DB	00FH
+
+USB_PwAttributes:
+	DB	080H
+
+USB_bcdDevice:
+	DW	00100H
+
+DEVICE_NAME_Str:
+	DB	048H
+	DB	061H
+	DB	074H
+	DB	053H
+	DB	061H
+	DB	06DH
+
+DEVICE_SN_Str:
+	DB	001H
+	DB	002H
+	DB	003H
+	DB	004H
+
+LCD_STRING:
+	DB	02DH
+	DB	02DH
+	DB	02DH
+	DB	02DH
+	DB	02DH
+	DB	02DH
+
+
+	RSEG  ?C_INITSEG
+	DB	001H
+	DB	Flag
+	DB	000H
+
+	DB	004H
+	DB	Counter
+	DB	000H,000H,000H,000H	; long
+
+	DB	0C1H, Flag1 + 080H	; bit-init
+
+	DB	0C1H, FlagPoint + 000H	; bit-init
+
+	DB	0C1H, KeyFlag1 + 000H	; bit-init
+
+	DB	0C1H, KeyFlag2 + 000H	; bit-init
+
+	DB	0C1H, KeyFlag3 + 000H	; bit-init
+
+	DB	0C1H, KeyFlag4 + 000H	; bit-init
+
+	DB	0C1H, LongKeyFlag + 000H	; bit-init
+
+	DB	002H
+	DB	LongKeyFlagCounter
+	DW	00000H
+
+	DB	001H
+	DB	LcdMode
+	DB	000H
+
+	DB	001H
+	DB	EncN
+	DB	000H
+
+	DB	004H
+	DB	EncOld
+	DB	000H
+	DB	000H
+	DB	001H
+	DB	000H
+
+	DB	0C1H, SMB_BUSY + 000H	; bit-init
+
+	DB	0C1H, SEND_START?2657 + 000H	; bit-init
+
+	DB	002H
+	DB	low_counter?2759
+	DW	00000H
+
+; 
+;     ////////////////////////////////////////////////////////////////////
+; //
+; // <NAME PROJECT WITH MORE INFO>
+; // 
+; // Name:		Hatab Samwill
+; // Version:		1.0 
+; // Project started:	16.03.2013: 
+; // Project ended::
+; // 
+; // version 1 - 
+; // build: 160313
+; // 
+; // EEPROM 24c64 - 64Kbit (8 Kbytes)
+; // OSCILLATOR 24Mhz on p0.2, p0.3
+; //
+; // Плавает 1-2 мм на 20 см
+; // Нет "болтанки" и дребезгов
+; //
+; #define VERSION2 	// Версия платы: 
+; 					// ------------
+; 					// 1.0 - Первый блин
+; 					// 2.0 - 
+; 					// 3.0 - 
+; 					// 3.1 - 
+; 					// 3.2 - 
+; #define ALGO3
+; #define DEFAULT_DISCRET		100;
+; #define EEPROM_24C128
+; #define REVISION_VER_DIGIT1 0x01 // версия прошивки
+; #define REVISION_VER_DIGIT2 0x00
+; 
+; #define EncA    2
+; #define EncB    3
+; #define EncSw   6
+; #define EncIN   P0
+; #define EncPort P0
+; #define EncMask ((1<<EncB)|(1<<EncA)|(1<<EncSw))
+; 
+; #include "compiler_defs.h"
+; #include "C8051f340_defs.h"
+; //#include "C8051f340.h"
+; #include "USB_API.h"
+; #include <math.h>
+; #include <string.h>
+; 
+; #define INTERRUPT_USBXpress 17
+; //#define _GENERATOR_MODE_ON_OFF_ ~state
+; //////////////////////////////////////////////////////
+; ///
+; ///            PORT PINS CONFIGURATIONS (Defines)
+; /// 
+; //////////////////////////////////////////////////////
+; // 
+; // PINS
+; // 
+; sbit EEPROM_SDA 			= P0^0;
+; sbit EEPROM_SCL 			= P0^1;
+; 
+; #ifdef VERSION1
+; sbit KEY1 					= P2^5;
+; sbit KEY2 					= P2^6;
+; sbit KEY3 					= P2^7;
+; sbit KEY4 					= P0^6;
+; 
+; sbit SEGMENT_A				= P0^7;
+; sbit SEGMENT_B				= P1^0;
+; sbit SEGMENT_C				= P1^1;
+; sbit SEGMENT_D				= P1^2;
+; sbit SEGMENT_E				= P1^3;
+; sbit SEGMENT_F				= P1^4;
+; sbit SEGMENT_G				= P1^5;
+; sbit SEGMENT_POINT			= P1^6;
+; 
+; sbit LED1					= P1^7;
+; sbit LED2					= P2^0;
+; sbit LED3					= P2^1;
+; sbit LED4					= P2^4;
+; sbit LED5					= P2^3;
+; sbit LED6					= P2^2;
+; 
+; sbit EXT_INT0				= P0^4;
+; sbit EXT_INT1				= P0^5;
+; #endif
+; 
+; #ifdef VERSION2
+; sbit KEY1 					= P0^4;
+; sbit KEY2 					= P2^5;
+; sbit KEY3 					= P0^6;
+; sbit KEY4 					= P0^5;
+; 
+; sbit SEGMENT_A				= P1^0;
+; sbit SEGMENT_B				= P1^1;
+; sbit SEGMENT_C				= P1^2;
+; sbit SEGMENT_D				= P1^3;
+; sbit SEGMENT_E				= P1^4;
+; sbit SEGMENT_F				= P1^6;
+; sbit SEGMENT_G				= P1^5;
+; sbit SEGMENT_POINT			= P0^7;
+; 
+; sbit LED1					= P1^7;
+; sbit LED2					= P2^0;
+; sbit LED3					= P2^1;
+; sbit LED4					= P2^2;
+; sbit LED5					= P2^3;
+; sbit LED6					= P2^4;
+; 
+; sbit EXT_INT0				= P0^2;
+; sbit EXT_INT1				= P0^3;
+; #endif
+; 
+; //
+; // Адреса области EEPROM
+; //
+; #define EEPROM_TEST_ADDR1 					0x00
+; #define EEPROM_TEST_ADDR2 					0x01
+; #define EEPROM_CONST_ADDR					0x02
+; #define EEPROM_RESET_COUNTER_ADDR			0x03
+; #define EEPROM_COUNTER_ADDR_LOW				0x04
+; #define EEPROM_COUNTER_ADDR_HIGH			0x05
+; #define EEPROM_LCDMODE_ADDR					0x10
+; #define EEPROM_DISCRET_ADDR_LOW				0x20
+; #define EEPROM_DISCRET_ADDR_HIGH			0x21
+; 
+; // Device addresses (7 bits, lsb is a don't care)
+; #define  SYSCLK         12000000
+; #define  SMB_FREQUENCY  40000          // Target SCL clock rate
+;                                        // This example supports between 10kHz
+;                                        // and 100kHz
+; 
+; #define  WRITE          0x00           // SMBus WRITE command
+; #define  READ           0x01           // SMBus READ command
+; #define  EEPROM_ADDR    0xA0           // Device address for slave target
+;                                        // Note: This address is specified
+;                                        // in the Microchip 24LC02B
+;                                        // datasheet.
+; #define  TARGET			0xA0           // Target SMBus slave address
+; 
+; 
+; // SMBus Buffer Size
+; #define  SMB_BUFF_SIZE  0x08           // Defines the maximum number of bytes
+;                                        // that can be sent or received in a
+;                                       // single transfer
+; // Status vector - top 4 bits only
+; #define  SMB_MTSTA      0xE0           // (MT) start transmitted
+; #define  SMB_MTDB       0xC0           // (MT) data byte transmitted
+; #define  SMB_MRDB       0x80           // (MR) data byte received
+; //
+; // ..
+; #define TIMER0_RELOAD_HIGH 0xF8
+; #define TIMER0_RELOAD_LOW  0xF8
+; 
+; //--------------------------TIMER DEFINITIONS ------
+; #define TIMER_PRESCALER           32  //48  // Based on Timer CKCON settings
+; 
+; #define TIMER_TICKS_PER_MS  SYSCLK/TIMER_PRESCALER/1500 //1000
+; 
+; #define AUX1     TIMER_TICKS_PER_MS
+; #define AUX2     -AUX1
+; 
+; #define READ_TEMP_COUNT 255
+; #define Timer0_Rate 10
+; #define Timer0_RateEncoder 5
+; //
+; // SYSCLK/SMB_FREQUENCY/4/3) < 255)
+; //---------------------------------------------------------
+; 
+; // Prototypes
+; //
+; void Initialize(void);
+; void Timer0_Init(void);
+; void Timer1_Init(void);
+; void Timer3_Init(void);
+; void Timer3_ISR(void);
+; void Timer0_ISR(void);
+; void OSCILLATOR_Init (void);
+; void Ext_Interrupt_Init (void);
+; void Port_Init(void);
+; void SMBus_Init (void);
+; void SMBus_ISR(void);
+; //
+; // Функции контроллера юзер интерфейсные
+; void EEPROM_ByteWrite(U16 addr, unsigned char dat);
+; unsigned char EEPROM_ByteRead(U16 addr);
+; void LedsSwitchOff(void);
+; void OutSymbol(unsigned char , unsigned char);
+; void WriteCounterToEEprom(void);
+; void WriteDiscretToEEprom(void);
+; void LcdOutputLine(unsigned char);
+; void EncoderScan2(void);
+; void EncoderScan3(void);
+; void EncoderScan4(void);
+; void EncoderScan5(void);
+; 
+; //
+; void ResetCounterToOutputBuffer(void);
+; void OutputBufferToResetCounter(void);
+; //
+; void Del_10mks(void);
+; void Del_25ms(void);
+; void Del_100ms(void);
+; void Del_500mks(void);
+; void Del_10ms(void);
+; void Del(int);
+; ////////////////////////////
+; ////////////////////////////
+; // GLOBAL ПЕРЕМЕННЫЕ !!!
+; ////////////////////////////
+; unsigned char Flag = 0;
+; unsigned long Counter = 0, TempCounter, Discret ;
+; bit Flag1 = 1;
+; bit FlagPoint = 0;
+; bit KeyFlag1 = 0;
+; bit KeyFlag2 = 0;
+; bit KeyFlag3 = 0;
+; bit KeyFlag4 = 0;
+; bit LongKeyFlag = 0;
+; unsigned int LongKeyFlagCounter = 0;
+; unsigned char LcdMode = 0;
+; //unsigned int Discret = 0;
+; unsigned char EncData, EncState, OldState, EncTemp;
+; unsigned char EncN = 0, EncOld[4] = {0, 0, 1, 0};
+; unsigned char Step,Low,High;
+; bit Rotate;
+; 
+; bit now_a, now_b, pre_a, pre_b;
+; 
+; static unsigned char New, EncPlus, EncMinus;//Переменные нового значения энкодера, промежуточные переменные + и -
+; 
+; //
+; // массивы
+; //
+; unsigned char data	OutputBuffer[6];
+; unsigned char data	In_Packet[10];
+; 
+; //unsigned char waveform[256];
+; //
+; // Переменные для функций работы с EEPROM
+; 
+; unsigned char* pSMB_DATA_IN;           // Global pointer for SMBus data
+;                                        // All receive data is written here
+; 
+; unsigned char SMB_SINGLEBYTE_OUT;      // Global holder for single byte writes.
+; 
+; unsigned char* pSMB_DATA_OUT;          // Global pointer for SMBus data.
+;                                        // All transmit data is read from here
+; 
+; unsigned char SMB_DATA_LEN;            // Global holder for number of bytes
+;                                        // to send or receive in the current
+;                                        // SMBus transfer.
+; 
+; unsigned char WORD_ADDR_HIGH;               // Global holder for the EEPROM word
+;                                        // address that will be accessed in
+;                                        // the next transfer
+; 
+; unsigned char WORD_ADDR_LOW;
+; 
+; bit SMB_BUSY = 0;                      // Software flag to indicate when the
+;                                        // EEPROM_ByteRead() or
+;                                        // EEPROM_ByteWrite()
+;                                        // functions have claimed the SMBus
+; 
+; bit SMB_RW;                            // Software flag to indicate the
+;                                        // direction of the current transfer
+; 
+; bit SMB_SENDWORDADDR_LOW;                  // When set, this flag causes the ISR
+;                                        // to send the 8-bit <WORD_ADDR>
+;                                        // after sending the slave address.
+; bit SMB_SENDWORDADDR_HIGH;
+; 
+; bit SMB_RANDOMREAD;                    // When set, this flag causes the ISR
+;                                        // to send a START signal after sending
+;                                        // the word address.
+;                                        // For the 24LC02B EEPROM, a random read
+;                                        // (a read from a particular address in
+;                                        // memory) starts as a write then
+;                                        // changes to a read after the repeated
+;                                        // start is sent. The ISR handles this
+;                                        // switchover if the <SMB_RANDOMREAD>
+;                                        // bit is set.
+; 
+; bit SMB_ACKPOLL;                       // When set, this flag causes the ISR
+;                                        // to send a repeated START until the
+;                                        // slave has acknowledged its address
+; 
+; /*** [BEGIN] USB Descriptor Information [BEGIN] ***/
+; 
+; SEGMENT_VARIABLE(USB_VID, U16, SEG_CODE) = 0x10c4;
+; SEGMENT_VARIABLE(USB_PID, U16, SEG_CODE) = 0xea61;
+; SEGMENT_VARIABLE(USB_MfrStr[], char , SEG_CODE) = // Manufacturer String
+; {
+;    0x1A,
+;    0x03,
+;    'H',0,
+;    'a',0,
+;    't',0,
+;    'a',0,
+;    'b',0,
+;    '@',0,
+;    'C',0,
+;    'o',0,
+;    ' ',0
+; 
+; };
+; SEGMENT_VARIABLE(USB_ProductStr[], unsigned char , SEG_CODE) = // Product Desc. String
+; {
+;    0x10,
+;    0x03,
+;    'H',0,
+;    'a',0,
+;    't',0,
+;    'S',0,
+;    'a',0,
+;    'm',0,
+;    'w',0,
+;    'i',0,
+;    'l',0,
+;    'l',0
+; };
+; 
+; SEGMENT_VARIABLE(USB_SerialStr[], unsigned char , SEG_CODE) = // Serial Number String
+; {
+;    0x0A,
+;    0x03,
+;    '0',0,
+;    '0',0,
+;    '0',0,
+;    '1',0,
+; };
+; 
+; SEGMENT_VARIABLE(USB_MaxPower, unsigned char , SEG_CODE) = 15;    // Max current = 30 mA
+;                                                       // (15 * 2)
+; SEGMENT_VARIABLE(USB_PwAttributes, unsigned char , SEG_CODE) = 0x80;    // Bus-powered,
+;                                                           // remote wakeup not
+;                                                          // supported
+; SEGMENT_VARIABLE(USB_bcdDevice, U16, SEG_CODE) = 0x0100;    // Device release
+;                                                             // number 1.00
+; 
+; SEGMENT_VARIABLE(DEVICE_NAME_Str[], unsigned char , SEG_CODE) = // Serial Number String
+; {'H','a','t','S','a','m' };
+; SEGMENT_VARIABLE(DEVICE_SN_Str[], unsigned char , SEG_CODE) = { 1,2,3,4 };
+; SEGMENT_VARIABLE(LCD_STRING[], unsigned char, SEG_CODE) = {'-','-','-','-','-','-'};
+; /*** [ END ] USB Descriptor Information [ END ] ***/
+; 
+; #define ERROR_EEPROM 1
+; 
+; void main(void)
+
+	RSEG  ?PR?main?MAIN
+main:
+	USING	0
+			; SOURCE LINE # 347
+; {
+			; SOURCE LINE # 348
+; 	unsigned char i;
+; 	bit UpDown = 0;
+			; SOURCE LINE # 350
+	CLR  	UpDown?041
+; 	long	temp;
+; 	PCA0MD &= ~0x40;                       // Disable Watchdog timer
+			; SOURCE LINE # 352
+	ANL  	PCA0MD,#0BFH
+; 	Initialize();
+			; SOURCE LINE # 353
+	LCALL	Initialize
+; 
+; //	USB_Clock_Start();                     // Init USB clock *before* calling USB_Init
+; //	USB_Init(USB_VID,USB_PID,USB_MfrStr,USB_ProductStr,USB_SerialStr,USB_MaxPower,USB_PwAttributes,USB_bcdDevice);
+; 	
+; //	USB_Int_Enable();
+; 
+; // If slave is holding SDA low because of an improper SMBus reset or error
+;  	
+; //	while (1)
+; 
+; 	LedsSwitchOff();
+			; SOURCE LINE # 364
+	LCALL	LedsSwitchOff
+; 	
+; 	SEGMENT_A = 1;
+			; SOURCE LINE # 366
+	SETB 	SEGMENT_A
+; 	LED1 = 0;
+			; SOURCE LINE # 367
+	CLR  	LED1
+?C0001:
+; 
+; 	while(!EEPROM_SDA)
+			; SOURCE LINE # 369
+	JB   	EEPROM_SDA,?C0002
+;    	{
+			; SOURCE LINE # 370
+; 
+;   // Provide clock pulses to allow the slave to advance out
+;       // of its current state. This will allow it to release SDA.
+; 		XBR1 = 0x40;                     // Enable Crossbar
+			; SOURCE LINE # 374
+	MOV  	XBR1,#040H
+;     	EEPROM_SCL = 0;                  // Drive the clock low
+			; SOURCE LINE # 375
+	CLR  	EEPROM_SCL
+;     	for (i = 0; i < 255; i++) {  } // Hold the clock low
+			; SOURCE LINE # 376
+;---- Variable 'i?040' assigned to Register 'R7' ----
+	CLR  	A
+	MOV  	R7,A
+?C0003:
+	INC  	R7
+	CJNE 	R7,#0FFH,?C0003
+?C0004:
+;     	EEPROM_SCL = 1; ;//                 // Release the clock
+			; SOURCE LINE # 377
+	SETB 	EEPROM_SCL
+?C0006:
+;     	while(!EEPROM_SCL);// { }//;              // Wait for open-drain
+			; SOURCE LINE # 378
+	JNB  	EEPROM_SCL,?C0006
+?C0007:
+;                                        	 // clock output to rise
+;     	for(i = 0; i < 10; i++);         // Hold the clock high
+			; SOURCE LINE # 380
+	CLR  	A
+	MOV  	R7,A
+?C0008:
+	INC  	R7
+	CJNE 	R7,#0AH,?C0008
+?C0009:
+; 
+; 		XBR1 = 0x00;                     // Disable Crossbar
+			; SOURCE LINE # 382
+	CLR  	A
+	MOV  	XBR1,A
+;    	}
+			; SOURCE LINE # 383
+	SJMP 	?C0001
+?C0002:
+; 	SEGMENT_A = 0;
+			; SOURCE LINE # 384
+	CLR  	SEGMENT_A
+; 	LED1 = 1;
+			; SOURCE LINE # 385
+	SETB 	LED1
+; 	
+; 	EIE1 |= 0x01;                       // Enable the SMBus interrupt
+			; SOURCE LINE # 387
+	ORL  	EIE1,#01H
+; 	EA = 1;
+			; SOURCE LINE # 388
+	SETB 	EA
+; 	ET0 = 1; // Timer0
+			; SOURCE LINE # 389
+	SETB 	ET0
+; 	
+; 	LcdOutputLine(5);
+			; SOURCE LINE # 391
+	MOV  	R7,#05H
+	LCALL	_LcdOutputLine
+; 	ResetCounterToOutputBuffer();
+			; SOURCE LINE # 392
+	LCALL	ResetCounterToOutputBuffer
+; 
+; // Увиличение счетчика сброса <HARD_RESET>
+; 	if (OutputBuffer[0] < 0xFF) OutputBuffer[0]++;
+			; SOURCE LINE # 395
+	MOV  	A,OutputBuffer
+	CLR  	C
+	SUBB 	A,#0FFH
+	JNC  	?C0011
+	INC  	OutputBuffer
+	SJMP 	?C0012
+?C0011:
+; 	else 
+; 	{ 
+			; SOURCE LINE # 397
+; 		OutputBuffer[0] = 0; 
+			; SOURCE LINE # 398
+	CLR  	A
+	MOV  	OutputBuffer,A
+; 		if (OutputBuffer[1] < 0xFF) OutputBuffer[1]++;
+			; SOURCE LINE # 399
+	MOV  	A,OutputBuffer+01H
+	CLR  	C
+	SUBB 	A,#0FFH
+	JNC  	?C0013
+	INC  	OutputBuffer+01H
+	SJMP 	?C0012
+?C0013:
+; 		else
+; 		{
+			; SOURCE LINE # 401
+; 			OutputBuffer[1] = 0;
+			; SOURCE LINE # 402
+	CLR  	A
+	MOV  	OutputBuffer+01H,A
+; 			if (OutputBuffer[2] < 0xFF) OutputBuffer[2]++;
+			; SOURCE LINE # 403
+	MOV  	A,OutputBuffer+02H
+	CLR  	C
+	SUBB 	A,#0FFH
+	JNC  	?C0015
+	INC  	OutputBuffer+02H
+	SJMP 	?C0012
+?C0015:
+; 			else
+; 			{
+			; SOURCE LINE # 405
+; 				OutputBuffer[2] = 0;
+			; SOURCE LINE # 406
+	CLR  	A
+	MOV  	OutputBuffer+02H,A
+; 				if (OutputBuffer[3] < 0xFF) OutputBuffer[3]++;
+			; SOURCE LINE # 407
+	MOV  	A,OutputBuffer+03H
+	CLR  	C
+	SUBB 	A,#0FFH
+	JNC  	?C0012
+	INC  	OutputBuffer+03H
+; 			}
+			; SOURCE LINE # 408
+; 		}
+			; SOURCE LINE # 409
+; 	}
+			; SOURCE LINE # 410
+?C0012:
+; 	OutputBufferToResetCounter();
+			; SOURCE LINE # 411
+	LCALL	OutputBufferToResetCounter
+; 
+; //	SoftReset(SOFT_RESET);
+; 
+; 	Counter = 0;
+			; SOURCE LINE # 415
+	CLR  	A
+	MOV  	Counter+03H,A
+	MOV  	Counter+02H,A
+	MOV  	Counter+01H,A
+	MOV  	Counter,A
+; 	Counter = EEPROM_ByteRead(EEPROM_COUNTER_ADDR_HIGH);
+			; SOURCE LINE # 416
+	MOV  	R7,#05H
+	MOV  	R6,A
+	LCALL	_EEPROM_ByteRead
+	CLR  	A
+	MOV  	Counter+03H,R7
+	MOV  	Counter+02H,A
+	MOV  	Counter+01H,A
+	MOV  	Counter,A
+; 	Counter = Counter<<8;
+			; SOURCE LINE # 417
+	MOV  	R6,Counter+02H
+	MOV  	R5,Counter+01H
+	MOV  	R4,Counter
+	MOV  	R0,#08H
+	LCALL	?C?LSHL
+	MOV  	Counter+03H,R7
+	MOV  	Counter+02H,R6
+	MOV  	Counter+01H,R5
+	MOV  	Counter,R4
+; 	Counter |= EEPROM_ByteRead(EEPROM_COUNTER_ADDR_LOW);
+			; SOURCE LINE # 418
+	MOV  	R7,#04H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteRead
+	MOV  	A,Counter+03H
+	ORL  	A,R7
+	MOV  	Counter+03H,A
+	MOV  	A,Counter+02H
+	MOV  	Counter+02H,A
+	MOV  	A,Counter+01H
+	MOV  	Counter+01H,A
+	MOV  	A,Counter
+	MOV  	Counter,A
+; 	
+; 	Discret = 0;
+			; SOURCE LINE # 420
+	CLR  	A
+	MOV  	Discret+03H,A
+	MOV  	Discret+02H,A
+	MOV  	Discret+01H,A
+	MOV  	Discret,A
+; 	Discret = EEPROM_ByteRead(EEPROM_DISCRET_ADDR_HIGH);
+			; SOURCE LINE # 421
+	MOV  	R7,#021H
+	MOV  	R6,A
+	LCALL	_EEPROM_ByteRead
+	CLR  	A
+	MOV  	Discret+03H,R7
+	MOV  	Discret+02H,A
+	MOV  	Discret+01H,A
+	MOV  	Discret,A
+; 	Discret = Discret <<8;
+			; SOURCE LINE # 422
+	MOV  	R6,Discret+02H
+	MOV  	R5,Discret+01H
+	MOV  	R4,Discret
+	MOV  	R0,#08H
+	LCALL	?C?LSHL
+	MOV  	Discret+03H,R7
+	MOV  	Discret+02H,R6
+	MOV  	Discret+01H,R5
+	MOV  	Discret,R4
+; 	Discret |= EEPROM_ByteRead(EEPROM_DISCRET_ADDR_LOW);
+			; SOURCE LINE # 423
+	MOV  	R7,#020H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteRead
+	MOV  	A,Discret+03H
+	ORL  	A,R7
+	MOV  	Discret+03H,A
+	MOV  	A,Discret+02H
+	MOV  	Discret+02H,A
+	MOV  	A,Discret+01H
+	MOV  	Discret+01H,A
+	MOV  	A,Discret
+	MOV  	Discret,A
+; 
+; 	LcdMode = EEPROM_ByteRead(EEPROM_LCDMODE_ADDR);
+			; SOURCE LINE # 425
+	MOV  	R7,#010H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteRead
+	MOV  	LcdMode,R7
+; 
+; 	if (LcdMode >1) { LcdMode = 1; LcdOutputLine(1); EEPROM_ByteWrite(EEPROM_LCDMODE_ADDR,LcdMode); }
+			; SOURCE LINE # 427
+	MOV  	A,LcdMode
+	SETB 	C
+	SUBB 	A,#01H
+	JC   	?C0019
+	MOV  	LcdMode,#01H
+	MOV  	R7,#01H
+	LCALL	_LcdOutputLine
+	LCALL	L?0249
+?C0019:
+; 	while (1) 
+			; SOURCE LINE # 428
+; 	{
+			; SOURCE LINE # 429
+; //	if (Counter > 39000) Counter = 39000;
+; //	EncoderScan5();
+; 	FlagPoint = 0;
+			; SOURCE LINE # 432
+	CLR  	FlagPoint
+; 
+; 	switch (LcdMode)
+			; SOURCE LINE # 434
+	MOV  	A,LcdMode
+	DEC  	A
+	JNZ  	$ + 5H
+	LJMP 	?C0031
+	INC  	A
+	JZ   	$ + 5H
+	LJMP 	?C0021
+; 	{
+			; SOURCE LINE # 435
+; 	case 0:
+			; SOURCE LINE # 436
+?C0022:
+; 		{
+			; SOURCE LINE # 437
+; 			TempCounter = Counter & 0xFFFF;
+			; SOURCE LINE # 438
+	MOV  	A,Counter+03H
+	MOV  	TempCounter+03H,A
+	MOV  	A,Counter+02H
+	MOV  	TempCounter+02H,A
+	CLR  	A
+	MOV  	TempCounter+01H,A
+	MOV  	TempCounter,A
+; 			if (TempCounter > 9999) 
+			; SOURCE LINE # 439
+	MOV  	R7,#0FH
+	MOV  	R6,#027H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0023
+; 			{
+			; SOURCE LINE # 440
+; 				temp = TempCounter / 10000;
+			; SOURCE LINE # 441
+	MOV  	R3,#010H
+	MOV  	R2,#027H
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[0] = temp;
+			; SOURCE LINE # 442
+	MOV  	OutputBuffer,R7
+; 				TempCounter = TempCounter - temp*10000;
+			; SOURCE LINE # 443
+	CLR  	A
+	MOV  	R7,#010H
+	MOV  	R6,#027H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			}
+			; SOURCE LINE # 444
+	SJMP 	?C0024
+?C0023:
+; 			else OutputBuffer[0] = 0;
+			; SOURCE LINE # 445
+	MOV  	OutputBuffer,A
+?C0024:
+; 
+; 			if (TempCounter > 999) 
+			; SOURCE LINE # 447
+	CLR  	A
+	MOV  	R7,#0E7H
+	MOV  	R6,#03H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0025
+; 			{
+			; SOURCE LINE # 448
+; 				temp = TempCounter / 1000;
+			; SOURCE LINE # 449
+	MOV  	R3,#0E8H
+	MOV  	R2,#03H
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[1] = temp;
+			; SOURCE LINE # 450
+	MOV  	OutputBuffer+01H,R7
+; 				TempCounter = TempCounter - temp*1000;
+			; SOURCE LINE # 451
+	CLR  	A
+	MOV  	R7,#0E8H
+	MOV  	R6,#03H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			} else OutputBuffer[1] = 0;
+			; SOURCE LINE # 452
+	SJMP 	?C0026
+?C0025:
+	MOV  	OutputBuffer+01H,A
+?C0026:
+; 
+; 			if (TempCounter > 99) 
+			; SOURCE LINE # 454
+	CLR  	A
+	MOV  	R7,#063H
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0027
+; 			{
+			; SOURCE LINE # 455
+; 				temp = TempCounter / 100;
+			; SOURCE LINE # 456
+	MOV  	R3,#064H
+	MOV  	R2,A
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[2] = temp;
+			; SOURCE LINE # 457
+	MOV  	OutputBuffer+02H,R7
+; 				TempCounter = TempCounter - temp*100;
+			; SOURCE LINE # 458
+	CLR  	A
+	MOV  	R7,#064H
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			} else OutputBuffer[2] = 0;
+			; SOURCE LINE # 459
+	SJMP 	?C0028
+?C0027:
+	MOV  	OutputBuffer+02H,A
+?C0028:
+; 
+; 			if (TempCounter > 9) 
+			; SOURCE LINE # 461
+	CLR  	A
+	MOV  	R7,#09H
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0029
+; 			{
+			; SOURCE LINE # 462
+; 				temp = TempCounter / 10;
+			; SOURCE LINE # 463
+	MOV  	R3,#0AH
+	MOV  	R2,A
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[3] = temp;
+			; SOURCE LINE # 464
+	MOV  	OutputBuffer+03H,R7
+; 				TempCounter = TempCounter - temp*10;
+			; SOURCE LINE # 465
+	CLR  	A
+	MOV  	R7,#0AH
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			} else OutputBuffer[3] = 0;
+			; SOURCE LINE # 466
+	SJMP 	?C0030
+?C0029:
+	MOV  	OutputBuffer+03H,A
+?C0030:
+; 			OutputBuffer[4] = TempCounter ;
+			; SOURCE LINE # 467
+	MOV  	OutputBuffer+04H,TempCounter+03H
+; 		} break;
+			; SOURCE LINE # 468
+	LJMP 	?C0021
+; 	case 1:
+			; SOURCE LINE # 469
+?C0031:
+; 		{
+			; SOURCE LINE # 470
+; 			TempCounter = ((Counter*100) / Discret);
+			; SOURCE LINE # 471
+	CLR  	A
+	MOV  	R7,#064H
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,Counter+03H
+	MOV  	R2,Counter+02H
+	MOV  	R1,Counter+01H
+	MOV  	R0,Counter
+	LCALL	?C?LMUL
+	MOV  	R3,Discret+03H
+	MOV  	R2,Discret+02H
+	MOV  	R1,Discret+01H
+	MOV  	R0,Discret
+	LCALL	?C?ULDIV
+	MOV  	TempCounter+03H,R7
+	MOV  	TempCounter+02H,R6
+	MOV  	TempCounter+01H,R5
+	MOV  	TempCounter,R4
+; 			OutputBuffer[0] = 0;
+			; SOURCE LINE # 472
+	CLR  	A
+	MOV  	OutputBuffer,A
+; 			if (TempCounter > 9999) 
+			; SOURCE LINE # 473
+	MOV  	R7,#0FH
+	MOV  	R6,#027H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0032
+; 			{
+			; SOURCE LINE # 474
+; 				temp = TempCounter / 10000;
+			; SOURCE LINE # 475
+	MOV  	R3,#010H
+	MOV  	R2,#027H
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[1] = temp;
+			; SOURCE LINE # 476
+	MOV  	OutputBuffer+01H,R7
+; 				TempCounter = TempCounter - temp*10000;
+			; SOURCE LINE # 477
+	CLR  	A
+	MOV  	R7,#010H
+	MOV  	R6,#027H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			}
+			; SOURCE LINE # 478
+	SJMP 	?C0033
+?C0032:
+; 			else OutputBuffer[1] = 0;
+			; SOURCE LINE # 479
+	MOV  	OutputBuffer+01H,A
+?C0033:
+; 
+; 			if (TempCounter > 999) 
+			; SOURCE LINE # 481
+	CLR  	A
+	MOV  	R7,#0E7H
+	MOV  	R6,#03H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0034
+; 			{
+			; SOURCE LINE # 482
+; 				temp = TempCounter / 1000;
+			; SOURCE LINE # 483
+	MOV  	R3,#0E8H
+	MOV  	R2,#03H
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[2] = temp;
+			; SOURCE LINE # 484
+	MOV  	OutputBuffer+02H,R7
+; 				TempCounter = TempCounter - temp*1000;
+			; SOURCE LINE # 485
+	CLR  	A
+	MOV  	R7,#0E8H
+	MOV  	R6,#03H
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			} else OutputBuffer[2] = 0;
+			; SOURCE LINE # 486
+	SJMP 	?C0035
+?C0034:
+	MOV  	OutputBuffer+02H,A
+?C0035:
+; 
+; 			if (TempCounter > 99) 
+			; SOURCE LINE # 488
+	CLR  	A
+	MOV  	R7,#063H
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0036
+; 			{
+			; SOURCE LINE # 489
+; 				temp = TempCounter / 100;
+			; SOURCE LINE # 490
+	MOV  	R3,#064H
+	MOV  	R2,A
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[3] = temp;
+			; SOURCE LINE # 491
+	MOV  	OutputBuffer+03H,R7
+; 				TempCounter = TempCounter - temp*100;
+			; SOURCE LINE # 492
+	CLR  	A
+	MOV  	R7,#064H
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			} else OutputBuffer[3] = 0;
+			; SOURCE LINE # 493
+	SJMP 	?C0037
+?C0036:
+	MOV  	OutputBuffer+03H,A
+?C0037:
+; 			if (TempCounter > 9) 
+			; SOURCE LINE # 494
+	CLR  	A
+	MOV  	R7,#09H
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,TempCounter+03H
+	MOV  	R2,TempCounter+02H
+	MOV  	R1,TempCounter+01H
+	MOV  	R0,TempCounter
+	SETB 	C
+	LCALL	?C?ULCMP
+	CLR  	A
+	JC   	?C0038
+; 			{
+			; SOURCE LINE # 495
+; 				temp = TempCounter / 10;
+			; SOURCE LINE # 496
+	MOV  	R3,#0AH
+	MOV  	R2,A
+	MOV  	R1,A
+	MOV  	R0,A
+	MOV  	R7,TempCounter+03H
+	MOV  	R6,TempCounter+02H
+	MOV  	R5,TempCounter+01H
+	MOV  	R4,TempCounter
+	LCALL	?C?ULDIV
+	MOV  	temp?042+03H,R7
+	MOV  	temp?042+02H,R6
+	MOV  	temp?042+01H,R5
+	MOV  	temp?042,R4
+; 				OutputBuffer[4] = temp;
+			; SOURCE LINE # 497
+	MOV  	OutputBuffer+04H,R7
+; 				TempCounter = TempCounter - temp*10;
+			; SOURCE LINE # 498
+	CLR  	A
+	MOV  	R7,#0AH
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,temp?042+03H
+	MOV  	R2,temp?042+02H
+	MOV  	R1,temp?042+01H
+	MOV  	R0,temp?042
+	LCALL	?C?LMUL
+	MOV  	R2,AR6
+	MOV  	R1,AR5
+	MOV  	R0,AR4
+	CLR  	C
+	MOV  	A,TempCounter+03H
+	SUBB 	A,R7
+	MOV  	TempCounter+03H,A
+	MOV  	A,TempCounter+02H
+	SUBB 	A,R2
+	MOV  	TempCounter+02H,A
+	MOV  	A,TempCounter+01H
+	SUBB 	A,R1
+	MOV  	TempCounter+01H,A
+	MOV  	A,TempCounter
+	SUBB 	A,R0
+	MOV  	TempCounter,A
+; 			} else OutputBuffer[4] = 0;
+			; SOURCE LINE # 499
+	SJMP 	?C0039
+?C0038:
+	MOV  	OutputBuffer+04H,A
+?C0039:
+; 			OutputBuffer[5] = TempCounter ;
+			; SOURCE LINE # 500
+	MOV  	OutputBuffer+05H,TempCounter+03H
+; 		} break;
+			; SOURCE LINE # 501
+; 	}
+			; SOURCE LINE # 502
+?C0021:
+; 
+; 
+; 	if ((KEY1 == 0) & (LongKeyFlag == 0)) 
+			; SOURCE LINE # 505
+	JB   	LongKeyFlag,?C0041
+	MOV  	R7,#01H
+	SJMP 	?C0042
+?C0041:
+	MOV  	R7,#00H
+?C0042:
+	JB   	KEY1,?C0043
+	MOV  	R6,#01H
+	SJMP 	?C0044
+?C0043:
+	MOV  	R6,#00H
+?C0044:
+	MOV  	A,R6
+	ANL  	A,R7
+	JZ   	?C0040
+; 	{
+			; SOURCE LINE # 506
+; 		LongKeyFlagCounter++;
+			; SOURCE LINE # 507
+	INC  	LongKeyFlagCounter+01H
+	MOV  	A,LongKeyFlagCounter+01H
+	JNZ  	?C0226
+	INC  	LongKeyFlagCounter
+?C0226:
+; 		if (LongKeyFlagCounter > 1000) 
+			; SOURCE LINE # 508
+	SETB 	C
+	SUBB 	A,#0E8H
+	MOV  	A,LongKeyFlagCounter
+	SUBB 	A,#03H
+	JC   	?C0040
+; 		{ 
+			; SOURCE LINE # 509
+; 			LongKeyFlag = 1;
+			; SOURCE LINE # 510
+	SETB 	LongKeyFlag
+; 			LongKeyFlagCounter = 0;
+			; SOURCE LINE # 511
+	CLR  	A
+	MOV  	LongKeyFlagCounter,A
+	MOV  	LongKeyFlagCounter+01H,A
+; 		} 
+			; SOURCE LINE # 512
+; 	}
+			; SOURCE LINE # 513
+?C0040:
+; 
+; 	if (KEY2 == 0) 
+			; SOURCE LINE # 515
+	JB   	KEY2,?C0046
+; 	{
+			; SOURCE LINE # 516
+; 		if ((KeyFlag1 == 0) | (LongKeyFlag == 1))
+			; SOURCE LINE # 517
+	JNB  	LongKeyFlag,?C0048
+	MOV  	R7,#01H
+	SJMP 	?C0049
+?C0048:
+	MOV  	R7,#00H
+?C0049:
+	JB   	KeyFlag1,?C0050
+	MOV  	R6,#01H
+	SJMP 	?C0051
+?C0050:
+	MOV  	R6,#00H
+?C0051:
+	MOV  	A,R6
+	ORL  	A,R7
+	JZ   	?C0052
+; 		{
+			; SOURCE LINE # 518
+; 			Counter ++;
+			; SOURCE LINE # 519
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+; 			KeyFlag1 = 1; 
+			; SOURCE LINE # 520
+	SETB 	KeyFlag1
+; 		}
+			; SOURCE LINE # 521
+; 	} else { KeyFlag1 = 0; LongKeyFlag = 0; }
+			; SOURCE LINE # 522
+	SJMP 	?C0052
+?C0046:
+	CLR  	KeyFlag1
+	CLR  	LongKeyFlag
+?C0052:
+; 
+; 	if (KEY1 == 0) Counter = 0;
+			; SOURCE LINE # 524
+	JB   	KEY1,?C0053
+	CLR  	A
+	MOV  	Counter+03H,A
+	MOV  	Counter+02H,A
+	MOV  	Counter+01H,A
+	MOV  	Counter,A
+?C0053:
+; 
+; 	if (KEY3 == 0)  // Смена режима вывода на дисплюй (ММ или Счётчик сигналов)
+			; SOURCE LINE # 526
+	JB   	KEY3,?C0054
+; 	{
+			; SOURCE LINE # 527
+; 		if (KeyFlag3 == 0)
+			; SOURCE LINE # 528
+	JB   	KeyFlag3,?C0058
+; 		{
+			; SOURCE LINE # 529
+; 			if (LcdMode == 0) LcdMode = 1; else LcdMode = 0;
+			; SOURCE LINE # 530
+	MOV  	A,LcdMode
+	JNZ  	?C0056
+	MOV  	LcdMode,#01H
+	SJMP 	?C0057
+?C0056:
+	CLR  	A
+	MOV  	LcdMode,A
+?C0057:
+; 			LcdOutputLine(2);
+			; SOURCE LINE # 531
+	MOV  	R7,#02H
+	LCALL	_LcdOutputLine
+; 			EEPROM_ByteWrite(EEPROM_LCDMODE_ADDR,LcdMode);
+			; SOURCE LINE # 532
+	LCALL	L?0249
+; 			KeyFlag3 = 1;
+			; SOURCE LINE # 533
+	SETB 	KeyFlag3
+; 		}
+			; SOURCE LINE # 534
+; 	} else KeyFlag3 = 0;
+			; SOURCE LINE # 535
+	SJMP 	?C0058
+?C0054:
+	CLR  	KeyFlag3
+?C0058:
+; 
+; 	if (KEY4 == 0) // запись в память EEPROM дискретизации (Счётчик/1 ММ)
+			; SOURCE LINE # 537
+	JNB  	KEY4,$ + 6H
+	LJMP 	?C0019
+; 	{
+			; SOURCE LINE # 538
+; 		if (KeyFlag4 == 0)
+			; SOURCE LINE # 539
+	JB   	KeyFlag4,?C0060
+; 		{
+			; SOURCE LINE # 540
+; 			Discret = Counter;
+			; SOURCE LINE # 541
+	MOV  	Discret+03H,Counter+03H
+	MOV  	Discret+02H,Counter+02H
+	MOV  	Discret+01H,Counter+01H
+	MOV  	Discret,Counter
+; 			LcdOutputLine(4);
+			; SOURCE LINE # 542
+	MOV  	R7,#04H
+	LCALL	_LcdOutputLine
+; 			WriteDiscretToEEprom();
+			; SOURCE LINE # 543
+	LCALL	WriteDiscretToEEprom
+; 			WriteCounterToEEprom();
+			; SOURCE LINE # 544
+	LCALL	WriteCounterToEEprom
+; 			KeyFlag4 = 1;
+			; SOURCE LINE # 545
+	SETB 	KeyFlag4
+; 		} else KeyFlag4 = 0;
+			; SOURCE LINE # 546
+	LJMP 	?C0019
+?C0060:
+	CLR  	KeyFlag4
+; 	}
+			; SOURCE LINE # 547
+; 
+; 	}
+			; SOURCE LINE # 549
+	LJMP 	?C0019
+; END OF main
+
+; }
+; 
+; void EncoderScan2(void)
+
+	RSEG  ?PR?EncoderScan2?MAIN
+EncoderScan2:
+			; SOURCE LINE # 552
+; {
+			; SOURCE LINE # 553
+; 	EncState = P0 >> 2;
+			; SOURCE LINE # 554
+	MOV  	A,P0
+	RRC  	A
+	RRC  	A
+	ANL  	A,#03FH
+	MOV  	EncState,A
+; 	EncState = ((OldState<<2) | EncState) & 0x0F;
+			; SOURCE LINE # 555
+	MOV  	A,OldState
+	ADD  	A,ACC
+	ADD  	A,ACC
+	ORL  	A,EncState
+	ANL  	A,#0FH
+	MOV  	EncState,A
+; 
+; 	switch (EncState)
+			; SOURCE LINE # 557
+	ADD  	A,#0FEH
+	JZ   	?C0065
+	ADD  	A,#0FEH
+	JZ   	?C0067
+	ADD  	A,#0FDH
+	JZ   	?C0071
+	DEC  	A
+	JZ   	?C0071
+	ADD  	A,#0FDH
+	JZ   	?C0070
+	ADD  	A,#0FEH
+	JZ   	?C0068
+	DEC  	A
+	JZ   	?C0071
+	ADD  	A,#0DH
+	JNZ  	?C0063
+; 	{
+			; SOURCE LINE # 558
+; 		case 1: Counter--; break;// Case &00000001 
+			; SOURCE LINE # 559
+?C0064:
+	SJMP 	?C0242
+; 		case 2: Counter++;break;
+			; SOURCE LINE # 560
+?C0065:
+	SJMP 	?C0241
+; 		case 7: Counter--;break;
+			; SOURCE LINE # 561
+; 		case 4: Counter++;break;
+			; SOURCE LINE # 562
+?C0067:
+?C0238:
+	SJMP 	?C0241
+; 		case 0x0D:	Counter++;break;
+			; SOURCE LINE # 563
+?C0068:
+?C0240:
+	SJMP 	?C0241
+; 		case 0x0E:	Counter--;break;
+			; SOURCE LINE # 564
+; 		case 0x0B:	Counter++;break;
+			; SOURCE LINE # 565
+?C0070:
+?C0241:
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+	SJMP 	?C0063
+; 		case 8:		Counter--; 
+			; SOURCE LINE # 566
+?C0071:
+?C0242:
+	MOV  	A,Counter+03H
+	ADD  	A,#0FFH
+	MOV  	Counter+03H,A
+	MOV  	A,Counter+02H
+	ADDC 	A,#0FFH
+	MOV  	Counter+02H,A
+	MOV  	A,Counter+01H
+	ADDC 	A,#0FFH
+	MOV  	Counter+01H,A
+	MOV  	A,Counter
+	ADDC 	A,#0FFH
+	MOV  	Counter,A
+; 	}
+			; SOURCE LINE # 567
+?C0063:
+; 	OldState = EncState;
+			; SOURCE LINE # 568
+	MOV  	OldState,EncState
+; }
+			; SOURCE LINE # 569
+	RET  	
+; END OF EncoderScan2
+
+; 
+; void EncoderScan1(void)
+
+	RSEG  ?PR?EncoderScan1?MAIN
+EncoderScan1:
+	USING	0
+			; SOURCE LINE # 571
+; {
+			; SOURCE LINE # 572
+; 	unsigned char New;
+;  
+; 	New = (P0 & 0x0C) >> 2; // PINB & 0x03;	// Берем текущее значение 
+			; SOURCE LINE # 575
+	MOV  	A,P0
+	ANL  	A,#0CH
+	RRC  	A
+	RRC  	A
+	ANL  	A,#03FH
+;---- Variable 'New?243' assigned to Register 'R3' ----
+	MOV  	R3,A
+; 			// И сравниваем со старым
+;  
+; // Смотря в какую сторону оно поменялось -- увеличиваем
+; // Или уменьшаем счетный регистр
+;  
+; 	switch(EncState)
+			; SOURCE LINE # 581
+	MOV  	A,EncState
+	JZ   	?C0077
+	DEC  	A
+	JZ   	?C0080
+	ADD  	A,#0FEH
+	JZ   	?C0083
+	INC  	A
+	JZ   	$ + 5H
+	LJMP 	?C0073
+; 	{
+			; SOURCE LINE # 582
+; 	case 2:
+			; SOURCE LINE # 583
+?C0074:
+; 		{
+			; SOURCE LINE # 584
+; 		if(New == 3) Counter++;
+			; SOURCE LINE # 585
+	CJNE 	R3,#03H,?C0075
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+?C0075:
+; 		if(New == 0) Counter--; 
+			; SOURCE LINE # 586
+	MOV  	A,R3
+	JNZ  	?C0073
+; 		break;
+			; SOURCE LINE # 587
+	SJMP 	?C0245
+; 		}
+			; SOURCE LINE # 588
+;  
+; 	case 0:
+			; SOURCE LINE # 590
+?C0077:
+; 		{
+			; SOURCE LINE # 591
+; 		if(New == 2) Counter++;
+			; SOURCE LINE # 592
+	CJNE 	R3,#02H,?C0078
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+?C0078:
+; 		if(New == 1) Counter--; 
+			; SOURCE LINE # 593
+	MOV  	A,R3
+	XRL  	A,#01H
+	JNZ  	?C0073
+?C0243:
+; 		break;
+			; SOURCE LINE # 594
+	SJMP 	?C0245
+; 		}
+			; SOURCE LINE # 595
+; 	case 1:
+			; SOURCE LINE # 596
+?C0080:
+; 		{
+			; SOURCE LINE # 597
+; 		if(New == 0) Counter++;
+			; SOURCE LINE # 598
+	MOV  	A,R3
+	JNZ  	?C0081
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+?C0081:
+; 		if(New == 3) Counter--; 
+			; SOURCE LINE # 599
+	MOV  	A,R3
+	XRL  	A,#03H
+	JNZ  	?C0073
+?C0244:
+; 		break;
+			; SOURCE LINE # 600
+	SJMP 	?C0245
+; 		}
+			; SOURCE LINE # 601
+; 	case 3:
+			; SOURCE LINE # 602
+?C0083:
+; 		{
+			; SOURCE LINE # 603
+; 		if(New == 1) Counter++;
+			; SOURCE LINE # 604
+	CJNE 	R3,#01H,?C0084
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+?C0084:
+; 		if(New == 2) Counter--; 
+			; SOURCE LINE # 605
+	CJNE 	R3,#02H,?C0073
+?C0245:
+	MOV  	A,Counter+03H
+	ADD  	A,#0FFH
+	MOV  	Counter+03H,A
+	MOV  	A,Counter+02H
+	ADDC 	A,#0FFH
+	MOV  	Counter+02H,A
+	MOV  	A,Counter+01H
+	ADDC 	A,#0FFH
+	MOV  	Counter+01H,A
+	MOV  	A,Counter
+	ADDC 	A,#0FFH
+	MOV  	Counter,A
+; 		break;
+			; SOURCE LINE # 606
+; 		}
+			; SOURCE LINE # 607
+; 	}
+			; SOURCE LINE # 608
+?C0073:
+;  
+; 	EncState = New;		// Записываем новое значение 
+			; SOURCE LINE # 610
+	MOV  	EncState,R3
+; 				// Предыдущего состояния
+; }
+			; SOURCE LINE # 612
+	RET  	
+; END OF EncoderScan1
+
+; 
+; void EncoderScan3 (void)
+
+	RSEG  ?PR?EncoderScan3?MAIN
+EncoderScan3:
+	USING	0
+			; SOURCE LINE # 614
+; {
+			; SOURCE LINE # 615
+;   EncTemp = EncIN;
+			; SOURCE LINE # 616
+	MOV  	EncTemp,P0
+;   Del(10); // ??????????????? ????????
+			; SOURCE LINE # 617
+	MOV  	R7,#0AH
+	MOV  	R6,#00H
+	LCALL	_Del
+;   EncTemp |= EncIN;
+			; SOURCE LINE # 618
+	MOV  	A,P0
+	ORL  	EncTemp,A
+; #if(EncA < EncB) //????? ???????? ????
+;   EncTemp >>= EncA;
+			; SOURCE LINE # 620
+	MOV  	A,EncTemp
+	RRC  	A
+	RRC  	A
+	ANL  	A,#03FH
+	MOV  	EncTemp,A
+; #else
+;   EncTemp >>= EncB;
+; #endif
+;   EncTemp &= 0x03; 
+			; SOURCE LINE # 624
+	ANL  	EncTemp,#03H
+;   if (EncN < 4)
+			; SOURCE LINE # 625
+	MOV  	A,EncN
+	CLR  	C
+	SUBB 	A,#04H
+	JNC  	?C0087
+;   {
+			; SOURCE LINE # 626
+;     if (((EncOld[0] == 0x03)&&(EncTemp != EncOld[EncN - 1]))||
+			; SOURCE LINE # 627
+	MOV  	A,EncOld
+	CJNE 	A,#03H,?C0090
+	MOV  	A,#LOW (EncOld+0FFFFH)
+	ADD  	A,EncN
+	MOV  	R0,A
+	MOV  	A,@R0
+	CJNE 	A,EncTemp,?C0089
+?C0090:
+	MOV  	A,EncOld
+	JNZ  	?C0095
+	MOV  	A,EncTemp
+	XRL  	A,#03H
+	JNZ  	?C0095
+?C0089:
+;         ((EncOld[0] == 0x00)&&(EncTemp == 0x03))) // проверка последовательности команд от энкодера
+;     {
+			; SOURCE LINE # 629
+;       EncOld[EncN] = EncTemp;
+			; SOURCE LINE # 630
+	MOV  	A,#LOW (EncOld)
+	ADD  	A,EncN
+	MOV  	R0,A
+	MOV  	@R0,EncTemp
+;       EncN ++;
+			; SOURCE LINE # 631
+	INC  	EncN
+;     }
+			; SOURCE LINE # 632
+;   }
+			; SOURCE LINE # 633
+	RET  	
+?C0087:
+;   else
+;   {
+			; SOURCE LINE # 635
+;       if ((EncOld[1] == 0x01)&&
+			; SOURCE LINE # 636
+	MOV  	A,EncOld+01H
+	CJNE 	A,#01H,?C0092
+	MOV  	A,EncOld+02H
+	JNZ  	?C0092
+	MOV  	A,EncOld+03H
+	CJNE 	A,#02H,?C0092
+;           (EncOld[2] == 0x00)&&
+;           (EncOld[3] == 0x02)) // проверка совпадения принятых данных с прямой посл-ю
+;       {
+			; SOURCE LINE # 639
+;         Counter++;
+			; SOURCE LINE # 640
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+;       }
+			; SOURCE LINE # 641
+	SJMP 	?C0093
+?C0092:
+;       else
+;         if ((EncOld[1] == 0x02)&&
+			; SOURCE LINE # 643
+	MOV  	A,EncOld+01H
+	CJNE 	A,#02H,?C0093
+	MOV  	A,EncOld+02H
+	JNZ  	?C0093
+	MOV  	A,EncOld+03H
+	CJNE 	A,#01H,?C0093
+;             (EncOld[2] == 0x00)&&
+;             (EncOld[3] == 0x01)) // проверка совпадения принятых данных с обратной посл-ю
+;         {
+			; SOURCE LINE # 646
+;           Counter--;
+			; SOURCE LINE # 647
+	MOV  	A,Counter+03H
+	ADD  	A,#0FFH
+	MOV  	Counter+03H,A
+	MOV  	A,Counter+02H
+	ADDC 	A,#0FFH
+	MOV  	Counter+02H,A
+	MOV  	A,Counter+01H
+	ADDC 	A,#0FFH
+	MOV  	Counter+01H,A
+	MOV  	A,Counter
+	ADDC 	A,#0FFH
+	MOV  	Counter,A
+;         }
+			; SOURCE LINE # 648
+?C0093:
+;     EncN = 0; // ????????? ??????
+			; SOURCE LINE # 649
+	CLR  	A
+	MOV  	EncN,A
+;     EncOld[0] = 0x00;
+			; SOURCE LINE # 650
+	MOV  	EncOld,A
+;     EncOld[1] = 0x00;
+			; SOURCE LINE # 651
+	MOV  	EncOld+01H,A
+;     EncOld[2] = 0x01;
+			; SOURCE LINE # 652
+	MOV  	EncOld+02H,#01H
+;     EncOld[3] = 0x00;
+			; SOURCE LINE # 653
+	MOV  	EncOld+03H,A
+;   }
+			; SOURCE LINE # 654
+; }
+			; SOURCE LINE # 655
+?C0095:
+	RET  	
+; END OF EncoderScan3
+
+; 
+; void EncoderScan4(void)
+
+	RSEG  ?PR?EncoderScan4?MAIN
+EncoderScan4:
+			; SOURCE LINE # 657
+; {
+			; SOURCE LINE # 658
+;  // запомнить текущее состояние сигналов энкодера.
+; 	now_a = EXT_INT0; // сигнал на выходе "А" энкодера PB3
+			; SOURCE LINE # 660
+	MOV  	C,EXT_INT0
+	MOV  	now_a,C
+; 	now_b = EXT_INT1; // сигнал на выходе "B" энкодера PB4  
+			; SOURCE LINE # 661
+	MOV  	C,EXT_INT1
+	MOV  	now_b,C
+;  
+; 	if ((pre_b != now_b)||(pre_a != now_a))  // Если изменился сигнал А или В то  /*  "+" тик (отсчет условно "по часовой") если выполняются 4 условия
+			; SOURCE LINE # 663
+	MOV  	C,pre_b
+	JNB  	now_b,?C0227
+	CPL  	C
+?C0227:
+	JC   	?C0097
+	MOV  	C,pre_a
+	JNB  	now_a,?C0228
+	CPL  	C
+?C0228:
+	JNC  	?C0096
+?C0097:
+; 	{ 
+			; SOURCE LINE # 664
+; 
+; 		if (!now_b) // 1) В = 0
+			; SOURCE LINE # 666
+	JB   	now_b,?C0098
+; 		{
+			; SOURCE LINE # 667
+;  			if (now_a) // 2) A = 1
+			; SOURCE LINE # 668
+	JNB  	now_a,?C0098
+; 			{
+			; SOURCE LINE # 669
+; 				if (now_a != pre_a) // 3) A изменился
+			; SOURCE LINE # 670
+	MOV  	C,now_a
+	JNB  	pre_a,?C0229
+	CPL  	C
+?C0229:
+	JNC  	?C0098
+; 				{
+			; SOURCE LINE # 671
+; 					if (now_b == pre_b) // 4) B не изменился 
+			; SOURCE LINE # 672
+	MOV  	C,now_b
+	JNB  	pre_b,?C0230
+	CPL  	C
+?C0230:
+	JC   	?C0098
+; 					{
+			; SOURCE LINE # 673
+;      					Counter-- ;               // посчитать тик "по часовой"
+			; SOURCE LINE # 674
+	MOV  	A,Counter+03H
+	ADD  	A,#0FFH
+	MOV  	Counter+03H,A
+	MOV  	A,Counter+02H
+	ADDC 	A,#0FFH
+	MOV  	Counter+02H,A
+	MOV  	A,Counter+01H
+	ADDC 	A,#0FFH
+	MOV  	Counter+01H,A
+	MOV  	A,Counter
+	ADDC 	A,#0FFH
+	MOV  	Counter,A
+; 					}
+			; SOURCE LINE # 675
+; 				}
+			; SOURCE LINE # 676
+; 			}
+			; SOURCE LINE # 677
+; 		}     // вращение происходит по-часовой
+			; SOURCE LINE # 678
+?C0098:
+; 
+;  /*  "-" тик (отсчет условно "против часовой") если выполняются 4 условия:   */      
+; 		if (now_b) // 1) В = 1
+			; SOURCE LINE # 681
+	JNB  	now_b,?C0096
+; 		{
+			; SOURCE LINE # 682
+; 			if (!now_a) // 2) A = 0
+			; SOURCE LINE # 683
+	JB   	now_a,?C0096
+; 			{
+			; SOURCE LINE # 684
+; 				if (now_a == pre_a) // 3) A не изменился
+			; SOURCE LINE # 685
+	MOV  	C,now_a
+	JNB  	pre_a,?C0231
+	CPL  	C
+?C0231:
+	JC   	?C0096
+; 				{
+			; SOURCE LINE # 686
+; 					if (now_b != pre_b)// 4) B изменился 
+			; SOURCE LINE # 687
+	MOV  	C,now_b
+	JNB  	pre_b,?C0232
+	CPL  	C
+?C0232:
+	JNC  	?C0096
+; 					{
+			; SOURCE LINE # 688
+;      					Counter++ ;               // посчитать тик "против часовой"
+			; SOURCE LINE # 689
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+; 					}
+			; SOURCE LINE # 690
+; 				}
+			; SOURCE LINE # 691
+; 			}
+			; SOURCE LINE # 692
+; 		} // вращение происходит против-часовой
+			; SOURCE LINE # 693
+; 	}
+			; SOURCE LINE # 694
+?C0096:
+; 	pre_a = now_a; // обновить "прошлые" сигналы энкодера 
+			; SOURCE LINE # 695
+	MOV  	C,now_a
+	MOV  	pre_a,C
+; 	pre_b = now_b; // для - interrupt [PCINT0] void pin_change_isr(void)
+			; SOURCE LINE # 696
+	MOV  	C,now_b
+	MOV  	pre_b,C
+; }
+			; SOURCE LINE # 697
+	RET  	
+; END OF EncoderScan4
+
+; 
+; void EncoderScan5(void)//Функция обработки энкодера
+
+	RSEG  ?PR?EncoderScan5?MAIN
+EncoderScan5:
+	USING	0
+			; SOURCE LINE # 699
+; {
+			; SOURCE LINE # 700
+;  
+;     New = (P0 & 0x0C) >> 2; // PINB & 0x03;	// Берем текущее значение 
+			; SOURCE LINE # 702
+	MOV  	A,P0
+	ANL  	A,#0CH
+	RRC  	A
+	RRC  	A
+	ANL  	A,#03FH
+	MOV  	New,A
+;  
+;     if(New != EncState)//Если значение изменилось по отношению к прошлому
+			; SOURCE LINE # 704
+	XRL  	A,EncState
+	JNZ  	$ + 5H
+	LJMP 	?C0124
+;     {
+			; SOURCE LINE # 705
+;         switch(EncState) //Перебор прошлого значения энкодера
+			; SOURCE LINE # 706
+	MOV  	A,EncState
+	JZ   	?C0112
+	DEC  	A
+	JZ   	?C0115
+	ADD  	A,#0FEH
+	JZ   	?C0118
+	INC  	A
+	JNZ  	?C0108
+; 	    {
+			; SOURCE LINE # 707
+; 	    case 2:if(New == 3) EncPlus++;//В зависимости от значения увеличиваем
+			; SOURCE LINE # 708
+?C0109:
+	MOV  	A,New
+	CJNE 	A,#03H,?C0110
+	INC  	EncPlus
+?C0110:
+; 		             if(New == 0) EncMinus++;//Или уменьшаем  
+			; SOURCE LINE # 709
+	MOV  	A,New
+	JNZ  	?C0108
+	INC  	EncMinus
+; 		       break;
+			; SOURCE LINE # 710
+	SJMP 	?C0108
+; 	    case 0:if(New == 2) EncPlus++;
+			; SOURCE LINE # 711
+?C0112:
+	MOV  	A,New
+	CJNE 	A,#02H,?C0113
+	INC  	EncPlus
+?C0113:
+; 		             if(New == 1) EncMinus++; 
+			; SOURCE LINE # 712
+	MOV  	A,New
+	XRL  	A,#01H
+	JNZ  	?C0108
+	INC  	EncMinus
+; 		       break;
+			; SOURCE LINE # 713
+	SJMP 	?C0108
+; 	    case 1:if(New == 0) EncPlus++;
+			; SOURCE LINE # 714
+?C0115:
+	MOV  	A,New
+	JNZ  	?C0116
+	INC  	EncPlus
+?C0116:
+; 		             if(New == 3) EncMinus++; 
+			; SOURCE LINE # 715
+	MOV  	A,New
+	CJNE 	A,#03H,?C0108
+	INC  	EncMinus
+; 		       break;
+			; SOURCE LINE # 716
+	SJMP 	?C0108
+; 	    case 3:if(New == 1) EncPlus++;
+			; SOURCE LINE # 717
+?C0118:
+	MOV  	A,New
+	CJNE 	A,#01H,?C0119
+	INC  	EncPlus
+?C0119:
+; 		             if(New == 2) EncMinus++; 
+			; SOURCE LINE # 718
+	MOV  	A,New
+	CJNE 	A,#02H,?C0108
+	INC  	EncMinus
+; 		       break;
+			; SOURCE LINE # 719
+;         default:break;
+			; SOURCE LINE # 720
+; 	    }
+			; SOURCE LINE # 721
+?C0108:
+; 		
+; 		if(EncPlus == 4) //если прошёл один "щелчок"
+			; SOURCE LINE # 723
+	MOV  	A,EncPlus
+	CJNE 	A,#04H,?C0122
+; 		{
+			; SOURCE LINE # 724
+; 			Counter++;
+			; SOURCE LINE # 725
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+; 			EncPlus = 0;
+			; SOURCE LINE # 726
+	CLR  	A
+	MOV  	EncPlus,A
+; 		}
+			; SOURCE LINE # 727
+?C0122:
+; 		
+; 		if(EncMinus == 4) //если прошёл один "щелчок"
+			; SOURCE LINE # 729
+	MOV  	A,EncMinus
+	CJNE 	A,#04H,?C0123
+; 		{
+			; SOURCE LINE # 730
+; 		    Counter--;
+			; SOURCE LINE # 731
+	MOV  	A,Counter+03H
+	ADD  	A,#0FFH
+	MOV  	Counter+03H,A
+	MOV  	A,Counter+02H
+	ADDC 	A,#0FFH
+	MOV  	Counter+02H,A
+	MOV  	A,Counter+01H
+	ADDC 	A,#0FFH
+	MOV  	Counter+01H,A
+	MOV  	A,Counter
+	ADDC 	A,#0FFH
+	MOV  	Counter,A
+; 			EncMinus = 0;
+			; SOURCE LINE # 732
+	CLR  	A
+	MOV  	EncMinus,A
+; 		}
+			; SOURCE LINE # 733
+?C0123:
+;         EncState = New;	// Записываем новое значение предыдущего состояния
+			; SOURCE LINE # 734
+	MOV  	EncState,New
+; 	}
+			; SOURCE LINE # 735
+; }
+			; SOURCE LINE # 736
+?C0124:
+	RET  	
+; END OF EncoderScan5
+
+; 
+; void LcdOutputLine(unsigned char delay)
+
+	RSEG  ?PR?_LcdOutputLine?MAIN
+_LcdOutputLine:
+	USING	0
+			; SOURCE LINE # 738
+	MOV  	delay?644,R7
+; {
+			; SOURCE LINE # 739
+; 	unsigned char i,y;
+; 	TCON &= ~0x10;
+			; SOURCE LINE # 741
+	ANL  	TCON,#0EFH
+; 	ET0 = 0;
+			; SOURCE LINE # 742
+	CLR  	ET0
+; 	
+; 	LedsSwitchOff();
+			; SOURCE LINE # 744
+	LCALL	LedsSwitchOff
+; 	SEGMENT_G = 1;
+			; SOURCE LINE # 745
+	SETB 	SEGMENT_G
+; 	
+; 	for (i=0;i<6;i++)
+			; SOURCE LINE # 747
+;---- Variable 'i?645' assigned to Register 'R7' ----
+	CLR  	A
+	MOV  	R7,A
+?C0125:
+; 	{
+			; SOURCE LINE # 748
+; 		for (y=0;y<delay;y++) //{ Del_500mks(); Del_500mks(); Del_500mks(); Del_500mks(); }
+			; SOURCE LINE # 749
+;---- Variable 'y?646' assigned to Register 'R6' ----
+	CLR  	A
+	MOV  	R6,A
+?C0128:
+	MOV  	A,R6
+	CLR  	C
+	SUBB 	A,delay?644
+	JNC  	?C0127
+; 		switch (i)
+			; SOURCE LINE # 750
+	MOV  	A,R7
+	DEC  	A
+	JZ   	?C0133
+	DEC  	A
+	JZ   	?C0134
+	DEC  	A
+	JZ   	?C0135
+	DEC  	A
+	JZ   	?C0136
+	DEC  	A
+	JZ   	?C0137
+	ADD  	A,#05H
+	JNZ  	?C0130
+; 		{
+			; SOURCE LINE # 751
+; 			case 0: LED1 = 0; break;
+			; SOURCE LINE # 752
+?C0132:
+	CLR  	LED1
+	SJMP 	?C0130
+; 			case 1: LED2 = 0; break;
+			; SOURCE LINE # 753
+?C0133:
+	CLR  	LED2
+	SJMP 	?C0130
+; 			case 2: LED3 = 0; break;
+			; SOURCE LINE # 754
+?C0134:
+	CLR  	LED3
+	SJMP 	?C0130
+; 			case 3: LED4 = 0; break;
+			; SOURCE LINE # 755
+?C0135:
+	CLR  	LED4
+	SJMP 	?C0130
+; 			case 4: LED5 = 0; break;
+			; SOURCE LINE # 756
+?C0136:
+	CLR  	LED5
+	SJMP 	?C0130
+; 			case 5: LED6 = 0; break;
+			; SOURCE LINE # 757
+?C0137:
+	CLR  	LED6
+; 		}	
+			; SOURCE LINE # 758
+?C0130:
+	INC  	R6
+	SJMP 	?C0128
+; 	}
+			; SOURCE LINE # 759
+?C0127:
+	INC  	R7
+	CJNE 	R7,#06H,?C0125
+?C0126:
+; 	ET0 = 1;
+			; SOURCE LINE # 760
+	SETB 	ET0
+; 	TCON |= 0x10;
+			; SOURCE LINE # 761
+	ORL  	TCON,#010H
+; }
+			; SOURCE LINE # 762
+	RET  	
+; END OF _LcdOutputLine
+
+; 
+; void WriteCounterToEEprom(void)
+
+	RSEG  ?PR?WriteCounterToEEprom?MAIN
+WriteCounterToEEprom:
+	USING	0
+			; SOURCE LINE # 764
+; {
+			; SOURCE LINE # 765
+; 	unsigned char temp_byte;
+; 	temp_byte = Counter;
+			; SOURCE LINE # 767
+;---- Variable 'temp_byte?747' assigned to Register 'R5' ----
+	MOV  	R5,Counter+03H
+; 	EEPROM_ByteWrite(EEPROM_COUNTER_ADDR_LOW, temp_byte);
+			; SOURCE LINE # 768
+	MOV  	R7,#04H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteWrite
+; 	temp_byte = Counter>>8;
+			; SOURCE LINE # 769
+	MOV  	R7,Counter+03H
+	MOV  	R6,Counter+02H
+	MOV  	R5,Counter+01H
+	MOV  	R4,Counter
+	MOV  	R0,#08H
+	LCALL	?C?ULSHR
+	MOV  	R5,AR7
+; 	EEPROM_ByteWrite(EEPROM_COUNTER_ADDR_HIGH,temp_byte);
+			; SOURCE LINE # 770
+	MOV  	R7,#05H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteWrite
+; 
+; 	LedsSwitchOff();
+			; SOURCE LINE # 772
+	LCALL	LedsSwitchOff
+; 	LcdOutputLine(2);
+			; SOURCE LINE # 773
+	MOV  	R7,#02H
+	LJMP 	_LcdOutputLine
+; END OF WriteCounterToEEprom
+
+; }
+; 
+; void WriteDiscretToEEprom(void)
+
+	RSEG  ?PR?WriteDiscretToEEprom?MAIN
+WriteDiscretToEEprom:
+	USING	0
+			; SOURCE LINE # 776
+; {
+			; SOURCE LINE # 777
+; 	unsigned char temp_byte;
+; 	
+; 	if (Discret == 0) Discret = DEFAULT_DISCRET;
+			; SOURCE LINE # 780
+	CLR  	A
+	MOV  	R7,A
+	MOV  	R6,A
+	MOV  	R5,A
+	MOV  	R4,A
+	MOV  	R3,Discret+03H
+	MOV  	R2,Discret+02H
+	MOV  	R1,Discret+01H
+	MOV  	R0,Discret
+	CLR  	C
+	LCALL	?C?ULCMP
+	JNZ  	?C0140
+	MOV  	Discret+03H,#064H
+	MOV  	Discret+02H,A
+	MOV  	Discret+01H,A
+	MOV  	Discret,A
+?C0140:
+; 	temp_byte = Discret;
+			; SOURCE LINE # 781
+;---- Variable 'temp_byte?848' assigned to Register 'R5' ----
+	MOV  	R5,Discret+03H
+; 	EEPROM_ByteWrite(EEPROM_DISCRET_ADDR_LOW, temp_byte);
+			; SOURCE LINE # 782
+	MOV  	R7,#020H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteWrite
+; 	temp_byte = Discret>>8;
+			; SOURCE LINE # 783
+	MOV  	R7,Discret+03H
+	MOV  	R6,Discret+02H
+	MOV  	R5,Discret+01H
+	MOV  	R4,Discret
+	MOV  	R0,#08H
+	LCALL	?C?ULSHR
+	MOV  	R5,AR7
+; 	EEPROM_ByteWrite(EEPROM_DISCRET_ADDR_HIGH,temp_byte);
+			; SOURCE LINE # 784
+	MOV  	R7,#021H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteWrite
+; 
+; 	LedsSwitchOff();
+			; SOURCE LINE # 786
+	LCALL	LedsSwitchOff
+; 	LcdOutputLine(2);
+			; SOURCE LINE # 787
+	MOV  	R7,#02H
+	LJMP 	_LcdOutputLine
+; END OF WriteDiscretToEEprom
+
+; }
+; 
+; void ResetCounterToOutputBuffer(void)
+
+	RSEG  ?PR?ResetCounterToOutputBuffer?MAIN
+ResetCounterToOutputBuffer:
+	USING	0
+			; SOURCE LINE # 790
+; {
+			; SOURCE LINE # 791
+; 	OutputBuffer[0] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR);
+			; SOURCE LINE # 792
+	MOV  	R7,#03H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteRead
+	MOV  	OutputBuffer,R7
+; 	OutputBuffer[1] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR+1);
+			; SOURCE LINE # 793
+	MOV  	R7,#04H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteRead
+	MOV  	OutputBuffer+01H,R7
+; 	OutputBuffer[2] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR+2);
+			; SOURCE LINE # 794
+	MOV  	R7,#05H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteRead
+	MOV  	OutputBuffer+02H,R7
+; 	OutputBuffer[3] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR+3);
+			; SOURCE LINE # 795
+	MOV  	R7,#06H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteRead
+	MOV  	OutputBuffer+03H,R7
+; }
+			; SOURCE LINE # 796
+	RET  	
+; END OF ResetCounterToOutputBuffer
+
+; 
+; void OutputBufferToResetCounter(void)
+
+	RSEG  ?PR?OutputBufferToResetCounter?MAIN
+OutputBufferToResetCounter:
+	USING	0
+			; SOURCE LINE # 798
+; {
+			; SOURCE LINE # 799
+; 		EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR, OutputBuffer[0]);
+			; SOURCE LINE # 800
+	MOV  	R5,OutputBuffer
+	MOV  	R7,#03H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteWrite
+; 		EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR+1, OutputBuffer[1]);
+			; SOURCE LINE # 801
+	MOV  	R5,OutputBuffer+01H
+	MOV  	R7,#04H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteWrite
+; 		EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR+2, OutputBuffer[2]);
+			; SOURCE LINE # 802
+	MOV  	R5,OutputBuffer+02H
+	MOV  	R7,#05H
+	MOV  	R6,#00H
+	LCALL	_EEPROM_ByteWrite
+; 		EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR+3, OutputBuffer[3]);
+			; SOURCE LINE # 803
+	MOV  	R5,OutputBuffer+03H
+	MOV  	R7,#06H
+	MOV  	R6,#00H
+	LJMP 	_EEPROM_ByteWrite
+; END OF OutputBufferToResetCounter
+
+; }
+; 
+; void OutSymbol(unsigned char LedNumber, unsigned char SymbolCode)
+
+	RSEG  ?PR?_OutSymbol?MAIN
+_OutSymbol:
+	USING	0
+			; SOURCE LINE # 806
+	MOV  	LedNumber?1149,R7
+	MOV  	SymbolCode?1150,R5
+; {
+			; SOURCE LINE # 807
+; 	LedsSwitchOff();
+			; SOURCE LINE # 808
+	LCALL	LedsSwitchOff
+; 
+; 	switch (SymbolCode)
+			; SOURCE LINE # 810
+	MOV  	A,SymbolCode?1150
+	ADD  	A,#0D3H
+	CJNE 	A,#0DH,?C0233
+?C0233:
+	JC   	$ + 5H
+	LJMP 	?C0144
+	MOV  	DPTR,#?C0234
+	MOV  	B,#03H
+	MUL  	AB
+	XCH  	A,DPH
+	ADD  	A,B
+	XCH  	A,DPH
+	JMP  	@A+DPTR
+?C0234:
+	LJMP 	?C0145
+	LJMP 	?C0144
+	LJMP 	?C0144
+	LJMP 	?C0146
+	LJMP 	?C0147
+	LJMP 	?C0148
+	LJMP 	?C0149
+	LJMP 	?C0150
+	LJMP 	?C0151
+	LJMP 	?C0152
+	LJMP 	?C0153
+	LJMP 	?C0154
+	LJMP 	?C0155
+; 	{
+			; SOURCE LINE # 811
+; 		case 0x2D:
+			; SOURCE LINE # 812
+?C0145:
+; 		{
+			; SOURCE LINE # 813
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 814
+	SETB 	SEGMENT_G
+; 		} break;
+			; SOURCE LINE # 815
+	SJMP 	?C0144
+; 		case 0x30:
+			; SOURCE LINE # 816
+?C0146:
+; 		{
+			; SOURCE LINE # 817
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 818
+	SETB 	SEGMENT_A
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 819
+	SETB 	SEGMENT_B
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 820
+	SETB 	SEGMENT_C
+; 			SEGMENT_D = 1;
+			; SOURCE LINE # 821
+	SETB 	SEGMENT_D
+; 			SEGMENT_E = 1;
+			; SOURCE LINE # 822
+	SETB 	SEGMENT_E
+; 			SEGMENT_F = 1;
+			; SOURCE LINE # 823
+	SETB 	SEGMENT_F
+; 		} break;
+			; SOURCE LINE # 824
+	SJMP 	?C0144
+; 		case 0x31:
+			; SOURCE LINE # 825
+?C0147:
+; 		{
+			; SOURCE LINE # 826
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 827
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 828
+; 		} break;
+			; SOURCE LINE # 829
+	SJMP 	?C0246
+; 		case 0x32:
+			; SOURCE LINE # 830
+?C0148:
+; 		{
+			; SOURCE LINE # 831
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 832
+	SETB 	SEGMENT_A
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 833
+	SETB 	SEGMENT_B
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 834
+	SETB 	SEGMENT_G
+; 			SEGMENT_E = 1;
+			; SOURCE LINE # 835
+	SETB 	SEGMENT_E
+; 			SEGMENT_D = 1;
+			; SOURCE LINE # 836
+	SETB 	SEGMENT_D
+; 		} break;
+			; SOURCE LINE # 837
+	SJMP 	?C0144
+; 		case 0x33:
+			; SOURCE LINE # 838
+?C0149:
+; 		{
+			; SOURCE LINE # 839
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 840
+	SETB 	SEGMENT_A
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 841
+	SETB 	SEGMENT_B
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 842
+	SETB 	SEGMENT_C
+; 			SEGMENT_D = 1;
+			; SOURCE LINE # 843
+	SETB 	SEGMENT_D
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 844
+	SETB 	SEGMENT_G
+; 		} break;
+			; SOURCE LINE # 845
+	SJMP 	?C0144
+; 		case 0x34:
+			; SOURCE LINE # 846
+?C0150:
+; 		{
+			; SOURCE LINE # 847
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 848
+	SETB 	SEGMENT_B
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 849
+	SETB 	SEGMENT_C
+; 			SEGMENT_F = 1;
+			; SOURCE LINE # 850
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 851
+; 		} break;
+			; SOURCE LINE # 852
+	SJMP 	?C0248
+; 		case 0x35:
+			; SOURCE LINE # 853
+?C0151:
+; 		{
+			; SOURCE LINE # 854
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 855
+	SETB 	SEGMENT_A
+; 			SEGMENT_F = 1;
+			; SOURCE LINE # 856
+	SETB 	SEGMENT_F
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 857
+	SETB 	SEGMENT_G
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 858
+	SETB 	SEGMENT_C
+; 			SEGMENT_D = 1;
+			; SOURCE LINE # 859
+	SETB 	SEGMENT_D
+; 		} break;
+			; SOURCE LINE # 860
+	SJMP 	?C0144
+; 		case 0x36:
+			; SOURCE LINE # 861
+?C0152:
+; 		{
+			; SOURCE LINE # 862
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 863
+	SETB 	SEGMENT_A
+; 			SEGMENT_F = 1;
+			; SOURCE LINE # 864
+	SETB 	SEGMENT_F
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 865
+	SETB 	SEGMENT_G
+; 			SEGMENT_E = 1;
+			; SOURCE LINE # 866
+	SETB 	SEGMENT_E
+; 			SEGMENT_D = 1;
+			; SOURCE LINE # 867
+	SETB 	SEGMENT_D
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 868
+	SETB 	SEGMENT_C
+; 		} break;
+			; SOURCE LINE # 869
+	SJMP 	?C0144
+; 		case 0x37:
+			; SOURCE LINE # 870
+?C0153:
+; 		{
+			; SOURCE LINE # 871
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 872
+	SETB 	SEGMENT_A
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 873
+?C0246:
+	SETB 	SEGMENT_B
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 874
+	SETB 	SEGMENT_C
+; 		} break;
+			; SOURCE LINE # 875
+	SJMP 	?C0144
+; 		case 0x38:
+			; SOURCE LINE # 876
+?C0154:
+; 		{
+			; SOURCE LINE # 877
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 878
+	SETB 	SEGMENT_A
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 879
+	SETB 	SEGMENT_B
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 880
+	SETB 	SEGMENT_C
+; 			SEGMENT_D = 1;
+			; SOURCE LINE # 881
+	SETB 	SEGMENT_D
+; 			SEGMENT_E = 1;
+			; SOURCE LINE # 882
+	SETB 	SEGMENT_E
+; 			SEGMENT_F = 1;
+			; SOURCE LINE # 883
+?C0247:
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 884
+; 		} break;
+			; SOURCE LINE # 885
+	SJMP 	?C0248
+; 		case 0x39:
+			; SOURCE LINE # 886
+?C0155:
+; 		{
+			; SOURCE LINE # 887
+; 			SEGMENT_A = 1;
+			; SOURCE LINE # 888
+	SETB 	SEGMENT_A
+; 			SEGMENT_B = 1;
+			; SOURCE LINE # 889
+	SETB 	SEGMENT_B
+; 			SEGMENT_C = 1;
+			; SOURCE LINE # 890
+	SETB 	SEGMENT_C
+; 			SEGMENT_D = 1;
+			; SOURCE LINE # 891
+	SETB 	SEGMENT_D
+; 			SEGMENT_F = 1;
+			; SOURCE LINE # 892
+?C0248:
+	SETB 	SEGMENT_F
+; 			SEGMENT_G = 1;
+			; SOURCE LINE # 893
+	SETB 	SEGMENT_G
+; 		} break;
+			; SOURCE LINE # 894
+; 	}
+			; SOURCE LINE # 895
+?C0144:
+; 
+; 	if (FlagPoint == 1) SEGMENT_POINT = 1;
+			; SOURCE LINE # 897
+	JNB  	FlagPoint,?C0156
+	SETB 	SEGMENT_POINT
+?C0156:
+; 	switch (LedNumber)
+			; SOURCE LINE # 898
+	MOV  	A,LedNumber?1149
+	ADD  	A,#0FEH
+	JZ   	?C0159
+	DEC  	A
+	JZ   	?C0160
+	DEC  	A
+	JZ   	?C0161
+	DEC  	A
+	JZ   	?C0162
+	DEC  	A
+	JZ   	?C0163
+	ADD  	A,#05H
+	JNZ  	?C0164
+; 	{
+			; SOURCE LINE # 899
+; 		case 1: LED1 = 0; break;
+			; SOURCE LINE # 900
+?C0158:
+	CLR  	LED1
+	RET  	
+; 		case 2: LED2 = 0; break;
+			; SOURCE LINE # 901
+?C0159:
+	CLR  	LED2
+	RET  	
+; 		case 3: LED3 = 0; break;
+			; SOURCE LINE # 902
+?C0160:
+	CLR  	LED3
+	RET  	
+; 		case 4: LED4 = 0; break;
+			; SOURCE LINE # 903
+?C0161:
+	CLR  	LED4
+	RET  	
+; 		case 5: LED5 = 0; break;
+			; SOURCE LINE # 904
+?C0162:
+	CLR  	LED5
+	RET  	
+; 		case 6: LED6 = 0; break;
+			; SOURCE LINE # 905
+?C0163:
+	CLR  	LED6
+; 	}	
+			; SOURCE LINE # 906
+; }
+			; SOURCE LINE # 907
+?C0164:
+	RET  	
+; END OF _OutSymbol
+
+; 
+; void LedsSwitchOff(void)
+
+	RSEG  ?PR?LedsSwitchOff?MAIN
+LedsSwitchOff:
+			; SOURCE LINE # 909
+; {
+			; SOURCE LINE # 910
+; 	LED1 = 1;
+			; SOURCE LINE # 911
+	SETB 	LED1
+; 	LED2 = 1;
+			; SOURCE LINE # 912
+	SETB 	LED2
+; 	LED3 = 1;
+			; SOURCE LINE # 913
+	SETB 	LED3
+; 	LED4 = 1;
+			; SOURCE LINE # 914
+	SETB 	LED4
+; 	LED5 = 1;
+			; SOURCE LINE # 915
+	SETB 	LED5
+; 	LED6 = 1;
+			; SOURCE LINE # 916
+	SETB 	LED6
+; 
+; 	SEGMENT_A = 0;
+			; SOURCE LINE # 918
+	CLR  	SEGMENT_A
+; 	SEGMENT_B = 0;
+			; SOURCE LINE # 919
+	CLR  	SEGMENT_B
+; 	SEGMENT_C = 0;
+			; SOURCE LINE # 920
+	CLR  	SEGMENT_C
+; 	SEGMENT_D = 0;
+			; SOURCE LINE # 921
+	CLR  	SEGMENT_D
+; 	SEGMENT_E = 0;
+			; SOURCE LINE # 922
+	CLR  	SEGMENT_E
+; 	SEGMENT_F = 0;
+			; SOURCE LINE # 923
+	CLR  	SEGMENT_F
+; 	SEGMENT_G = 0;
+			; SOURCE LINE # 924
+	CLR  	SEGMENT_G
+; 	SEGMENT_POINT = 0;
+			; SOURCE LINE # 925
+	CLR  	SEGMENT_POINT
+; }
+			; SOURCE LINE # 926
+	RET  	
+; END OF LedsSwitchOff
+
+; 
+; //-------------------------
+; // Initialize
+; //-------------------------
+; // Called when a DEV_CONFIGURED interrupt is received.
+; // - Enables all peripherals needed for the application
+; //
+; void Initialize(void)
+
+	RSEG  ?PR?Initialize?MAIN
+Initialize:
+	USING	0
+			; SOURCE LINE # 934
+; {
+			; SOURCE LINE # 935
+; 	Port_Init();                           // Initialize crossbar and GPIO
+			; SOURCE LINE # 936
+	LCALL	Port_Init
+; 	OSCILLATOR_Init ();
+			; SOURCE LINE # 937
+	LCALL	OSCILLATOR_Init
+; //	OSCICN |= 0x83;							// задаём частоту
+; 	Timer0_Init();                          // Initialize timer2
+			; SOURCE LINE # 939
+	LCALL	Timer0_Init
+; 	Timer1_Init(); // smbus SCL
+			; SOURCE LINE # 940
+	LCALL	Timer1_Init
+; 	Timer3_Init(); // smbus
+			; SOURCE LINE # 941
+	LCALL	Timer3_Init
+; 	SMBus_Init ();
+			; SOURCE LINE # 942
+	LCALL	SMBus_Init
+; 	Ext_Interrupt_Init();
+			; SOURCE LINE # 943
+	LJMP 	Ext_Interrupt_Init
+; END OF Initialize
+
+; }
+; 
+; void OSCILLATOR_Init (void)
+
+	RSEG  ?PR?OSCILLATOR_Init?MAIN
+OSCILLATOR_Init:
+			; SOURCE LINE # 946
+; {
+			; SOURCE LINE # 947
+; #ifdef EXTERNAL_CRYSTAL
+; 	int i;
+;     OSCXCN    = 0x67;
+;     for (i = 0; i < 256; i++);  // Wait 1ms for initialization
+;     while (!(OSCXCN & 0x80));           // Wait for crystal osc. to settle
+;    	RSTSRC = 0x06;                      	// Enable missing clock detector and
+;     	                                   	// VDD Monitor reset
+; 
+; //   	CLKMUL = 0x00;
+; 	CLKSEL = 0x01;                      	// Select external oscillator as system
+;                                        		// clock source
+; //	CLKMUL |= 0x80;
+; //    for (i = 0; i < 256; i++);  // Wait 1ms for initialization
+; //    CLKMUL |= 0xC0;
+; //	while (!(CLKMUL & 0x20));           // 
+; 	
+;    	OSCICN = 0x03;                      	// Disable the internal oscillator.
+; #else
+; 	OSCICN = 0x83;							// задаём частоту
+			; SOURCE LINE # 966
+	MOV  	OSCICN,#083H
+; 	RSTSRC |= 0x04;                      	// Enable missing clock detector and
+			; SOURCE LINE # 967
+	ORL  	RSTSRC,#04H
+; #endif
+; }
+			; SOURCE LINE # 969
+	RET  	
+; END OF OSCILLATOR_Init
+
+; 
+; //-------------------------
+; // Timer_Init
+; //-------------------------
+; // Timer initialization
+; // - 1 mhz timer 2 reload, used to check if switch pressed on overflow and
+; // used for ADC continuous conversion
+; //
+; void Timer0_Init(void)
+
+	RSEG  ?PR?Timer0_Init?MAIN
+Timer0_Init:
+			; SOURCE LINE # 978
+; {
+			; SOURCE LINE # 979
+; 	TL0 = 0;
+			; SOURCE LINE # 980
+	CLR  	A
+	MOV  	TL0,A
+; 	TH0 = 1;
+			; SOURCE LINE # 981
+	MOV  	TH0,#01H
+; 
+; 	TMOD = 0x02; 	//	00 - 13bit, 01 - 16bit, 02 - 8 bit;;
+			; SOURCE LINE # 983
+	MOV  	TMOD,#02H
+; 					//	T0M1=0; // 16-РАЗРЯДНЫЙ ТАЙМЕР
+; 
+; #ifdef EXTERNAL_CRYSTAL
+; 	CKCON = 0x03; 
+; #else
+; 	CKCON = 0x00; // делитель на 12 (01 - на 4, 10 - на 48, на 8  - EXT CLK)
+			; SOURCE LINE # 989
+	MOV  	CKCON,A
+; #endif
+; 	TCON = 0x10;                        // Timer0 ON
+			; SOURCE LINE # 991
+	MOV  	TCON,#010H
+; }
+			; SOURCE LINE # 992
+	RET  	
+; END OF Timer0_Init
+
+; 
+; void Timer1_Init (void)
+
+	RSEG  ?PR?Timer1_Init?MAIN
+Timer1_Init:
+			; SOURCE LINE # 994
+; {
+			; SOURCE LINE # 995
+; #if ((SYSCLK/SMB_FREQUENCY/3) < 255)
+;    #define SCALE 1
+;       CKCON |= 0x08;                   // Timer1 clock source = SYSCLK
+			; SOURCE LINE # 998
+	ORL  	CKCON,#08H
+; #elif ((SYSCLK/SMB_FREQUENCY/4/3) < 255)
+;    #define SCALE 4
+;       CKCON |= 0x01;
+;       CKCON &= ~0x0A;                  // Timer1 clock source = SYSCLK / 4
+; #endif
+; 
+;    TMOD |= 0x20;                        // Timer1 in 8-bit auto-reload mode
+			; SOURCE LINE # 1005
+	ORL  	TMOD,#020H
+; 
+;    TH1 = -(SYSCLK/SMB_FREQUENCY/12/3); // Timer1 configured to overflow at 1/3
+			; SOURCE LINE # 1007
+	MOV  	TH1,#0F8H
+;                                        // the rate defined by SMB_FREQUENCY
+; 
+;    TL1 = TH1;                          // Init Timer1
+			; SOURCE LINE # 1010
+	MOV  	TL1,TH1
+; 
+;    TR1 = 1;                            // Timer1 enabled
+			; SOURCE LINE # 1012
+	SETB 	TR1
+; }
+			; SOURCE LINE # 1013
+	RET  	
+; END OF Timer1_Init
+
+; 
+; 
+; void Timer3_Init (void)
+
+	RSEG  ?PR?Timer3_Init?MAIN
+Timer3_Init:
+			; SOURCE LINE # 1016
+; {
+			; SOURCE LINE # 1017
+;    TMR3CN = 0x00;                      // Timer3 configured for 16-bit auto-
+			; SOURCE LINE # 1018
+	CLR  	A
+	MOV  	TMR3CN,A
+;                                        // reload, low-byte interrupt disabled
+; 
+;    CKCON &= ~0x40;                     // Timer3 uses SYSCLK/12
+			; SOURCE LINE # 1021
+	ANL  	CKCON,#0BFH
+;    TMR3RL = -(SYSCLK/12/40);           // Timer3 configured to overflow after
+			; SOURCE LINE # 1022
+	MOV  	TMR3RL+01H,#09EH
+	MOV  	TMR3RL,#058H
+;    TMR3 = TMR3RL;                      // ~25ms (for SMBus low timeout detect)
+			; SOURCE LINE # 1023
+	MOV  	TMR3+01H,TMR3RL+01H
+	MOV  	TMR3,TMR3RL
+; 
+;    EIE1 |= 0x80;                       // Timer3 interrupt enable
+			; SOURCE LINE # 1025
+	ORL  	EIE1,#080H
+;    TMR3CN |= 0x04;                     // Start Timer3
+			; SOURCE LINE # 1026
+	ORL  	TMR3CN,#04H
+; }
+			; SOURCE LINE # 1027
+	RET  	
+; END OF Timer3_Init
+
+; 
+; void Port_Init(void)
+
+	RSEG  ?PR?Port_Init?MAIN
+Port_Init:
+			; SOURCE LINE # 1029
+; {
+			; SOURCE LINE # 1030
+; #ifdef EXTERNAL_CRYSTAL
+;    	P0MDIN &= ~0x0C;                    // P0.2, P0.3 are analog 
+; #endif
+; 
+; #ifdef EXTERNAL_CRYSTAL
+; 	P0SKIP	|= 0x0C;
+; #endif
+; 
+; 	P0MDOUT = 0xFF; // все на выход
+			; SOURCE LINE # 1039
+	MOV  	P0MDOUT,#0FFH
+; 	P0MDOUT &= ~0x7F; // bit6,5,4,3 - клавиатура, bit2 вход /INT0, /INT1, bit0,1 - I2C EEprom
+			; SOURCE LINE # 1040
+	ANL  	P0MDOUT,#080H
+; 
+; 	P1MDOUT = 0xFF;  // все на выход
+			; SOURCE LINE # 1042
+	MOV  	P1MDOUT,#0FFH
+; 
+; 	P2MDOUT = 0xFF;  // все на выход
+			; SOURCE LINE # 1044
+	MOV  	P2MDOUT,#0FFH
+; 	P2MDOUT &= ~0x20; // Int0 дополнение - вход
+			; SOURCE LINE # 1045
+	ANL  	P2MDOUT,#0DFH
+; 
+; //	P2MDOUT &= ~0xE0; // bit 5,6,7 input
+; 
+; 	P0 |= 0x78; // p0.7, p0.6, p0.5 - клавиатура
+			; SOURCE LINE # 1049
+	ORL  	P0,#078H
+; 	P0 |= 0x0C; // p0.2  - вход /INT0
+			; SOURCE LINE # 1050
+	ORL  	P0,#0CH
+; 	P0 &= ~0x03; // p0.0 , p0.1 - TX / RX I2C
+			; SOURCE LINE # 1051
+	ANL  	P0,#0FCH
+; 
+; 	P2 |= 0xE0; 
+			; SOURCE LINE # 1053
+	ORL  	P2,#0E0H
+; 
+; 	XBR0    = 0x04;						// SMBUS enabled
+			; SOURCE LINE # 1055
+	MOV  	XBR0,#04H
+; 	XBR1    = 0x40;                     // Enable Crossbar and weak pull-ups
+			; SOURCE LINE # 1056
+	MOV  	XBR1,#040H
+; }
+			; SOURCE LINE # 1057
+	RET  	
+; END OF Port_Init
+
+; 
+; //
+; // SMBUS INIT
+; //
+; //
+; void SMBus_Init (void)
+
+	RSEG  ?PR?SMBus_Init?MAIN
+SMBus_Init:
+			; SOURCE LINE # 1063
+; {
+			; SOURCE LINE # 1064
+; 	SMB0CF = 0x5D;                      // Use Timer1 overflows as SMBus clock
+			; SOURCE LINE # 1065
+	MOV  	SMB0CF,#05DH
+;                                        // source;
+;                                        // Disable slave mode;
+;                                        // Enable setup & hold time extensions;
+;                                        // Enable SMBus Free timeout detect;
+;                                        // Enable SCL low timeout detect;
+; 
+; 	SMB0CF |= 0x80;                     // Enable SMBus;
+			; SOURCE LINE # 1072
+	ORL  	SMB0CF,#080H
+; }
+			; SOURCE LINE # 1073
+	RET  	
+; END OF SMBus_Init
+
+; 
+; void Ext_Interrupt_Init (void)
+
+	RSEG  ?PR?Ext_Interrupt_Init?MAIN
+Ext_Interrupt_Init:
+			; SOURCE LINE # 1075
+; {
+			; SOURCE LINE # 1076
+; 	IP = 0x05;// int1, int0 высокий приоритет
+			; SOURCE LINE # 1077
+	MOV  	IP,#05H
+; 
+; //	if (KEY1 == 0) TCON &= ~0x01;                        // /INT 0 если активен (bit = 1 если фронтом)
+; //	else TCON |= 0x01; // фронтом
+; 	TCON |= 0x05; // фронтом
+			; SOURCE LINE # 1081
+	ORL  	TCON,#05H
+; 	IT01CF &= ~0x0A;	// полярность /INT0 ( 0 - низкий активный уровень)1
+			; SOURCE LINE # 1082
+	ANL  	IT01CF,#0F5H
+; // выбор активности или HIGH или LOW
+; //	if (KEY2 == 1) IT01CF &= ~0x08;	// полярность /INT0 ( 0 - низкий активный уровень)1
+; //	else IT01CF |= 0x08; // 1 - высокий
+; 
+; //	if (KEY3 == 0) TCON &= ~0x04;                        // /INT 1 если активен (bit = 1 если фронтом)
+; //	else TCON |= 0x04; // фронтом
+; 
+; // выбор активности или HIGH или LOW
+; //	if (KEY4 == 0) IT01CF &= ~0x80;	// полярность /INT1 ( 0 - низкий активный уровень)
+; //	else IT01CF |= 0x80; // 1 - высокий
+; 
+; 	IT01CF |= 0x02;	// 
+			; SOURCE LINE # 1094
+	ORL  	IT01CF,#02H
+; 	IT01CF &= ~0x05; // выбор порта P0.2 для /INT0
+			; SOURCE LINE # 1095
+	ANL  	IT01CF,#0FAH
+; 
+; 	IT01CF |= 0x30;	// 
+			; SOURCE LINE # 1097
+	ORL  	IT01CF,#030H
+; 	IT01CF &= ~0x40; // выбор порта P0.3 для /INT1
+			; SOURCE LINE # 1098
+	ANL  	IT01CF,#0BFH
+; 
+; 	EX0 = 1;                            // Enable /INT0 interrupts
+			; SOURCE LINE # 1100
+	SETB 	EX0
+; 	EX1 = 1;                            // Enable /INT1 interrupts
+			; SOURCE LINE # 1101
+	SETB 	EX1
+; }
+			; SOURCE LINE # 1102
+	RET  	
+; END OF Ext_Interrupt_Init
+
+; 
+; 
+; //-----------------------------------------------------------------------------
+; // EEPROM_ByteWrite ()
+; //-----------------------------------------------------------------------------
+; //
+; // Return Value : None
+; // Parameters   :
+; //   1) unsigned char addr - address to write in the EEPROM
+; //                        range is full range of character: 0 to 255
+; //
+; //   2) unsigned char dat - data to write to the address <addr> in the EEPROM
+; //                        range is full range of character: 0 to 255
+; //
+; // This function writes the value in <dat> to location <addr> in the EEPROM
+; // then polls the EEPROM until the write is complete.
+; //
+; void EEPROM_ByteWrite(U16 addr, unsigned char dat)
+
+	RSEG  ?PR?_EEPROM_ByteWrite?MAIN
+L?0249:
+	USING	0
+	MOV  	R5,LcdMode
+	MOV  	R7,#010H
+	MOV  	R6,#00H
+_EEPROM_ByteWrite:
+	USING	0
+			; SOURCE LINE # 1120
+;---- Variable 'addr?2151' assigned to Register 'R2/R3' ----
+	MOV  	R3,AR7
+	MOV  	R2,AR6
+;---- Variable 'dat?2152' assigned to Register 'R5' ----
+; {
+			; SOURCE LINE # 1121
+?C0174:
+;    while (SMB_BUSY);                   // Wait for SMBus to be free.
+			; SOURCE LINE # 1122
+	JB   	SMB_BUSY,?C0174
+?C0175:
+;    SMB_BUSY = 1;                       // Claim SMBus (set to busy)
+			; SOURCE LINE # 1123
+	SETB 	SMB_BUSY
+; 
+; 	WORD_ADDR_HIGH = addr >> 8;                   // Set the target address in the
+			; SOURCE LINE # 1125
+	MOV  	WORD_ADDR_HIGH,R2
+; 	WORD_ADDR_LOW = addr & 0xFF;
+			; SOURCE LINE # 1126
+	MOV  	A,R3
+	MOV  	WORD_ADDR_LOW,A
+; 
+;    // Set SMBus ISR parameters
+; #ifdef EEPROM_24C128
+; 	SMB_SENDWORDADDR_HIGH = 1;
+			; SOURCE LINE # 1130
+	SETB 	SMB_SENDWORDADDR_HIGH
+; #endif
+; #ifdef EEPROM_24C16
+; 	SMB_SENDWORDADDR_HIGH = 0;
+; #endif
+; 	SMB_RW = WRITE;                     // Mark next transfer as a write
+			; SOURCE LINE # 1135
+	CLR  	SMB_RW
+; 	SMB_SENDWORDADDR_LOW = 1;               // Send Word Address after Slave Address
+			; SOURCE LINE # 1136
+	SETB 	SMB_SENDWORDADDR_LOW
+; 
+; 	SMB_RANDOMREAD = 0;                 // Do not send a START signal after
+			; SOURCE LINE # 1138
+	CLR  	SMB_RANDOMREAD
+;                                        // the word address
+; 	SMB_ACKPOLL = 1;                    // Enable Acknowledge Polling (The ISR
+			; SOURCE LINE # 1140
+	SETB 	SMB_ACKPOLL
+;                                        // will automatically restart the
+;                                        // transfer if the slave does not
+;                                        // acknoledge its address.
+; 
+;    // Specify the Outgoing Data
+; 	SMB_SINGLEBYTE_OUT = dat;           // Store <dat> (local variable) in a
+			; SOURCE LINE # 1146
+	MOV  	SMB_SINGLEBYTE_OUT,R5
+;                                        // global variable so the ISR can read
+;                                        // it after this function exits
+; 
+;    // The outgoing data pointer points to the <dat> variable
+; 	pSMB_DATA_OUT = &SMB_SINGLEBYTE_OUT;
+			; SOURCE LINE # 1151
+	MOV  	pSMB_DATA_OUT,#00H
+	MOV  	pSMB_DATA_OUT+01H,#HIGH (SMB_SINGLEBYTE_OUT)
+	MOV  	pSMB_DATA_OUT+02H,#LOW (SMB_SINGLEBYTE_OUT)
+; 
+; //	SMB_DATA_LEN = 1;                   // Specify to ISR that the next transfer
+;                                        // will contain one data byte
+; 
+;    // Initiate SMBus Transfer
+; 	STA = 1;
+			; SOURCE LINE # 1157
+	SETB 	STA
+; }
+			; SOURCE LINE # 1158
+	RET  	
+; END OF _EEPROM_ByteWrite
+
+; 
+; 
+; //-----------------------------------------------------------------------------
+; // EEPROM_ByteRead ()
+; //-----------------------------------------------------------------------------
+; //
+; // Return Value :
+; //   1) unsigned char data - data read from address <addr> in the EEPROM
+; //                        range is full range of character: 0 to 255
+; //
+; // Parameters   :
+; //   1) unsigned char addr - address to read data from the EEPROM
+; //                        range is full range of character: 0 to 255
+; //
+; // This function returns a single byte from location <addr> in the EEPROM then
+; // polls the <SMB_BUSY> flag until the read is complete.
+; //
+; unsigned char EEPROM_ByteRead(U16 addr)
+
+	RSEG  ?PR?_EEPROM_ByteRead?MAIN
+_EEPROM_ByteRead:
+	USING	0
+			; SOURCE LINE # 1176
+;---- Variable 'addr?2253' assigned to Register 'R4/R5' ----
+	MOV  	R5,AR7
+	MOV  	R4,AR6
+; {
+			; SOURCE LINE # 1177
+?C0177:
+;    unsigned char retval;               // Holds the return value
+; 
+;    
+;    while (SMB_BUSY);                   // Wait for SMBus to be free.
+			; SOURCE LINE # 1181
+	JB   	SMB_BUSY,?C0177
+?C0178:
+;    SMB_BUSY = 1;                       // Claim SMBus (set to busy)
+			; SOURCE LINE # 1182
+	SETB 	SMB_BUSY
+; 
+; 
+; 	WORD_ADDR_HIGH = addr >> 8;                   // Set the target address in the
+			; SOURCE LINE # 1185
+	MOV  	WORD_ADDR_HIGH,R4
+; 	WORD_ADDR_LOW = addr & 0xFF; 
+			; SOURCE LINE # 1186
+	MOV  	A,R5
+	MOV  	WORD_ADDR_LOW,A
+; 
+;    // Set SMBus ISR parameters
+; #ifdef EEPROM_24C128
+; 	SMB_SENDWORDADDR_HIGH = 1;
+			; SOURCE LINE # 1190
+	SETB 	SMB_SENDWORDADDR_HIGH
+; #endif
+; #ifdef EEPROM_24C16
+; 	SMB_SENDWORDADDR_HIGH = 0;
+; #endif
+; 
+;    SMB_SENDWORDADDR_LOW = 1;               // Send Word Address after Slave Address
+			; SOURCE LINE # 1196
+	SETB 	SMB_SENDWORDADDR_LOW
+;    SMB_RW = WRITE;                     // A random read starts as a write
+			; SOURCE LINE # 1197
+	CLR  	SMB_RW
+;                                        // then changes to a read after
+;                                        // the repeated start is sent. The
+;                                        // ISR handles this switchover if
+;                                        // the <SMB_RANDOMREAD> bit is set.
+;    SMB_RANDOMREAD = 1;                 // Send a START after the word address
+			; SOURCE LINE # 1202
+	SETB 	SMB_RANDOMREAD
+;    SMB_ACKPOLL = 1;                    // Enable Acknowledge Polling
+			; SOURCE LINE # 1203
+	SETB 	SMB_ACKPOLL
+; 
+; 
+;    // Specify the Incoming Data
+;    pSMB_DATA_IN = &retval;             // The incoming data pointer points to
+			; SOURCE LINE # 1207
+	MOV  	pSMB_DATA_IN,#00H
+	MOV  	pSMB_DATA_IN+01H,#HIGH (retval?2254)
+	MOV  	pSMB_DATA_IN+02H,#LOW (retval?2254)
+;                                        // the <retval> variable.
+; 
+; //   SMB_DATA_LEN = 1;                   // Specify to ISR that the next transfer
+;                                        // will contain one data byte
+; 
+;    // Initiate SMBus Transfer
+;    STA = 1;
+			; SOURCE LINE # 1214
+	SETB 	STA
+?C0179:
+;    while(SMB_BUSY);                    // Wait until data is read
+			; SOURCE LINE # 1215
+	JB   	SMB_BUSY,?C0179
+?C0180:
+; 
+;    return retval;
+			; SOURCE LINE # 1217
+	MOV  	R7,retval?2254
+; 
+; }
+			; SOURCE LINE # 1219
+?C0181:
+	RET  	
+; END OF _EEPROM_ByteRead
+
+; 
+; void Suspend_Device(void)
+
+	RSEG  ?PR?Suspend_Device?MAIN
+Suspend_Device:
+	USING	0
+			; SOURCE LINE # 1221
+; {
+			; SOURCE LINE # 1222
+;    // Disable peripherals before calling USB_Suspend()
+; //	P0MDIN = 0x0;                       // Port 0 configured as analog input
+; //	P1MDIN = 0x00;                       // Port 1 configured as analog input
+; //	P2MDIN = 0x0;
+; //	ADC0CN &= ~0x80;                     // Disable ADC0
+; //	ET0 = 0;
+; //	ET2 = 0;                             // Disable Timer 2 Interrupts
+; 
+; 	USB_Suspend();                       // Put the device in suspend state
+			; SOURCE LINE # 1231
+	LJMP 	USB_Suspend
+; END OF Suspend_Device
+
+CSEG	AT	00003H
+	LJMP	INT0_ISR
+
+; 										// Once execution returns from USB_Suspend(), device leaves suspend state.
+; 										// Reenable peripherals
+; //	ADC0CN |= 0x80;                      // Enable ADC0
+; //	P0MDIN = 0xFF;
+; //	P1MDIN = 0xFF;                       // Port 1 pin 7 set as analog input
+; //	P2MDIN = 0xFF;
+; //	ET0 = 1;
+; //	ET2 = 1;							// Enable Timer 2 Interrupts
+; }
+; 
+; //
+; //  IIII  SS  RRR                                   
+; //   II  S  S R  R                                  
+; //   II  SS   R  R                                  
+; //   II   SS  RRR                                   
+; //   II    SS R  R                                  
+; //   II  S  S R  R                                  
+; //  IIII  SS  R  R                                  
+; //
+; //
+; //
+; //-----------------------------------------------------------------------------
+; // /INT0 ISR
+; //-----------------------------------------------------------------------------
+; //
+; // Whenever a negative edge appears on P0.0, LED1 is toggled.
+; // The interrupt pending flag is automatically cleared by vectoring to the ISR
+; //
+; //-----------------------------------------------------------------------------
+; void INT0_ISR (void) interrupt 0
+
+	RSEG  ?PR?INT0_ISR?MAIN
+	USING	0
+INT0_ISR:
+	PUSH 	ACC
+	PUSH 	PSW
+			; SOURCE LINE # 1261
+; {
+; 	Counter++;
+			; SOURCE LINE # 1263
+	MOV  	A,Counter+03H
+	ADD  	A,#01H
+	MOV  	Counter+03H,A
+	CLR  	A
+	ADDC 	A,Counter+02H
+	MOV  	Counter+02H,A
+	CLR  	A
+	ADDC 	A,Counter+01H
+	MOV  	Counter+01H,A
+	CLR  	A
+	ADDC 	A,Counter
+	MOV  	Counter,A
+; }
+			; SOURCE LINE # 1264
+	POP  	PSW
+	POP  	ACC
+	RETI 	
+; END OF INT0_ISR
+
+CSEG	AT	00013H
+	LJMP	INT1_ISR
+
+; void INT1_ISR (void) interrupt 2
+
+	RSEG  ?PR?INT1_ISR?MAIN
+	USING	0
+INT1_ISR:
+	PUSH 	ACC
+	PUSH 	PSW
+			; SOURCE LINE # 1265
+; {
+; 	Counter--;
+			; SOURCE LINE # 1267
+	MOV  	A,Counter+03H
+	ADD  	A,#0FFH
+	MOV  	Counter+03H,A
+	MOV  	A,Counter+02H
+	ADDC 	A,#0FFH
+	MOV  	Counter+02H,A
+	MOV  	A,Counter+01H
+	ADDC 	A,#0FFH
+	MOV  	Counter+01H,A
+	MOV  	A,Counter
+	ADDC 	A,#0FFH
+	MOV  	Counter,A
+; }
+			; SOURCE LINE # 1268
+	POP  	PSW
+	POP  	ACC
+	RETI 	
+; END OF INT1_ISR
+
+CSEG	AT	0003BH
+	LJMP	SMBus_ISR
+
+; 
+; //-----------------------------------------------------------------------------
+; // SMBus Interrupt Service Routine (ISR)
+; //-----------------------------------------------------------------------------
+; //
+; void SMBus_ISR (void) interrupt 7
+
+	RSEG  ?PR?SMBus_ISR?MAIN
+	USING	0
+SMBus_ISR:
+	PUSH 	ACC
+	PUSH 	DPH
+	PUSH 	DPL
+	PUSH 	PSW
+	MOV  	PSW,#00H
+	PUSH 	AR1
+	PUSH 	AR2
+	PUSH 	AR3
+	USING	0
+			; SOURCE LINE # 1274
+; {
+;    bit FAIL = 0;                       // Used by the ISR to flag failed
+			; SOURCE LINE # 1276
+	CLR  	FAIL?2655
+;                                        // transfers
+; 
+;    static char i;                      // Used by the ISR to count the
+;                                        // number of data bytes sent or
+;                                        // received
+; 
+;    static bit SEND_START = 0;          // Send a start
+; 
+;    switch (SMB0CN & 0xF0)              // Status vector
+			; SOURCE LINE # 1285
+	MOV  	A,SMB0CN
+	ANL  	A,#0F0H
+	ADD  	A,#080H
+	JNZ  	$ + 5H
+	LJMP 	?C0200
+	ADD  	A,#0C0H
+	JZ   	?C0187
+	ADD  	A,#0E0H
+	JZ   	$ + 5H
+	LJMP 	?C0203
+;    {
+			; SOURCE LINE # 1286
+;       // Master Transmitter/Receiver: START condition transmitted.
+;       case SMB_MTSTA:
+			; SOURCE LINE # 1288
+?C0186:
+;          SMB0DAT = TARGET;             // Load address of the target slave
+			; SOURCE LINE # 1289
+	MOV  	SMB0DAT,#0A0H
+;          SMB0DAT &= 0xFE;              // Clear the LSB of the address for the
+			; SOURCE LINE # 1290
+	ANL  	SMB0DAT,#0FEH
+;                                        // R/W bit
+;          SMB0DAT |= SMB_RW;            // Load R/W bit
+			; SOURCE LINE # 1292
+	MOV  	C,SMB_RW
+	CLR  	A
+	RLC  	A
+	ORL  	SMB0DAT,A
+; 
+; #ifdef EEPROM_24C16
+; 		SMB0DAT = SMB0DAT | ((WORD_ADDR_HIGH & 0x07)<<1);
+; #endif
+; 
+;          STA = 0;                      // Manually clear START bit
+			; SOURCE LINE # 1298
+	CLR  	STA
+;          i = 0;                        // Reset data byte counter
+			; SOURCE LINE # 1299
+	MOV  	i?2656,#00H
+;          break;
+			; SOURCE LINE # 1300
+	LJMP 	?C0185
+; 
+;       // Master Transmitter: Data byte (or Slave Address) transmitted
+;       case SMB_MTDB:
+			; SOURCE LINE # 1303
+?C0187:
+;          if (ACK)                      // Slave Address or Data Byte
+			; SOURCE LINE # 1304
+	JNB  	ACK,?C0188
+;          {                             // Acknowledged?
+			; SOURCE LINE # 1305
+;             if (SEND_START)
+			; SOURCE LINE # 1306
+	JNB  	SEND_START?2657,?C0189
+;             {
+			; SOURCE LINE # 1307
+;                STA = 1;
+			; SOURCE LINE # 1308
+	SETB 	STA
+;                SEND_START = 0;
+			; SOURCE LINE # 1309
+	CLR  	SEND_START?2657
+;                break;
+			; SOURCE LINE # 1310
+	LJMP 	?C0185
+;             }
+			; SOURCE LINE # 1311
+?C0189:
+; 
+;             if(SMB_SENDWORDADDR_HIGH)       // Are we sending the word address?
+			; SOURCE LINE # 1313
+	JNB  	SMB_SENDWORDADDR_HIGH,?C0190
+;             {
+			; SOURCE LINE # 1314
+;                SMB_SENDWORDADDR_HIGH = 0;   // Clear flag
+			; SOURCE LINE # 1315
+	CLR  	SMB_SENDWORDADDR_HIGH
+;                SMB0DAT = WORD_ADDR_HIGH;    // Send word address
+			; SOURCE LINE # 1316
+	MOV  	SMB0DAT,WORD_ADDR_HIGH
+;                break;
+			; SOURCE LINE # 1317
+	SJMP 	?C0185
+;             }
+			; SOURCE LINE # 1318
+?C0190:
+; 
+;             if(SMB_SENDWORDADDR_LOW)       // Are we sending the word address?
+			; SOURCE LINE # 1320
+	JNB  	SMB_SENDWORDADDR_LOW,?C0191
+;             {
+			; SOURCE LINE # 1321
+;                SMB_SENDWORDADDR_LOW = 0;   // Clear flag
+			; SOURCE LINE # 1322
+	CLR  	SMB_SENDWORDADDR_LOW
+;                SMB0DAT = WORD_ADDR_LOW;    // Send word address
+			; SOURCE LINE # 1323
+	MOV  	SMB0DAT,WORD_ADDR_LOW
+; 
+;                if (SMB_RANDOMREAD)
+			; SOURCE LINE # 1325
+	JNB  	SMB_RANDOMREAD,?C0185
+;                {
+			; SOURCE LINE # 1326
+;                   SEND_START = 1;      // Send a START after the next ACK cycle
+			; SOURCE LINE # 1327
+	SETB 	SEND_START?2657
+;                   SMB_RW = READ;
+			; SOURCE LINE # 1328
+	SETB 	SMB_RW
+;                }
+			; SOURCE LINE # 1329
+; 
+;                break;
+			; SOURCE LINE # 1331
+	SJMP 	?C0185
+;             }
+			; SOURCE LINE # 1332
+?C0191:
+; 
+;             if (SMB_RW==WRITE)         // Is this transfer a WRITE?
+			; SOURCE LINE # 1334
+	JB   	SMB_RW,?C0185
+;             {
+			; SOURCE LINE # 1335
+; 
+;                if (i < 1)   // Is there data to send?
+			; SOURCE LINE # 1337
+	CLR  	C
+	MOV  	A,i?2656
+	XRL  	A,#080H
+	SUBB 	A,#081H
+	JNC  	?C0194
+;                {
+			; SOURCE LINE # 1338
+; //                  // send data byte
+;                   SMB0DAT = *pSMB_DATA_OUT;
+			; SOURCE LINE # 1340
+	MOV  	R3,pSMB_DATA_OUT
+	MOV  	R2,pSMB_DATA_OUT+01H
+	MOV  	R1,pSMB_DATA_OUT+02H
+	LCALL	?C?CLDPTR
+	MOV  	SMB0DAT,A
+; //
+;                   // increment data out pointer
+;                   pSMB_DATA_OUT++;
+			; SOURCE LINE # 1343
+	MOV  	A,#01H
+	ADD  	A,pSMB_DATA_OUT+02H
+	MOV  	pSMB_DATA_OUT+02H,A
+	CLR  	A
+	ADDC 	A,pSMB_DATA_OUT+01H
+	MOV  	pSMB_DATA_OUT+01H,A
+; 
+;                   // increment number of bytes sent
+;                   i++;
+			; SOURCE LINE # 1346
+	INC  	i?2656
+;                }
+			; SOURCE LINE # 1347
+	SJMP 	?C0185
+?C0194:
+;                else
+;                {
+			; SOURCE LINE # 1349
+;                  STO = 1;              // Set STO to terminte transfer
+			; SOURCE LINE # 1350
+	SETB 	STO
+;                  SMB_BUSY = 0;         // Clear software busy flag
+			; SOURCE LINE # 1351
+	CLR  	SMB_BUSY
+;                }
+			; SOURCE LINE # 1352
+;             }
+			; SOURCE LINE # 1353
+	SJMP 	?C0185
+;             else {}                    // If this transfer is a READ,
+			; SOURCE LINE # 1354
+;                                        // then take no action. Slave
+;                                        // address was transmitted. A
+;                                        // separate 'case' is defined
+;                                        // for data byte recieved.
+;          }
+			; SOURCE LINE # 1359
+?C0188:
+;          else                          // If slave NACK,
+;          {
+			; SOURCE LINE # 1361
+;             if(SMB_ACKPOLL)
+			; SOURCE LINE # 1362
+	JNB  	SMB_ACKPOLL,?C0198
+;             {
+			; SOURCE LINE # 1363
+;                STA = 1;                // Restart transfer
+			; SOURCE LINE # 1364
+	SETB 	STA
+;             }
+			; SOURCE LINE # 1365
+	SJMP 	?C0185
+?C0198:
+;             else
+;             {
+			; SOURCE LINE # 1367
+;                FAIL = 1;               // Indicate failed transfer
+			; SOURCE LINE # 1368
+	SETB 	FAIL?2655
+;             }                          // and handle at end of ISR
+			; SOURCE LINE # 1369
+;          }
+			; SOURCE LINE # 1370
+;          break;
+			; SOURCE LINE # 1371
+	SJMP 	?C0185
+; 
+;       // Master Receiver: byte received
+;       case SMB_MRDB:
+			; SOURCE LINE # 1374
+?C0200:
+;          if ( i < 1 )       // Is there any data remaining?
+			; SOURCE LINE # 1375
+	CLR  	C
+	MOV  	A,i?2656
+	XRL  	A,#080H
+	SUBB 	A,#081H
+	JNC  	?C0201
+;          {
+			; SOURCE LINE # 1376
+;             *pSMB_DATA_IN = SMB0DAT;   // Store received byte
+			; SOURCE LINE # 1377
+	MOV  	R3,pSMB_DATA_IN
+	MOV  	R2,pSMB_DATA_IN+01H
+	MOV  	R1,pSMB_DATA_IN+02H
+	MOV  	A,SMB0DAT
+	LCALL	?C?CSTPTR
+;             pSMB_DATA_IN++;            // Increment data in pointer
+			; SOURCE LINE # 1378
+	MOV  	A,#01H
+	ADD  	A,pSMB_DATA_IN+02H
+	MOV  	pSMB_DATA_IN+02H,A
+	CLR  	A
+	ADDC 	A,pSMB_DATA_IN+01H
+	MOV  	pSMB_DATA_IN+01H,A
+;             i++;                       // Increment number of bytes received
+			; SOURCE LINE # 1379
+	INC  	i?2656
+;             ACK = 1;                   // Set ACK bit (may be cleared later
+			; SOURCE LINE # 1380
+	SETB 	ACK
+;                                        // in the code)
+; 
+;          }
+			; SOURCE LINE # 1383
+?C0201:
+; 
+;          if (i == 1)        // This is the last byte
+			; SOURCE LINE # 1385
+	MOV  	A,i?2656
+	CJNE 	A,#01H,?C0185
+;          {
+			; SOURCE LINE # 1386
+;             SMB_BUSY = 0;              // Free SMBus interface
+			; SOURCE LINE # 1387
+	CLR  	SMB_BUSY
+;             ACK = 0;                   // Send NACK to indicate last byte
+			; SOURCE LINE # 1388
+	CLR  	ACK
+;                                        // of this transfer
+;             STO = 1;                   // Send STOP to terminate transfer
+			; SOURCE LINE # 1390
+	SETB 	STO
+;          }
+			; SOURCE LINE # 1391
+; 
+;          break;
+			; SOURCE LINE # 1393
+	SJMP 	?C0185
+; 
+;       default:
+			; SOURCE LINE # 1395
+?C0203:
+;          FAIL = 1;                     // Indicate failed transfer
+			; SOURCE LINE # 1396
+	SETB 	FAIL?2655
+;                                        // and handle at end of ISR
+;          break;
+			; SOURCE LINE # 1398
+;    }
+			; SOURCE LINE # 1399
+?C0185:
+; 
+;    if (FAIL)                           // If the transfer failed,
+			; SOURCE LINE # 1401
+	JNB  	FAIL?2655,?C0204
+;    {
+			; SOURCE LINE # 1402
+;       SMB0CF &= ~0x80;                 // Reset communication
+			; SOURCE LINE # 1403
+	ANL  	SMB0CF,#07FH
+;       SMB0CF |= 0x80;
+			; SOURCE LINE # 1404
+	ORL  	SMB0CF,#080H
+;       STA = 0;
+			; SOURCE LINE # 1405
+	CLR  	STA
+;       STO = 0;
+			; SOURCE LINE # 1406
+	CLR  	STO
+;       ACK = 0;
+			; SOURCE LINE # 1407
+	CLR  	ACK
+; 
+;       SMB_BUSY = 0;                    // Free SMBus
+			; SOURCE LINE # 1409
+	CLR  	SMB_BUSY
+; 
+;       FAIL = 0;
+			; SOURCE LINE # 1411
+	CLR  	FAIL?2655
+;    }
+			; SOURCE LINE # 1412
+?C0204:
+; 
+;    SI = 0;                             // Clear interrupt flag
+			; SOURCE LINE # 1414
+	CLR  	SI
+; 
+; }
+			; SOURCE LINE # 1416
+	POP  	AR3
+	POP  	AR2
+	POP  	AR1
+	POP  	PSW
+	POP  	DPL
+	POP  	DPH
+	POP  	ACC
+	RETI 	
+; END OF SMBus_ISR
+
+CSEG	AT	0000BH
+	LJMP	Timer0_ISR
+
+; 
+; //-------------------------
+; // Timer0_ISR
+; //-------------------------
+; // Called when timer 2 overflows, check to see if switch is pressed,
+; // then watch for release.
+; //
+; INTERRUPT(Timer0_ISR, INTERRUPT_TIMER0)
+
+	RSEG  ?PR?Timer0_ISR?MAIN
+	USING	0
+Timer0_ISR:
+	PUSH 	ACC
+	PUSH 	B
+	PUSH 	DPH
+	PUSH 	DPL
+	PUSH 	PSW
+	MOV  	PSW,#00H
+	PUSH 	AR0
+	PUSH 	AR1
+	PUSH 	AR2
+	PUSH 	AR3
+	PUSH 	AR4
+	PUSH 	AR5
+	PUSH 	AR6
+	PUSH 	AR7
+	USING	0
+			; SOURCE LINE # 1424
+; {
+; 	unsigned char i;
+; 	static int low_counter=0;  // Define counter variable
+; 
+; 	TL0 = TIMER0_RELOAD_LOW;            // Reinit Timer0 Low register
+			; SOURCE LINE # 1429
+	MOV  	TL0,#0F8H
+; 
+; //	if ((low_counter2++) == Timer0_RateEncoder )
+; //	{
+; //		EncoderScan5();
+; //		low_counter2 = 0;
+; //	}
+; 	if ((low_counter++) == Timer0_Rate)
+			; SOURCE LINE # 1436
+	INC  	low_counter?2759+01H
+	MOV  	A,low_counter?2759+01H
+	MOV  	R6,low_counter?2759
+	JNZ  	?C0235
+	INC  	low_counter?2759
+?C0235:
+	DEC  	A
+	XRL  	A,#0AH
+	ORL  	A,R6
+	JNZ  	?C0213
+; 	{
+			; SOURCE LINE # 1437
+; //		if (LcdMode = 0) j = 5; else j = 6;
+; 		for (i=0;i<(5 + LcdMode);i++) 
+			; SOURCE LINE # 1439
+	MOV  	i?2758,A
+?C0207:
+	MOV  	A,LcdMode
+	ADD  	A,#05H
+	MOV  	R7,A
+	CLR  	A
+	RLC  	A
+	MOV  	R6,A
+	CLR  	C
+	MOV  	A,i?2758
+	SUBB 	A,R7
+	MOV  	A,R6
+	XRL  	A,#080H
+	MOV  	R0,A
+	MOV  	A,#080H
+	SUBB 	A,R0
+	JNC  	?C0208
+; 		{
+			; SOURCE LINE # 1440
+; 			if (i == 4) FlagPoint = 1; else FlagPoint = 0;
+			; SOURCE LINE # 1441
+	MOV  	A,i?2758
+	CJNE 	A,#04H,?C0210
+	SETB 	FlagPoint
+	SJMP 	?C0211
+?C0210:
+	CLR  	FlagPoint
+?C0211:
+; 			if (LcdMode == 0) FlagPoint = 1;
+			; SOURCE LINE # 1442
+	MOV  	A,LcdMode
+	JNZ  	?C0212
+	SETB 	FlagPoint
+?C0212:
+; 			OutSymbol(i+1,0x30 | OutputBuffer[i]);
+			; SOURCE LINE # 1443
+	MOV  	A,i?2758
+	INC  	A
+	MOV  	R7,A
+	MOV  	A,#LOW (OutputBuffer)
+	ADD  	A,i?2758
+	MOV  	R0,A
+	MOV  	A,@R0
+	ORL  	A,#030H
+	MOV  	R5,A
+	LCALL	_OutSymbol
+; 			Del	(200);
+			; SOURCE LINE # 1444
+	MOV  	R7,#0C8H
+	MOV  	R6,#00H
+	LCALL	_Del
+; 		}
+			; SOURCE LINE # 1445
+	INC  	i?2758
+	SJMP 	?C0207
+?C0208:
+; 		low_counter = 0;
+			; SOURCE LINE # 1446
+	MOV  	low_counter?2759,#00H
+	MOV  	low_counter?2759+01H,#00H
+; 	}
+			; SOURCE LINE # 1447
+; }
+			; SOURCE LINE # 1448
+?C0213:
+	POP  	AR7
+	POP  	AR6
+	POP  	AR5
+	POP  	AR4
+	POP  	AR3
+	POP  	AR2
+	POP  	AR1
+	POP  	AR0
+	POP  	PSW
+	POP  	DPL
+	POP  	DPH
+	POP  	B
+	POP  	ACC
+	RETI 	
+; END OF Timer0_ISR
+
+CSEG	AT	0002BH
+	LJMP	Timer2_ISR
+
+; //-------------------------
+; // Timer2_ISR
+; //-------------------------
+; // Called when timer 2 overflows, check to see if switch is pressed,
+; // then watch for release.
+; //
+; INTERRUPT(Timer2_ISR, INTERRUPT_TIMER2)
+
+	RSEG  ?PR?Timer2_ISR?MAIN
+	USING	0
+Timer2_ISR:
+			; SOURCE LINE # 1455
+; {
+; 	TF2H = 0;                              // Clear Timer2 interrupt flag
+			; SOURCE LINE # 1457
+	CLR  	TF2H
+; 	ET2=1;
+			; SOURCE LINE # 1458
+	SETB 	ET2
+; }
+			; SOURCE LINE # 1459
+	RETI 	
+; END OF Timer2_ISR
+
+CSEG	AT	00073H
+	LJMP	Timer3_ISR
+
+; 
+; //-----------------------------------------------------------------------------
+; // Timer3 Interrupt Service Routine (ISR)
+; //-----------------------------------------------------------------------------
+; //
+; // A Timer3 interrupt indicates an SMBus SCL low timeout.
+; // The SMBus is disabled and re-enabled if a timeout occurs.
+; //
+; void Timer3_ISR (void) interrupt 14
+
+	RSEG  ?PR?Timer3_ISR?MAIN
+	USING	0
+Timer3_ISR:
+			; SOURCE LINE # 1468
+; {
+;    SMB0CF &= ~0x80;                    // Disable SMBus
+			; SOURCE LINE # 1470
+	ANL  	SMB0CF,#07FH
+;    SMB0CF |= 0x80;                     // Re-enable SMBus
+			; SOURCE LINE # 1471
+	ORL  	SMB0CF,#080H
+;    TMR3CN &= ~0x80;                    // Clear Timer3 interrupt-pending flag
+			; SOURCE LINE # 1472
+	ANL  	TMR3CN,#07FH
+;    SMB_BUSY = 0;                       // Free bus
+			; SOURCE LINE # 1473
+	CLR  	SMB_BUSY
+; }
+			; SOURCE LINE # 1474
+	RETI 	
+; END OF Timer3_ISR
+
+CSEG	AT	0008BH
+	LJMP	USB_API_TEST_ISR
+
+; 
+; INTERRUPT(USB_API_TEST_ISR, INTERRUPT_USBXpress)
+
+	RSEG  ?PR?USB_API_TEST_ISR?MAIN
+	USING	0
+USB_API_TEST_ISR:
+	PUSH 	ACC
+	PUSH 	B
+	PUSH 	DPH
+	PUSH 	DPL
+	PUSH 	PSW
+	MOV  	PSW,#00H
+	PUSH 	AR0
+	PUSH 	AR1
+	PUSH 	AR2
+	PUSH 	AR3
+	PUSH 	AR4
+	PUSH 	AR5
+	PUSH 	AR6
+	PUSH 	AR7
+	USING	0
+			; SOURCE LINE # 1476
+; {
+; 	unsigned char INTVAL = Get_Interrupt_Source();
+			; SOURCE LINE # 1478
+	LCALL	Get_Interrupt_Source
+	MOV  	INTVAL?3060,R7
+; 
+;    if (INTVAL & RX_COMPLETE)
+			; SOURCE LINE # 1480
+	MOV  	A,INTVAL?3060
+	JNB  	ACC.2,?C0216
+;    {
+			; SOURCE LINE # 1481
+; 		Block_Read(In_Packet, sizeof(In_Packet));
+			; SOURCE LINE # 1482
+	MOV  	R3,#00H
+	MOV  	R2,#HIGH (In_Packet)
+	MOV  	R1,#LOW (In_Packet)
+	MOV  	R5,#0AH
+	LCALL	_Block_Read
+; 
+; 		switch (In_Packet[0])
+			; SOURCE LINE # 1484
+; 		{
+			; SOURCE LINE # 1485
+; 		default:;
+			; SOURCE LINE # 1486
+;    		}
+			; SOURCE LINE # 1487
+; 	}
+			; SOURCE LINE # 1488
+?C0216:
+; 
+;    if (INTVAL & DEV_SUSPEND)
+			; SOURCE LINE # 1490
+	MOV  	A,INTVAL?3060
+	JNB  	ACC.7,?C0219
+;    {
+			; SOURCE LINE # 1491
+;         Suspend_Device();
+			; SOURCE LINE # 1492
+	LCALL	Suspend_Device
+;    }
+			; SOURCE LINE # 1493
+?C0219:
+; 
+;    if (INTVAL & DEV_CONFIGURED)
+			; SOURCE LINE # 1495
+;    {
+			; SOURCE LINE # 1496
+; //      Initialize();
+;    }
+			; SOURCE LINE # 1498
+; }
+			; SOURCE LINE # 1499
+?C0221:
+	POP  	AR7
+	POP  	AR6
+	POP  	AR5
+	POP  	AR4
+	POP  	AR3
+	POP  	AR2
+	POP  	AR1
+	POP  	AR0
+	POP  	PSW
+	POP  	DPL
+	POP  	DPH
+	POP  	B
+	POP  	ACC
+	RETI 	
+; END OF USB_API_TEST_ISR
+
+; 
+; //
+; //
+; //
+; //
+; 
+; //;=============================================================================================
+; //; ВРЕМЕННЫЕ ЗАДЕРЖКИ
+; //;
+; // 1 мкс = 24 такта
+; //; Формула: 8+(2+((R0-1)*3)+2)+(2+(((R2-1)*3)+2))+9
+; //; Данные:  R0 = 140, R0=79
+; //;          R1 = 253
+; //; Итого:   8+(2+((140-1)*3)+2)+(2+(((253-1)*3)+2)+(2+(((79-1)*3)+2))+2+9 = 1440
+; //;---------------------------------------------------------------------------------------------
+; /*
+; void Del_10mks(void)
+; {
+; 	#pragma asm
+; 	push	00h							; 2 такта             | 6 тактов
+; 	mov   R0,#75						; 2 такта             |
+; 	djnz  R0,$							; (74*3)+2=224 такта  | 227 тактов
+; 	nop									; 1 такт              |
+; 	
+; 	pop	00h							; 2 такта             | 7 тактов
+; 	ret									; Возврат 5 тактов    |
+; 	#pragma endasm
+; }
+; 
+; void Del_500mks(void)
+; {
+; 	#pragma asm
+; 	push	00h							; 2 такта             |
+; 	push	01h							; 2 такта             |
+; 	push	02h							; 2 такта             | 12 тактов
+; 											;                     |
+; 	mov   R1,#20						; 2 такта             |
+; 		
+; 	mov   R0,#195						; 2 такта             | (589*20)-1=
+; 	djnz  R0,$							; (194*3)+2=584 такта | 11779 тактов
+; 	djnz	R1,$-4						; 3 такта             |
+; 
+; 	mov   R2,#65						; 2 такта             |
+; 	djnz  R2,$							; (64*3)+2=194 тактов | 198 тактов
+; 	nop									; 1 такт              |
+; 	nop									; 1 такт              |
+; 						
+; 	pop	02h							; 2 такта             |
+; 	pop	01h							; 2 такта             | 11 тактов
+; 	pop	00h							; 2 такта             |
+; 	ret									; Возврат 5 тактов    |
+; 	#pragma endasm
+; }
+; 
+; void Del_10ms(void)
+; {
+; 	#pragma asm
+; 	push	00h							; 2 такта             |
+; 	push	01h							; 2 такта             |
+; 	push	02h							; 2 такта             | 14 тактов
+; 	push	03h							; 2 такта             |
+; 																;                     |
+; 	mov   R2,#6							; 2 такта             |					
+; 									
+; 	mov   R1,#168	;              | 2 такта +           |
+; 	mov   R0,#78	; 2 такта +    |                     | (39988*6)-1=
+; 	djnz	R0,$		; (77*3)+2=233 | (((235+3)*168)-1)=  | 239927 тактов
+; 	djnz  R1,$-4	;              |    55249 тактов     |   
+; 	djnz	R2,$-8	;              | + 3 такта           |
+; 
+; 	mov   R3,#15						; 2 такта             |
+; 	djnz  R3,$							; (14*3)+2=44 тактов  | 46 тактов
+; 						
+; 	pop	03h							; 2 такта             |
+; 	pop	02h							; 2 такта             |
+; 	pop	01h							; 2 такта             | 13 тактов
+; 	pop	00h							; 2 такта             |
+; 	ret									; Возврат 5 тактов    |
+; 	#pragma endasm
+; }
+; 
+; void Del_25ms(void)
+; {
+; 	#pragma asm
+; 	push	00h							; 2 такта             |
+; 	push	01h							; 2 такта             |
+; 	push	02h							; 2 такта             | 14 тактов
+; 	push	03h							; 2 такта             |
+; 																;                     |
+; 	mov   R2,#15						; 2 такта             |					
+; 					
+; 	mov   R1,#168	;              | 2 такта +           |
+; 	mov   R0,#78	; 2 такта +    |                     | (39988*15)-1=
+; 	djnz	R0,$		; (77*3)+2=233 | (((235+3)*168)-1)=  | 599819 тактов
+; 	djnz  R1,$-4	;              |    55249 тактов     |   
+; 	djnz	R2,$-8	;              | + 3 такта           |
+; 
+; 	mov   R3,#51						; 2 такта             |
+; 	djnz  R3,$							; (50*3)+2=152 тактов | 154 тактов
+; 						
+; 	pop	03h							; 2 такта             |
+; 	pop	02h							; 2 такта             |
+; 	pop	01h							; 2 такта             | 13 тактов
+; 	pop	00h							; 2 такта             |
+; 	ret									; Возврат 5 тактов    |
+; 	#pragma endasm
+; }
+; 
+; void Del_100ms(void)
+; {
+; 	#pragma asm
+; 	push	00h							; 2 такта             |
+; 	push	01h							; 2 такта             |
+; 	push	02h							; 2 такта             | 14 тактов
+; 	push	03h							; 2 такта             |
+; 											;                     |
+; 	mov   R2,#60						; 2 такта             |					
+; 								
+; 	mov   R1,#168	;              | 2 такта +           |
+; 	mov   R0,#78	; 2 такта +    |                     | (39988*60)-1=
+; 	djnz	R0,$		; (77*3)+2=233 | (((235+3)*168)-1)=  | 2399279 тактов
+; 	djnz  R1,$-4	;              |    55249 тактов     |   
+; 	djnz	R2,$-8	;              | + 3 такта           |
+; 
+; 	mov   R3,#231						; 2 такта             |
+; 	djnz  R3,$							; (230*3)+2=692 тактов| 694 тактов
+; 	
+; 	pop	03h							; 2 такта             |
+; 	pop	02h							; 2 такта             |
+; 	pop	01h							; 2 такта             | 13 тактов
+; 	pop	00h							; 2 такта             |
+; 	ret									; Возврат 5 тактов    |
+; 	#pragma endasm
+; }
+; */
+; 
+; void Del(int a)
+
+	RSEG  ?PR?_Del?MAIN
+_Del:
+	USING	0
+			; SOURCE LINE # 1636
+;---- Variable 'a?3161' assigned to Register 'R6/R7' ----
+; {
+			; SOURCE LINE # 1637
+; 	int i;
+; 	for (i=0;i<a;i++)
+			; SOURCE LINE # 1639
+;---- Variable 'i?3162' assigned to Register 'R4/R5' ----
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R4,A
+?C0222:
+	CLR  	C
+	MOV  	A,R5
+	SUBB 	A,R7
+	MOV  	A,R6
+	XRL  	A,#080H
+	MOV  	R0,A
+	MOV  	A,R4
+	XRL  	A,#080H
+	SUBB 	A,R0
+	JNC  	?C0225
+; 	{
+			; SOURCE LINE # 1640
+; 	}
+			; SOURCE LINE # 1641
+	INC  	R5
+	CJNE 	R5,#00H,?C0236
+	INC  	R4
+?C0236:
+	SJMP 	?C0222
+; }
+			; SOURCE LINE # 1642
+?C0225:
+	RET  	
+; END OF _Del
+
+	END

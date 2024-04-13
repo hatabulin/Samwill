@@ -1,0 +1,9 @@
+
+BL51 BANKED LINKER/LOCATER V6.22 - SN: C1MEC-P552IF
+COPYRIGHT KEIL ELEKTRONIK GmbH 1987 - 2009
+"E:\CD_WORK\Keil\Projects\HatSamwill\device\f342\ver2\main.obj",
+"E:\CD_WORK\Keil\Projects\HatSamwill\device\f342\ver2\USBX_F34X.LIB"  TO "E:\CD_WORK\Keil\Projects\HatSamwill\device\f342\ver2\HatSamwill" RS(256) PL(68) PW(78) 
+
+*** FATAL ERROR L210: I/O ERROR ON INPUT FILE:
+    EXCEPTION 0021H: PATH OR FILE NOT FOUND
+    FILE: E:\CD_WORK\Keil\Projects\HatSamwill\device\f342\ver2\main.obj

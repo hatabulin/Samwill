@@ -1,0 +1,44 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.42</VERSION>
+ <DEVICE>ATmega32A</DEVICE>
+ <WORKING_DIR>D:\avr-projects\Encoder2</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\avr-projects\Encoder2\Encoder.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files\Atmel\AVR Tools\AvrAssembler2\Appnotes\m32Adef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\avr-projects\Encoder2\Encoder.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>D:\avr-projects\Encoder2\Encoder.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>D:\avr-projects\Encoder2\Encoder.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <RESET><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>54</LINE></RESET>
+  <Scan><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>88</LINE></Scan>
+  <Begin><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>81</LINE></Begin>
+  <Cpi1><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>106</LINE></Cpi1>
+  <Cpi11><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>99</LINE></Cpi11>
+  <RightShift><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>171</LINE></RightShift>
+  <Cpi12><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>103</LINE></Cpi12>
+  <LeftShift><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>152</LINE></LeftShift>
+  <Cpi2><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>120</LINE></Cpi2>
+  <Cpi21><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>113</LINE></Cpi21>
+  <Cpi22><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>117</LINE></Cpi22>
+  <Cpi3><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>134</LINE></Cpi3>
+  <Cpi31><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>127</LINE></Cpi31>
+  <Cpi32><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>131</LINE></Cpi32>
+  <Cpi4><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>147</LINE></Cpi4>
+  <Cpi41><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>141</LINE></Cpi41>
+  <Cpi42><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>145</LINE></Cpi42>
+  <exitLS><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>166</LINE></exitLS>
+  <exitLS2><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>168</LINE></exitLS2>
+  <exitRS><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>185</LINE></exitRS>
+  <exitRS2><FILE>D:\avr-projects\Encoder2\Encoder.asm</FILE><LINE>187</LINE></exitRS2>
+ </LABELS>
+</ASSEMBLER_INFO>

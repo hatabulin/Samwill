@@ -1,0 +1,466 @@
+;*********************************************************************
+;* Title : Opencockpits Encoder II 
+;* Version : 0.9b4 
+;* Author : Terry Adams 
+;* Pic Type : PIC16F876 
+;* Date : 25/06/2009 
+;* Description : 
+;* Modified for Opencockpits Encoder II card
+;* original designed for 'Full Cycle per Detent' type rotary encoder
+;* this version modified to work with 'Half Cycle per Detent' type
+;* added debounce
+;* each encoder now handled as a sub-routine
+;* produces GRAY code output so SIOC should be set to type 2
+;* Clock : 20.0 MHZ 
+;* Clock Type : XTAL 
+;*********************************************************************
+
+	include ".\K8048\Include_files\P16F876.INC" ;PIC Include File
+
+	__config	_HS_OSC & _WDT_OFF & _PWRTE_OFF & _LVP_OFF
+
+	LIST    P=PIC16F876 			;PIC Include File
+
+;*********************************************************************
+;       Variable Definition
+;*********************************************************************
+Hz2500T		EQU	D'1'	;Number of clock ticks for Hz2500
+
+	cblock		H'20'
+		In_Enc1			;Store the debounced input
+		In_Enc2			;Store the debounced input
+		In_Enc3			;Store the debounced input
+		In_Enc4			;Store the debounced input
+		Pos_Enc1		;Store the current position of encoder 1
+		Pos_Enc2		;Store the current position of encoder 2
+		Pos_Enc3		;Store the current position of encoder 3
+		Pos_Enc4		;Store the current position of encoder 4
+		ThisRead		;Current reading
+		LastRead		;Remember previous reading
+		TmpRead			;used to check which encoder has changed
+		Hz2500cnt		;Counter for 2500x/sec
+		ChgFlag			;used to indicate if encoder value has changed
+		FSR_Save
+		STATUS_Save
+		PROG_Save
+		W_Save
+	endc
+;*********************************************************************
+
+	ORG 0x0          	;Start Function
+	goto init 
+	nop
+
+	ORG 0x4          	;Interupt routine
+	goto push_int
+
+;***********************************************
+;NOTE - interupts not used, encoders are polled
+;***********************************************
+push_int				;start interupt routine, save Registers
+	movwf W_Save		;save W at W_Save
+	movf STATUS,W		;move STSTUS to W
+	movwf STATUS_Save	;save STATUS at STATUS_Save
+	movf PCLATH,W		;move prog counter to W
+	movwf PROG_Save		;save prog counter at PROG_Save
+	movf FSR,W			;move FSR to W
+	movwf FSR_Save		;save FSR at FSR_Save
+	btfss INTCON,INTF	;check inturupt reg
+	goto pop_int			
+	nop
+pop_int					;restore registers on exit from interupt		
+	clrf STATUS			;clear STATUS
+	movf FSR_Save,W		;get FSR from store
+	movwf FSR			;restore FSR
+	movf PROG_Save,W	;get prog counter from store
+	movwf PCLATH		;restore prog counter
+	movf STATUS_Save,W	;get STATUS from store
+	movwf STATUS		;restore STATUS
+	swapf W_Save,F		;restore W without changing bits
+	swapf W_Save,W
+	retfie				;return from interupt
+;***********************************************
+
+	; In order to debounce the input, we won't accept a reading
+	; until we have seen the same input on two successive
+	; reads of the encoder spaced 0.4 ms apart.  This is probably
+	; not as much time as we would like, but the encoders may
+	; generate their transitions in a very short space, so a
+	; slower read would likely miss transitions.
+Hz2500
+	;Read the encoder bits
+	movf PORTC,W		;Pick up the input word
+	movwf ThisRead		;And save into current reading
+
+	; If the current reading is the same as the previous reading,
+	; we don't need to do anything
+	xorwf LastRead,W	;Previous reading
+	btfsc STATUS,Z		;Same?
+	return				;Yes, do nothing
+
+	;At least one encoder value has changed
+	;on entry W contains the XORed value for all encoder bits
+	;We first determine which encoder has changed.
+
+	movwf TmpRead		;save W so can be used to test each encoder
+	movf ThisRead,W		;Pick-up the current reading and remember for
+	movwf LastRead		;next time
+
+	movf TmpRead,W		;restore contents of W so can test first encoder
+	andlw B'00000011'	;Mask off all but enc1
+	btfss STATUS,Z		;if ZERO set then enc1 has not changed so skip read value
+	goto chk_enc1		;has changed so go check encoder 1
+	movf TmpRead,W		;restore contents of W so can test next encoder
+	andlw B'00001100'	;Mask off all but enc2
+	btfss STATUS,Z		;if ZERO set then enc2 has not changed so skip read value
+	goto chk_enc2		;has changed so go check encoder 2
+	movf TmpRead,W		;restore contents of W so can test next encoder
+	andlw B'00110000'	;Mask off all but enc3
+	btfss STATUS,Z		;if ZERO set then enc3 has not changed so skip read value
+	goto chk_enc3		;has changed so go check encoder 3
+	goto chk_enc4		;if all the above checks fail must be encoder 4
+
+;the following are routines for each of the 4 encoders.
+;They check the result or the right bit of the previous reading 
+;XORed with the left bit of the current
+;************************START CHECK ENC1*********************************
+chk_enc1
+	; Move last reading over 1 and mask other bits
+	rlf In_Enc1,F		;Rotate the input storage
+	movlw B'00000110'	;Keep 2 bits from last time
+	andwf In_Enc1,F		;but clear all others
+
+	;encoder 1 populates bit0 and bit1
+	; XOR current status into input word
+	movf ThisRead,W		;Pick up current reading
+	xorwf In_Enc1,F		;And OR it into the input
+
+	btfss ChgFlag,1		;test changed flag and loop until both bits
+						;are either 00 or 11 indicating at detent
+	goto $+9			;go find direction of rotation
+	btfss ThisRead,0	;bit0 is set to 1
+	goto $+4
+	btfss ThisRead,1	;bit0 was 0, check bit1
+	bcf ChgFlag,1		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+;bit0 was 1 now check bit1
+	btfsc ThisRead,1	;bit0 was 0, check bit1
+	bcf ChgFlag,1		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+	
+;find direction of rotation
+	bsf ChgFlag,1		;set flag for this encoder to indicate that it has been read
+	btfss In_Enc1,1		;Test bit1
+	goto $+2			;goto Move is clockwise
+	goto $+8			;Move is counterclockwise
+
+;Movement is clockwise
+	incf Pos_Enc1,F		;increment the counter to next position
+	btfsc Pos_Enc1,2	;check if reached 4 and if so then
+	clrf Pos_Enc1		;restore back to zero
+	movf Pos_Enc1,W		;use the counter to get the mask which
+	call gray1_cw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc1 bits
+	Return				;return back to mail polling loop
+	
+;Movement is counterclockwise
+	decf Pos_Enc1,F		;decrement the counter to next position
+	btfss Pos_Enc1,7	;check that not yet done minus
+	goto $+3			;and if not then continue
+	movlw B'11';		;else restore to initial setting
+	movwf Pos_Enc1
+	movf Pos_Enc1,W		;use the counter to get the mask which
+	call gray1_ccw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc1 bits
+	Return				;return back to mail polling loop
+;*************************END CHECK ENC1**********************************
+;
+;************************START CHECK ENC2*********************************
+chk_enc2	
+	; Move last reading over 1 and mask other bits
+	rlf In_Enc2,F		;Rotate the input storage
+	movlw B'00000110'	;Keep 2 bits from last time
+	andwf In_Enc2,F		;but clear all others
+
+	;encoder 2 populates bit2 and bit3, so rotate right to move to bit0 and bit1 
+	; XOR current status into input word
+	movf ThisRead,W		;Pick up current reading
+	movwf TmpRead		;save so can rotate right 2 bits
+	rrf TmpRead,F		;now rotate right 2 bits
+	rrf TmpRead,F
+	movf TmpRead,W		;Pick up the rotated right reading
+	xorwf In_Enc2,F		;And OR it into the input
+
+	btfss ChgFlag,2		;test changed flag and loop until both bits
+						;are either 00 or 11 indicating at detent
+	goto $+9			;go find direction of rotation
+	btfss ThisRead,2	;bit2 is set to 1
+	goto $+4
+	btfss ThisRead,3	;bit2 was 0, check bit3
+	bcf ChgFlag,2		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+;bit2 was 1 now check bit3
+	btfsc ThisRead,3	;bit2 was 0, check bit3
+	bcf ChgFlag,2		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+	
+;find direction of rotation
+	bsf ChgFlag,2		;set flag for this encoder to indicate that it has been read
+	btfss In_Enc2,1		;Test bit1
+	goto $+2			;goto Move is clockwise
+	goto $+8			;Move is counterclockwise
+
+;Movement is clockwise
+	incf Pos_Enc2,F		;increment the counter to next position
+	btfsc Pos_Enc2,2	;check if reached 4 and if so then
+	clrf Pos_Enc2		;restore back to zero
+	movf Pos_Enc2,W		;use the counter to get the mask which
+	call gray2_cw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc2 bits
+	Return				;return back to mail polling loop
+	
+;Movement is counterclockwise
+	decf Pos_Enc2,F		;decrement the counter to next position
+	btfss Pos_Enc2,7	;check that not yet done minus
+	goto $+3			;and if not then continue
+	movlw B'11';		;else restore to initial setting
+	movwf Pos_Enc2
+	movf Pos_Enc2,W		;use the counter to get the mask which
+	call gray2_ccw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc2 bits
+	Return				;return back to mail polling loop
+;;*************************END CHECK ENC2**********************************
+;
+;************************START CHECK ENC3*********************************
+chk_enc3	
+	; Move last reading over 1 and mask other bits
+	rlf In_Enc3,F		;Rotate the input storage
+	movlw B'00000110'	;Keep 2 bits from last time
+	andwf In_Enc3,F		;but clear all others
+
+	;encoder 3 populates bit4 and bit5, so rotate right to move to bit0 and bit1 
+	; XOR current status into input word
+	movf ThisRead,W		;Pick up current reading
+	movwf TmpRead		;save so can rotate right 4 bits
+	rrf TmpRead,F		;now rotate right 4 bits
+	rrf TmpRead,F
+	rrf TmpRead,F
+	rrf TmpRead,F
+	movf TmpRead,W		;Pick up the rotated right reading
+	xorwf In_Enc3,F		;And OR it into the input
+
+	btfss ChgFlag,3		;test changed flag and loop until both bits
+						;are either 00 or 11 indicating at detent
+	goto $+9			;go find direction of rotation
+	btfss ThisRead,4	;bit4 is set to 1
+	goto $+4
+	btfss ThisRead,5	;bit4 was 0, check bit5
+	bcf ChgFlag,3		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+;bit4 was 1 now check bit5
+	btfsc ThisRead,5	;bit4 was 0, check bit5
+	bcf ChgFlag,3		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+	
+;find direction of rotation
+	bsf ChgFlag,3		;set flag for this encoder to indicate that it has been read
+	btfss In_Enc3,1		;Test bit1
+	goto $+2			;goto Move is clockwise
+	goto $+8			;Move is counterclockwise
+
+;Movement is clockwise
+	incf Pos_Enc3,F		;increment the counter to next position
+	btfsc Pos_Enc3,2	;check if reached 4 and if so then
+	clrf Pos_Enc3		;restore back to zero
+	movf Pos_Enc3,W		;use the counter to get the mask which
+	call gray3_cw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc3 bits
+	Return				;return back to mail polling loop
+	
+;Movement is counterclockwise
+	decf Pos_Enc3,F		;decrement the counter to next position
+	btfss Pos_Enc3,7	;check that not yet done minus
+	goto $+3			;and if not then continue
+	movlw B'11';		;else restore to initial setting
+	movwf Pos_Enc3
+	movf Pos_Enc3,W		;use the counter to get the mask which
+	call gray3_ccw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc3 bits
+	Return				;return back to mail polling loop
+;;*************************END CHECK ENC3**********************************
+;
+;************************START CHECK ENC4*********************************
+chk_enc4		
+	; Move last reading over 1 and mask other bits
+	rlf In_Enc4,F		;Rotate the input storage
+	movlw B'00000110'	;Keep 2 bits from last time
+	andwf In_Enc4,F		;but clear all others
+
+	;encoder 4 populates bit6 and bit7, so rotate right to move to bit0 and bit1 
+	; XOR current status into input word
+	movf ThisRead,W		;Pick up current reading
+	movwf TmpRead		;save so can rotate right 6 bits
+	rrf TmpRead,F		;now rotate right 6 bits
+	rrf TmpRead,F
+	rrf TmpRead,F
+	rrf TmpRead,F
+	rrf TmpRead,F
+	rrf TmpRead,F
+	movf TmpRead,W		;Pick up the rotated right reading
+	xorwf In_Enc4,F		;And OR it into the input
+
+	btfss ChgFlag,4		;test changed flag and loop until both bits
+						;are either 00 or 11 indicating at detent
+	goto $+9			;go find direction of rotation
+	btfss ThisRead,6	;bit6 is set to 1
+	goto $+4
+	btfss ThisRead,7	;bit6 was 0, check bit7
+	bcf ChgFlag,4		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+;bit6 was 1 now check bit7
+	btfsc ThisRead,7	;bit6 was 0, check bit7
+	bcf ChgFlag,4		;if not then return with the flag not cleared
+	Return				;return back to mail polling loop
+	
+;find direction of rotation
+	bsf ChgFlag,4		;set flag for this encoder to indicate that it has been read
+	btfss In_Enc4,1		;Test bit1
+	goto $+2			;goto Move is clockwise
+	goto $+8			;Move is counterclockwise
+
+;Movement is clockwise
+	incf Pos_Enc4,F		;increment the counter to next position
+	btfsc Pos_Enc4,2	;check if reached 4 and if so then
+	clrf Pos_Enc4		;restore back to zero
+	movf Pos_Enc4,W		;use the counter to get the mask which
+	call gray4_cw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc4 bits
+	Return				;return back to mail polling loop
+	
+;Movement is counterclockwise
+	decf Pos_Enc4,F		;decrement the counter to next position
+	btfss Pos_Enc4,7	;check that not yet done minus
+	goto $+3			;and if not then continue
+	movlw B'11';		;else restore to initial setting
+	movwf Pos_Enc4
+	movf Pos_Enc4,W		;use the counter to get the mask which
+	call gray4_ccw		;will be used to set the next gray code on the encoder
+	xorwf PORTB,F		;use the mask to set enc4 bits
+	Return				;return back to mail polling loop
+;;*************************END CHECK ENC4**********************************
+;
+;***********************GRAY CODE CW and CCW******************************
+;used to return a mask for each encoder which can be XORed with the
+;current encoder value to produce the next valid gray code sequence
+;one for each encoder and each direction of rotation.
+
+gray1_cw				;enc 1 clockwise
+	addwf PCL,F
+	retlw B'00000010'
+	retlw B'00000001'
+	retlw B'00000010'
+	retlw B'00000001'
+gray1_ccw				;enc 1 counter clockwise
+	addwf PCL,F
+	retlw B'00000001'
+	retlw B'00000010'
+	retlw B'00000001'
+	retlw B'00000010'
+gray2_cw				;enc 2 clockwise
+	addwf PCL,F
+	retlw B'00001000'
+	retlw B'00000100'
+	retlw B'00001000'
+	retlw B'00000100'
+gray2_ccw				;enc 2 counter clockwise
+	addwf PCL,F
+	retlw B'00000100'
+	retlw B'00001000'
+	retlw B'00000100'
+	retlw B'00001000'
+gray3_cw				;enc 3 clockwise
+	addwf PCL,F
+	retlw B'00100000'
+	retlw B'00010000'
+	retlw B'00100000'
+	retlw B'00010000'
+gray3_ccw				;enc 3 counter clockwise
+	addwf PCL,F
+	retlw B'00010000'
+	retlw B'00100000'
+	retlw B'00010000'
+	retlw B'00100000'
+gray4_cw				;enc 4 clockwise
+	addwf PCL,F
+	retlw B'10000000'
+	retlw B'01000000'
+	retlw B'10000000'
+	retlw B'01000000'
+gray4_ccw				;enc 4 counter clockwise
+	addwf PCL,F
+	retlw B'01000000'
+	retlw B'10000000'
+	retlw B'01000000'
+	retlw B'10000000'
+
+;*********************************************************************
+;	Initialization
+;*********************************************************************
+init					;Initialze the PIC ports and registers	
+	errorlevel -302		;error reporting off to suppress bank select warnings
+	banksel	PORTA		;switch to bank 0
+	clrf PORTA
+	clrf PORTB
+	clrf PORTC
+	banksel	TRISB		;switch to bank 1
+	clrf TRISB			;RB0-RB7 as outputs
+	clrf TRISA			;RA0-RA7 as outputs
+	movlw B'11111111'	;RC0-RC7 as inputs
+	movwf TRISC
+	movlw B'110'		;port A as digital inputs
+	movwf ADCON1
+
+; Setup timer for 0.4mS delay - 0.2*8*256
+	banksel	INTCON
+	bcf	INTCON,T0IE		;Mask the interupt timer
+	banksel OPTION_REG
+	bcf	OPTION_REG,T0CS	;Select Timer
+	bcf OPTION_REG,PSA	;Prescaler allocated to timer	
+	bcf OPTION_REG,PS0	;set prescaler to 1:8
+	bsf OPTION_REG,PS1
+	bcf OPTION_REG,PS2
+	banksel	PORTA		;switch to bank 0
+	errorlevel +302		;error reporting back on, just in case
+	clrf PORTA
+	clrf ChgFlag		;clear flag ready to read all encoders
+	movlw B'11111111'	;set all outputs high
+	movwf PORTB
+	movlw B'11'			;Initialize the 4 position indicators
+	movwf Pos_Enc1		;used to detemine where each encoder
+	movwf Pos_Enc2		;is in the cycle
+	movwf Pos_Enc3
+	movwf Pos_Enc4
+	movlw Hz2500T		;Initialize the Hz2500
+	movwf Hz2500cnt		;counter
+	movf PORTC,W		;Pick up the input word
+	movwf LastRead		;initialise to prevent false 1st read
+
+;*********************************************************************
+;	Main program loop here
+;*********************************************************************
+main
+	btfss INTCON,T0IF	;Did timer overflow?
+	goto main			;No, hang around some more
+	bcf INTCON,T0IF		;reset overflow flag
+
+;*********************************************************************
+;	Check for 2500 times per second
+;*********************************************************************
+	decfsz Hz2500cnt,F	;Count down until Hz2500
+	goto $+4			;Not time yet
+	movlw Hz2500T		;Reset the counter so
+	movwf Hz2500cnt		;it's available next time
+	call Hz2500			;Go do 2500X per second code
+	goto main			;loop for next read encoder cycle
+
+	END

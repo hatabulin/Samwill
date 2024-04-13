@@ -1,0 +1,1721 @@
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE MAIN
+NO OBJECT MODULE REQUESTED
+COMPILER INVOKED BY: E:\CD_WORK\Keil\C51\BIN\C51.exe main.c DB OE BR INCDIR(E:\!Hardware\!SiLabs\MCU\Inc) SRC
+
+line level    source
+
+   1          
+   2              ////////////////////////////////////////////////////////////////////
+   3          //
+   4          // <NAME PROJECT WITH MORE INFO>
+   5          // 
+   6          // Name:                Hatab Samwill
+   7          // Version:             1.0 
+   8          // Project started:     16.03.2013: 
+   9          // Project ended::
+  10          // 
+  11          // version 1 - 
+  12          // build: 160313
+  13          // 
+  14          // EEPROM 24c64 - 64Kbit (8 Kbytes)
+  15          // OSCILLATOR 24Mhz on p0.2, p0.3
+  16          //
+  17          // Плавает 1-2 мм на 20 см
+  18          // Нет "болтанки" и дребезгов
+  19          //
+  20          #define VERSION2        // Версия платы: 
+  21                                                  // ------------
+  22                                                  // 1.0 - Первый блин
+  23                                                  // 2.0 - 
+  24                                                  // 3.0 - 
+  25                                                  // 3.1 - 
+  26                                                  // 3.2 - 
+  27          #define ALGO3
+  28          #define DEFAULT_DISCRET         100;
+  29          #define EEPROM_24C128
+  30          #define REVISION_VER_DIGIT1 0x01 // версия прошивки
+  31          #define REVISION_VER_DIGIT2 0x00
+  32          
+  33          #define EncA    2
+  34          #define EncB    3
+  35          #define EncSw   6
+  36          #define EncIN   P0
+  37          #define EncPort P0
+  38          #define EncMask ((1<<EncB)|(1<<EncA)|(1<<EncSw))
+  39          
+  40          #include "compiler_defs.h"
+  41          #include "C8051f340_defs.h"
+  42          //#include "C8051f340.h"
+  43          #include "USB_API.h"
+  44          #include <math.h>
+  45          #include <string.h>
+  46          
+  47          #define INTERRUPT_USBXpress 17
+  48          //#define _GENERATOR_MODE_ON_OFF_ ~state
+  49          //////////////////////////////////////////////////////
+  50          ///
+  51          ///            PORT PINS CONFIGURATIONS (Defines)
+  52          /// 
+  53          //////////////////////////////////////////////////////
+  54          // 
+  55          // PINS
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 2   
+
+  56          // 
+  57          sbit EEPROM_SDA                         = P0^0;
+  58          sbit EEPROM_SCL                         = P0^1;
+  59          
+  60          #ifdef VERSION1
+              sbit KEY1                                       = P2^5;
+              sbit KEY2                                       = P2^6;
+              sbit KEY3                                       = P2^7;
+              sbit KEY4                                       = P0^6;
+              
+              sbit SEGMENT_A                          = P0^7;
+              sbit SEGMENT_B                          = P1^0;
+              sbit SEGMENT_C                          = P1^1;
+              sbit SEGMENT_D                          = P1^2;
+              sbit SEGMENT_E                          = P1^3;
+              sbit SEGMENT_F                          = P1^4;
+              sbit SEGMENT_G                          = P1^5;
+              sbit SEGMENT_POINT                      = P1^6;
+              
+              sbit LED1                                       = P1^7;
+              sbit LED2                                       = P2^0;
+              sbit LED3                                       = P2^1;
+              sbit LED4                                       = P2^4;
+              sbit LED5                                       = P2^3;
+              sbit LED6                                       = P2^2;
+              
+              sbit EXT_INT0                           = P0^4;
+              sbit EXT_INT1                           = P0^5;
+              #endif
+  85          
+  86          #ifdef VERSION2
+  87          sbit KEY1                                       = P0^4;
+  88          sbit KEY2                                       = P2^5;
+  89          sbit KEY3                                       = P0^6;
+  90          sbit KEY4                                       = P0^5;
+  91          
+  92          sbit SEGMENT_A                          = P1^0;
+  93          sbit SEGMENT_B                          = P1^1;
+  94          sbit SEGMENT_C                          = P1^2;
+  95          sbit SEGMENT_D                          = P1^3;
+  96          sbit SEGMENT_E                          = P1^4;
+  97          sbit SEGMENT_F                          = P1^6;
+  98          sbit SEGMENT_G                          = P1^5;
+  99          sbit SEGMENT_POINT                      = P0^7;
+ 100          
+ 101          sbit LED1                                       = P1^7;
+ 102          sbit LED2                                       = P2^0;
+ 103          sbit LED3                                       = P2^1;
+ 104          sbit LED4                                       = P2^2;
+ 105          sbit LED5                                       = P2^3;
+ 106          sbit LED6                                       = P2^4;
+ 107          
+ 108          sbit EXT_INT0                           = P0^2;
+ 109          sbit EXT_INT1                           = P0^3;
+ 110          #endif
+ 111          
+ 112          //
+ 113          // Адреса области EEPROM
+ 114          //
+ 115          #define EEPROM_TEST_ADDR1                                       0x00
+ 116          #define EEPROM_TEST_ADDR2                                       0x01
+ 117          #define EEPROM_CONST_ADDR                                       0x02
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 3   
+
+ 118          #define EEPROM_RESET_COUNTER_ADDR                       0x03
+ 119          #define EEPROM_COUNTER_ADDR_LOW                         0x04
+ 120          #define EEPROM_COUNTER_ADDR_HIGH                        0x05
+ 121          #define EEPROM_LCDMODE_ADDR                                     0x10
+ 122          #define EEPROM_DISCRET_ADDR_LOW                         0x20
+ 123          #define EEPROM_DISCRET_ADDR_HIGH                        0x21
+ 124          
+ 125          // Device addresses (7 bits, lsb is a don't care)
+ 126          #define  SYSCLK         12000000
+ 127          #define  SMB_FREQUENCY  40000          // Target SCL clock rate
+ 128                                                 // This example supports between 10kHz
+ 129                                                 // and 100kHz
+ 130          
+ 131          #define  WRITE          0x00           // SMBus WRITE command
+ 132          #define  READ           0x01           // SMBus READ command
+ 133          #define  EEPROM_ADDR    0xA0           // Device address for slave target
+ 134                                                 // Note: This address is specified
+ 135                                                 // in the Microchip 24LC02B
+ 136                                                 // datasheet.
+ 137          #define  TARGET                 0xA0           // Target SMBus slave address
+ 138          
+ 139          
+ 140          // SMBus Buffer Size
+ 141          #define  SMB_BUFF_SIZE  0x08           // Defines the maximum number of bytes
+ 142                                                 // that can be sent or received in a
+ 143                                                // single transfer
+ 144          // Status vector - top 4 bits only
+ 145          #define  SMB_MTSTA      0xE0           // (MT) start transmitted
+ 146          #define  SMB_MTDB       0xC0           // (MT) data byte transmitted
+ 147          #define  SMB_MRDB       0x80           // (MR) data byte received
+ 148          //
+ 149          // ..
+ 150          #define TIMER0_RELOAD_HIGH 0xF8
+ 151          #define TIMER0_RELOAD_LOW  0xF8
+ 152          
+ 153          //--------------------------TIMER DEFINITIONS ------
+ 154          #define TIMER_PRESCALER           32  //48  // Based on Timer CKCON settings
+ 155          
+ 156          #define TIMER_TICKS_PER_MS  SYSCLK/TIMER_PRESCALER/1500 //1000
+ 157          
+ 158          #define AUX1     TIMER_TICKS_PER_MS
+ 159          #define AUX2     -AUX1
+ 160          
+ 161          #define READ_TEMP_COUNT 255
+ 162          #define Timer0_Rate 10
+ 163          #define Timer0_RateEncoder 5
+ 164          //
+ 165          // SYSCLK/SMB_FREQUENCY/4/3) < 255)
+ 166          //---------------------------------------------------------
+ 167          
+ 168          // Prototypes
+ 169          //
+ 170          void Initialize(void);
+ 171          void Timer0_Init(void);
+ 172          void Timer1_Init(void);
+ 173          void Timer3_Init(void);
+ 174          void Timer3_ISR(void);
+ 175          void Timer0_ISR(void);
+ 176          void OSCILLATOR_Init (void);
+ 177          void Ext_Interrupt_Init (void);
+ 178          void Port_Init(void);
+ 179          void SMBus_Init (void);
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 4   
+
+ 180          void SMBus_ISR(void);
+ 181          //
+ 182          // Функции контроллера юзер интерфейсные
+ 183          void EEPROM_ByteWrite(U16 addr, unsigned char dat);
+ 184          unsigned char EEPROM_ByteRead(U16 addr);
+ 185          void LedsSwitchOff(void);
+ 186          void OutSymbol(unsigned char , unsigned char);
+ 187          void WriteCounterToEEprom(void);
+ 188          void WriteDiscretToEEprom(void);
+ 189          void LcdOutputLine(unsigned char);
+ 190          void EncoderScan2(void);
+ 191          void EncoderScan3(void);
+ 192          void EncoderScan4(void);
+ 193          void EncoderScan5(void);
+ 194          
+ 195          //
+ 196          void ResetCounterToOutputBuffer(void);
+ 197          void OutputBufferToResetCounter(void);
+ 198          //
+ 199          void Del_10mks(void);
+ 200          void Del_25ms(void);
+ 201          void Del_100ms(void);
+ 202          void Del_500mks(void);
+ 203          void Del_10ms(void);
+ 204          void Del(int);
+ 205          ////////////////////////////
+ 206          ////////////////////////////
+ 207          // GLOBAL ПЕРЕМЕННЫЕ !!!
+ 208          ////////////////////////////
+ 209          unsigned char Flag = 0;
+ 210          unsigned long Counter = 0, TempCounter, Discret ;
+ 211          bit Flag1 = 1;
+ 212          bit FlagPoint = 0;
+ 213          bit KeyFlag1 = 0;
+ 214          bit KeyFlag2 = 0;
+ 215          bit KeyFlag3 = 0;
+ 216          bit KeyFlag4 = 0;
+ 217          bit LongKeyFlag = 0;
+ 218          unsigned int LongKeyFlagCounter = 0;
+ 219          unsigned char LcdMode = 0;
+ 220          //unsigned int Discret = 0;
+ 221          unsigned char EncData, EncState, OldState, EncTemp;
+ 222          unsigned char EncN = 0, EncOld[4] = {0, 0, 1, 0};
+ 223          unsigned char Step,Low,High;
+ 224          bit Rotate;
+ 225          
+ 226          bit now_a, now_b, pre_a, pre_b;
+ 227          
+ 228          static unsigned char New, EncPlus, EncMinus;//Переменные нового значения энкодера, промежуточные переменны
+             -е + и -
+ 229          
+ 230          //
+ 231          // массивы
+ 232          //
+ 233          unsigned char data      OutputBuffer[6];
+ 234          unsigned char data      In_Packet[10];
+ 235          
+ 236          //unsigned char waveform[256];
+ 237          //
+ 238          // Переменные для функций работы с EEPROM
+ 239          
+ 240          unsigned char* pSMB_DATA_IN;           // Global pointer for SMBus data
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 5   
+
+ 241                                                 // All receive data is written here
+ 242          
+ 243          unsigned char SMB_SINGLEBYTE_OUT;      // Global holder for single byte writes.
+ 244          
+ 245          unsigned char* pSMB_DATA_OUT;          // Global pointer for SMBus data.
+ 246                                                 // All transmit data is read from here
+ 247          
+ 248          unsigned char SMB_DATA_LEN;            // Global holder for number of bytes
+ 249                                                 // to send or receive in the current
+ 250                                                 // SMBus transfer.
+ 251          
+ 252          unsigned char WORD_ADDR_HIGH;               // Global holder for the EEPROM word
+ 253                                                 // address that will be accessed in
+ 254                                                 // the next transfer
+ 255          
+ 256          unsigned char WORD_ADDR_LOW;
+ 257          
+ 258          bit SMB_BUSY = 0;                      // Software flag to indicate when the
+ 259                                                 // EEPROM_ByteRead() or
+ 260                                                 // EEPROM_ByteWrite()
+ 261                                                 // functions have claimed the SMBus
+ 262          
+ 263          bit SMB_RW;                            // Software flag to indicate the
+ 264                                                 // direction of the current transfer
+ 265          
+ 266          bit SMB_SENDWORDADDR_LOW;                  // When set, this flag causes the ISR
+ 267                                                 // to send the 8-bit <WORD_ADDR>
+ 268                                                 // after sending the slave address.
+ 269          bit SMB_SENDWORDADDR_HIGH;
+ 270          
+ 271          bit SMB_RANDOMREAD;                    // When set, this flag causes the ISR
+ 272                                                 // to send a START signal after sending
+ 273                                                 // the word address.
+ 274                                                 // For the 24LC02B EEPROM, a random read
+ 275                                                 // (a read from a particular address in
+ 276                                                 // memory) starts as a write then
+ 277                                                 // changes to a read after the repeated
+ 278                                                 // start is sent. The ISR handles this
+ 279                                                 // switchover if the <SMB_RANDOMREAD>
+ 280                                                 // bit is set.
+ 281          
+ 282          bit SMB_ACKPOLL;                       // When set, this flag causes the ISR
+ 283                                                 // to send a repeated START until the
+ 284                                                 // slave has acknowledged its address
+ 285          
+ 286          /*** [BEGIN] USB Descriptor Information [BEGIN] ***/
+ 287          
+ 288          SEGMENT_VARIABLE(USB_VID, U16, SEG_CODE) = 0x10c4;
+ 289          SEGMENT_VARIABLE(USB_PID, U16, SEG_CODE) = 0xea61;
+ 290          SEGMENT_VARIABLE(USB_MfrStr[], char , SEG_CODE) = // Manufacturer String
+ 291          {
+ 292             0x1A,
+ 293             0x03,
+ 294             'H',0,
+ 295             'a',0,
+ 296             't',0,
+ 297             'a',0,
+ 298             'b',0,
+ 299             '@',0,
+ 300             'C',0,
+ 301             'o',0,
+ 302             ' ',0
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 6   
+
+ 303          
+ 304          };
+ 305          SEGMENT_VARIABLE(USB_ProductStr[], unsigned char , SEG_CODE) = // Product Desc. String
+ 306          {
+ 307             0x10,
+ 308             0x03,
+ 309             'H',0,
+ 310             'a',0,
+ 311             't',0,
+ 312             'S',0,
+ 313             'a',0,
+ 314             'm',0,
+ 315             'w',0,
+ 316             'i',0,
+ 317             'l',0,
+ 318             'l',0
+ 319          };
+ 320          
+ 321          SEGMENT_VARIABLE(USB_SerialStr[], unsigned char , SEG_CODE) = // Serial Number String
+ 322          {
+ 323             0x0A,
+ 324             0x03,
+ 325             '0',0,
+ 326             '0',0,
+ 327             '0',0,
+ 328             '1',0,
+ 329          };
+ 330          
+ 331          SEGMENT_VARIABLE(USB_MaxPower, unsigned char , SEG_CODE) = 15;    // Max current = 30 mA
+ 332                                                                // (15 * 2)
+ 333          SEGMENT_VARIABLE(USB_PwAttributes, unsigned char , SEG_CODE) = 0x80;    // Bus-powered,
+ 334                                                                    // remote wakeup not
+ 335                                                                   // supported
+ 336          SEGMENT_VARIABLE(USB_bcdDevice, U16, SEG_CODE) = 0x0100;    // Device release
+ 337                                                                      // number 1.00
+ 338          
+ 339          SEGMENT_VARIABLE(DEVICE_NAME_Str[], unsigned char , SEG_CODE) = // Serial Number String
+ 340          {'H','a','t','S','a','m' };
+ 341          SEGMENT_VARIABLE(DEVICE_SN_Str[], unsigned char , SEG_CODE) = { 1,2,3,4 };
+ 342          SEGMENT_VARIABLE(LCD_STRING[], unsigned char, SEG_CODE) = {'-','-','-','-','-','-'};
+ 343          /*** [ END ] USB Descriptor Information [ END ] ***/
+ 344          
+ 345          #define ERROR_EEPROM 1
+ 346          
+ 347          void main(void)
+ 348          {
+ 349   1              unsigned char i;
+ 350   1              bit UpDown = 0;
+ 351   1              long    temp;
+ 352   1              PCA0MD &= ~0x40;                       // Disable Watchdog timer
+ 353   1              Initialize();
+ 354   1      
+ 355   1      //      USB_Clock_Start();                     // Init USB clock *before* calling USB_Init
+ 356   1      //      USB_Init(USB_VID,USB_PID,USB_MfrStr,USB_ProductStr,USB_SerialStr,USB_MaxPower,USB_PwAttributes,USB_bcdD
+             -evice);
+ 357   1              
+ 358   1      //      USB_Int_Enable();
+ 359   1      
+ 360   1      // If slave is holding SDA low because of an improper SMBus reset or error
+ 361   1              
+ 362   1      //      while (1)
+ 363   1      
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 7   
+
+ 364   1              LedsSwitchOff();
+ 365   1              
+ 366   1              SEGMENT_A = 1;
+ 367   1              LED1 = 0;
+ 368   1      
+ 369   1              while(!EEPROM_SDA)
+ 370   1              {
+ 371   2      
+ 372   2        // Provide clock pulses to allow the slave to advance out
+ 373   2            // of its current state. This will allow it to release SDA.
+ 374   2                      XBR1 = 0x40;                     // Enable Crossbar
+ 375   2              EEPROM_SCL = 0;                  // Drive the clock low
+ 376   2              for (i = 0; i < 255; i++) {  } // Hold the clock low
+ 377   2              EEPROM_SCL = 1; ;//                 // Release the clock
+ 378   2              while(!EEPROM_SCL);// { }//;              // Wait for open-drain
+ 379   2                                               // clock output to rise
+ 380   2              for(i = 0; i < 10; i++);         // Hold the clock high
+ 381   2      
+ 382   2                      XBR1 = 0x00;                     // Disable Crossbar
+ 383   2              }
+ 384   1              SEGMENT_A = 0;
+ 385   1              LED1 = 1;
+ 386   1              
+ 387   1              EIE1 |= 0x01;                       // Enable the SMBus interrupt
+ 388   1              EA = 1;
+ 389   1              ET0 = 1; // Timer0
+ 390   1              
+ 391   1              LcdOutputLine(5);
+ 392   1              ResetCounterToOutputBuffer();
+ 393   1      
+ 394   1      // Увиличение счетчика сброса <HARD_RESET>
+ 395   1              if (OutputBuffer[0] < 0xFF) OutputBuffer[0]++;
+ 396   1              else 
+ 397   1              { 
+ 398   2                      OutputBuffer[0] = 0; 
+ 399   2                      if (OutputBuffer[1] < 0xFF) OutputBuffer[1]++;
+ 400   2                      else
+ 401   2                      {
+ 402   3                              OutputBuffer[1] = 0;
+ 403   3                              if (OutputBuffer[2] < 0xFF) OutputBuffer[2]++;
+ 404   3                              else
+ 405   3                              {
+ 406   4                                      OutputBuffer[2] = 0;
+ 407   4                                      if (OutputBuffer[3] < 0xFF) OutputBuffer[3]++;
+ 408   4                              }
+ 409   3                      }
+ 410   2              }
+ 411   1              OutputBufferToResetCounter();
+ 412   1      
+ 413   1      //      SoftReset(SOFT_RESET);
+ 414   1      
+ 415   1              Counter = 0;
+ 416   1              Counter = EEPROM_ByteRead(EEPROM_COUNTER_ADDR_HIGH);
+ 417   1              Counter = Counter<<8;
+ 418   1              Counter |= EEPROM_ByteRead(EEPROM_COUNTER_ADDR_LOW);
+ 419   1              
+ 420   1              Discret = 0;
+ 421   1              Discret = EEPROM_ByteRead(EEPROM_DISCRET_ADDR_HIGH);
+ 422   1              Discret = Discret <<8;
+ 423   1              Discret |= EEPROM_ByteRead(EEPROM_DISCRET_ADDR_LOW);
+ 424   1      
+ 425   1              LcdMode = EEPROM_ByteRead(EEPROM_LCDMODE_ADDR);
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 8   
+
+ 426   1      
+ 427   1              if (LcdMode >1) { LcdMode = 1; LcdOutputLine(1); EEPROM_ByteWrite(EEPROM_LCDMODE_ADDR,LcdMode); }
+ 428   1              while (1) 
+ 429   1              {
+ 430   2      //      if (Counter > 39000) Counter = 39000;
+ 431   2      //      EncoderScan5();
+ 432   2              FlagPoint = 0;
+ 433   2      
+ 434   2              switch (LcdMode)
+ 435   2              {
+ 436   3              case 0:
+ 437   3                      {
+ 438   4                              TempCounter = Counter & 0xFFFF;
+ 439   4                              if (TempCounter > 9999) 
+ 440   4                              {
+ 441   5                                      temp = TempCounter / 10000;
+ 442   5                                      OutputBuffer[0] = temp;
+ 443   5                                      TempCounter = TempCounter - temp*10000;
+ 444   5                              }
+ 445   4                              else OutputBuffer[0] = 0;
+ 446   4      
+ 447   4                              if (TempCounter > 999) 
+ 448   4                              {
+ 449   5                                      temp = TempCounter / 1000;
+ 450   5                                      OutputBuffer[1] = temp;
+ 451   5                                      TempCounter = TempCounter - temp*1000;
+ 452   5                              } else OutputBuffer[1] = 0;
+ 453   4      
+ 454   4                              if (TempCounter > 99) 
+ 455   4                              {
+ 456   5                                      temp = TempCounter / 100;
+ 457   5                                      OutputBuffer[2] = temp;
+ 458   5                                      TempCounter = TempCounter - temp*100;
+ 459   5                              } else OutputBuffer[2] = 0;
+ 460   4      
+ 461   4                              if (TempCounter > 9) 
+ 462   4                              {
+ 463   5                                      temp = TempCounter / 10;
+ 464   5                                      OutputBuffer[3] = temp;
+ 465   5                                      TempCounter = TempCounter - temp*10;
+ 466   5                              } else OutputBuffer[3] = 0;
+ 467   4                              OutputBuffer[4] = TempCounter ;
+ 468   4                      } break;
+ 469   3              case 1:
+ 470   3                      {
+ 471   4                              TempCounter = ((Counter*100) / Discret);
+ 472   4                              OutputBuffer[0] = 0;
+ 473   4                              if (TempCounter > 9999) 
+ 474   4                              {
+ 475   5                                      temp = TempCounter / 10000;
+ 476   5                                      OutputBuffer[1] = temp;
+ 477   5                                      TempCounter = TempCounter - temp*10000;
+ 478   5                              }
+ 479   4                              else OutputBuffer[1] = 0;
+ 480   4      
+ 481   4                              if (TempCounter > 999) 
+ 482   4                              {
+ 483   5                                      temp = TempCounter / 1000;
+ 484   5                                      OutputBuffer[2] = temp;
+ 485   5                                      TempCounter = TempCounter - temp*1000;
+ 486   5                              } else OutputBuffer[2] = 0;
+ 487   4      
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 9   
+
+ 488   4                              if (TempCounter > 99) 
+ 489   4                              {
+ 490   5                                      temp = TempCounter / 100;
+ 491   5                                      OutputBuffer[3] = temp;
+ 492   5                                      TempCounter = TempCounter - temp*100;
+ 493   5                              } else OutputBuffer[3] = 0;
+ 494   4                              if (TempCounter > 9) 
+ 495   4                              {
+ 496   5                                      temp = TempCounter / 10;
+ 497   5                                      OutputBuffer[4] = temp;
+ 498   5                                      TempCounter = TempCounter - temp*10;
+ 499   5                              } else OutputBuffer[4] = 0;
+ 500   4                              OutputBuffer[5] = TempCounter ;
+ 501   4                      } break;
+ 502   3              }
+ 503   2      
+ 504   2      
+ 505   2              if ((KEY1 == 0) & (LongKeyFlag == 0)) 
+ 506   2              {
+ 507   3                      LongKeyFlagCounter++;
+ 508   3                      if (LongKeyFlagCounter > 1000) 
+ 509   3                      { 
+ 510   4                              LongKeyFlag = 1;
+ 511   4                              LongKeyFlagCounter = 0;
+ 512   4                      } 
+ 513   3              }
+ 514   2      
+ 515   2              if (KEY2 == 0) 
+ 516   2              {
+ 517   3                      if ((KeyFlag1 == 0) | (LongKeyFlag == 1))
+ 518   3                      {
+ 519   4                              Counter ++;
+ 520   4                              KeyFlag1 = 1; 
+ 521   4                      }
+ 522   3              } else { KeyFlag1 = 0; LongKeyFlag = 0; }
+ 523   2      
+ 524   2              if (KEY1 == 0) Counter = 0;
+ 525   2      
+ 526   2              if (KEY3 == 0)  // Смена режима вывода на дисплюй (ММ или Счётчик сигналов)
+ 527   2              {
+ 528   3                      if (KeyFlag3 == 0)
+ 529   3                      {
+ 530   4                              if (LcdMode == 0) LcdMode = 1; else LcdMode = 0;
+ 531   4                              LcdOutputLine(2);
+ 532   4                              EEPROM_ByteWrite(EEPROM_LCDMODE_ADDR,LcdMode);
+ 533   4                              KeyFlag3 = 1;
+ 534   4                      }
+ 535   3              } else KeyFlag3 = 0;
+ 536   2      
+ 537   2              if (KEY4 == 0) // запись в память EEPROM дискретизации (Счётчик/1 ММ)
+ 538   2              {
+ 539   3                      if (KeyFlag4 == 0)
+ 540   3                      {
+ 541   4                              Discret = Counter;
+ 542   4                              LcdOutputLine(4);
+ 543   4                              WriteDiscretToEEprom();
+ 544   4                              WriteCounterToEEprom();
+ 545   4                              KeyFlag4 = 1;
+ 546   4                      } else KeyFlag4 = 0;
+ 547   3              }
+ 548   2      
+ 549   2              }
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 10  
+
+ 550   1      }
+ 551          
+ 552          void EncoderScan2(void)
+ 553          {
+ 554   1              EncState = P0 >> 2;
+ 555   1              EncState = ((OldState<<2) | EncState) & 0x0F;
+ 556   1      
+ 557   1              switch (EncState)
+ 558   1              {
+ 559   2                      case 1: Counter--; break;// Case &00000001 
+ 560   2                      case 2: Counter++;break;
+ 561   2                      case 7: Counter--;break;
+ 562   2                      case 4: Counter++;break;
+ 563   2                      case 0x0D:      Counter++;break;
+ 564   2                      case 0x0E:      Counter--;break;
+ 565   2                      case 0x0B:      Counter++;break;
+ 566   2                      case 8:         Counter--; 
+ 567   2              }
+ 568   1              OldState = EncState;
+ 569   1      }
+ 570          
+ 571          void EncoderScan1(void)
+ 572          {
+ 573   1              unsigned char New;
+ 574   1       
+ 575   1              New = (P0 & 0x0C) >> 2; // PINB & 0x03; // Берем текущее значение 
+ 576   1                              // И сравниваем со старым
+ 577   1       
+ 578   1      // Смотря в какую сторону оно поменялось -- увеличиваем
+ 579   1      // Или уменьшаем счетный регистр
+ 580   1       
+ 581   1              switch(EncState)
+ 582   1              {
+ 583   2              case 2:
+ 584   2                      {
+ 585   3                      if(New == 3) Counter++;
+ 586   3                      if(New == 0) Counter--; 
+ 587   3                      break;
+ 588   3                      }
+ 589   2       
+ 590   2              case 0:
+ 591   2                      {
+ 592   3                      if(New == 2) Counter++;
+ 593   3                      if(New == 1) Counter--; 
+ 594   3                      break;
+ 595   3                      }
+ 596   2              case 1:
+ 597   2                      {
+ 598   3                      if(New == 0) Counter++;
+ 599   3                      if(New == 3) Counter--; 
+ 600   3                      break;
+ 601   3                      }
+ 602   2              case 3:
+ 603   2                      {
+ 604   3                      if(New == 1) Counter++;
+ 605   3                      if(New == 2) Counter--; 
+ 606   3                      break;
+ 607   3                      }
+ 608   2              }
+ 609   1       
+ 610   1              EncState = New;         // Записываем новое значение 
+ 611   1                                      // Предыдущего состояния
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 11  
+
+ 612   1      }
+ 613          
+ 614          void EncoderScan3 (void)
+ 615          {
+ 616   1        EncTemp = EncIN;
+ 617   1        Del(10); // ??????????????? ????????
+ 618   1        EncTemp |= EncIN;
+ 619   1      #if(EncA < EncB) //????? ???????? ????
+ 620   1        EncTemp >>= EncA;
+ 621   1      #else
+                EncTemp >>= EncB;
+              #endif
+ 624   1        EncTemp &= 0x03; 
+ 625   1        if (EncN < 4)
+ 626   1        {
+ 627   2          if (((EncOld[0] == 0x03)&&(EncTemp != EncOld[EncN - 1]))||
+ 628   2              ((EncOld[0] == 0x00)&&(EncTemp == 0x03))) // проверка последовательности команд от энкодера
+ 629   2          {
+ 630   3            EncOld[EncN] = EncTemp;
+ 631   3            EncN ++;
+ 632   3          }
+ 633   2        }
+ 634   1        else
+ 635   1        {
+ 636   2            if ((EncOld[1] == 0x01)&&
+ 637   2                (EncOld[2] == 0x00)&&
+ 638   2                (EncOld[3] == 0x02)) // проверка совпадения принятых данных с прямой посл-ю
+ 639   2            {
+ 640   3              Counter++;
+ 641   3            }
+ 642   2            else
+ 643   2              if ((EncOld[1] == 0x02)&&
+ 644   2                  (EncOld[2] == 0x00)&&
+ 645   2                  (EncOld[3] == 0x01)) // проверка совпадения принятых данных с обратной посл-ю
+ 646   2              {
+ 647   3                Counter--;
+ 648   3              }
+ 649   2          EncN = 0; // ????????? ??????
+ 650   2          EncOld[0] = 0x00;
+ 651   2          EncOld[1] = 0x00;
+ 652   2          EncOld[2] = 0x01;
+ 653   2          EncOld[3] = 0x00;
+ 654   2        }
+ 655   1      }
+ 656          
+ 657          void EncoderScan4(void)
+ 658          {
+ 659   1       // запомнить текущее состояние сигналов энкодера.
+ 660   1              now_a = EXT_INT0; // сигнал на выходе "А" энкодера PB3
+ 661   1              now_b = EXT_INT1; // сигнал на выходе "B" энкодера PB4  
+ 662   1       
+ 663   1              if ((pre_b != now_b)||(pre_a != now_a))  // Если изменился сигнал А или В то  /*  "+" тик (отсчет условно
+             - "по часовой") если выполняются 4 условия
+ 664   1              { 
+ 665   2      
+ 666   2                      if (!now_b) // 1) В = 0
+ 667   2                      {
+ 668   3                              if (now_a) // 2) A = 1
+ 669   3                              {
+ 670   4                                      if (now_a != pre_a) // 3) A изменился
+ 671   4                                      {
+ 672   5                                              if (now_b == pre_b) // 4) B не изменился 
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 12  
+
+ 673   5                                              {
+ 674   6                                              Counter-- ;               // посчитать тик "по часовой"
+ 675   6                                              }
+ 676   5                                      }
+ 677   4                              }
+ 678   3                      }     // вращение происходит по-часовой
+ 679   2      
+ 680   2       /*  "-" тик (отсчет условно "против часовой") если выполняются 4 условия:   */      
+ 681   2                      if (now_b) // 1) В = 1
+ 682   2                      {
+ 683   3                              if (!now_a) // 2) A = 0
+ 684   3                              {
+ 685   4                                      if (now_a == pre_a) // 3) A не изменился
+ 686   4                                      {
+ 687   5                                              if (now_b != pre_b)// 4) B изменился 
+ 688   5                                              {
+ 689   6                                              Counter++ ;               // посчитать тик "против часовой"
+ 690   6                                              }
+ 691   5                                      }
+ 692   4                              }
+ 693   3                      } // вращение происходит против-часовой
+ 694   2              }
+ 695   1              pre_a = now_a; // обновить "прошлые" сигналы энкодера 
+ 696   1              pre_b = now_b; // для - interrupt [PCINT0] void pin_change_isr(void)
+ 697   1      }
+ 698          
+ 699          void EncoderScan5(void)//Функция обработки энкодера
+ 700          {
+ 701   1       
+ 702   1          New = (P0 & 0x0C) >> 2; // PINB & 0x03;     // Берем текущее значение 
+ 703   1       
+ 704   1          if(New != EncState)//Если значение изменилось по отношению к прошлому
+ 705   1          {
+ 706   2              switch(EncState) //Перебор прошлого значения энкодера
+ 707   2                  {
+ 708   3                  case 2:if(New == 3) EncPlus++;//В зависимости от значения увеличиваем
+ 709   3                                   if(New == 0) EncMinus++;//Или уменьшаем  
+ 710   3                             break;
+ 711   3                  case 0:if(New == 2) EncPlus++;
+ 712   3                                   if(New == 1) EncMinus++; 
+ 713   3                             break;
+ 714   3                  case 1:if(New == 0) EncPlus++;
+ 715   3                                   if(New == 3) EncMinus++; 
+ 716   3                             break;
+ 717   3                  case 3:if(New == 1) EncPlus++;
+ 718   3                                   if(New == 2) EncMinus++; 
+ 719   3                             break;
+ 720   3              default:break;
+ 721   3                  }
+ 722   2                      
+ 723   2                      if(EncPlus == 4) //если прошёл один "щелчок"
+ 724   2                      {
+ 725   3                              Counter++;
+ 726   3                              EncPlus = 0;
+ 727   3                      }
+ 728   2                      
+ 729   2                      if(EncMinus == 4) //если прошёл один "щелчок"
+ 730   2                      {
+ 731   3                          Counter--;
+ 732   3                              EncMinus = 0;
+ 733   3                      }
+ 734   2              EncState = New; // Записываем новое значение предыдущего состояния
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 13  
+
+ 735   2              }
+ 736   1      }
+ 737          
+ 738          void LcdOutputLine(unsigned char delay)
+ 739          {
+ 740   1              unsigned char i,y;
+ 741   1              TCON &= ~0x10;
+ 742   1              ET0 = 0;
+ 743   1              
+ 744   1              LedsSwitchOff();
+ 745   1              SEGMENT_G = 1;
+ 746   1              
+ 747   1              for (i=0;i<6;i++)
+ 748   1              {
+ 749   2                      for (y=0;y<delay;y++) //{ Del_500mks(); Del_500mks(); Del_500mks(); Del_500mks(); }
+ 750   2                      switch (i)
+ 751   2                      {
+ 752   3                              case 0: LED1 = 0; break;
+ 753   3                              case 1: LED2 = 0; break;
+ 754   3                              case 2: LED3 = 0; break;
+ 755   3                              case 3: LED4 = 0; break;
+ 756   3                              case 4: LED5 = 0; break;
+ 757   3                              case 5: LED6 = 0; break;
+ 758   3                      }       
+ 759   2              }
+ 760   1              ET0 = 1;
+ 761   1              TCON |= 0x10;
+ 762   1      }
+ 763          
+ 764          void WriteCounterToEEprom(void)
+ 765          {
+ 766   1              unsigned char temp_byte;
+ 767   1              temp_byte = Counter;
+ 768   1              EEPROM_ByteWrite(EEPROM_COUNTER_ADDR_LOW, temp_byte);
+ 769   1              temp_byte = Counter>>8;
+ 770   1              EEPROM_ByteWrite(EEPROM_COUNTER_ADDR_HIGH,temp_byte);
+ 771   1      
+ 772   1              LedsSwitchOff();
+ 773   1              LcdOutputLine(2);
+ 774   1      }
+ 775          
+ 776          void WriteDiscretToEEprom(void)
+ 777          {
+ 778   1              unsigned char temp_byte;
+ 779   1              
+ 780   1              if (Discret == 0) Discret = DEFAULT_DISCRET;
+ 781   1              temp_byte = Discret;
+ 782   1              EEPROM_ByteWrite(EEPROM_DISCRET_ADDR_LOW, temp_byte);
+ 783   1              temp_byte = Discret>>8;
+ 784   1              EEPROM_ByteWrite(EEPROM_DISCRET_ADDR_HIGH,temp_byte);
+ 785   1      
+ 786   1              LedsSwitchOff();
+ 787   1              LcdOutputLine(2);
+ 788   1      }
+ 789          
+ 790          void ResetCounterToOutputBuffer(void)
+ 791          {
+ 792   1              OutputBuffer[0] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR);
+ 793   1              OutputBuffer[1] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR+1);
+ 794   1              OutputBuffer[2] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR+2);
+ 795   1              OutputBuffer[3] = EEPROM_ByteRead(EEPROM_RESET_COUNTER_ADDR+3);
+ 796   1      }
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 14  
+
+ 797          
+ 798          void OutputBufferToResetCounter(void)
+ 799          {
+ 800   1                      EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR, OutputBuffer[0]);
+ 801   1                      EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR+1, OutputBuffer[1]);
+ 802   1                      EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR+2, OutputBuffer[2]);
+ 803   1                      EEPROM_ByteWrite(EEPROM_RESET_COUNTER_ADDR+3, OutputBuffer[3]);
+ 804   1      }
+ 805          
+ 806          void OutSymbol(unsigned char LedNumber, unsigned char SymbolCode)
+ 807          {
+ 808   1              LedsSwitchOff();
+ 809   1      
+ 810   1              switch (SymbolCode)
+ 811   1              {
+ 812   2                      case 0x2D:
+ 813   2                      {
+ 814   3                              SEGMENT_G = 1;
+ 815   3                      } break;
+ 816   2                      case 0x30:
+ 817   2                      {
+ 818   3                              SEGMENT_A = 1;
+ 819   3                              SEGMENT_B = 1;
+ 820   3                              SEGMENT_C = 1;
+ 821   3                              SEGMENT_D = 1;
+ 822   3                              SEGMENT_E = 1;
+ 823   3                              SEGMENT_F = 1;
+ 824   3                      } break;
+ 825   2                      case 0x31:
+ 826   2                      {
+ 827   3                              SEGMENT_B = 1;
+ 828   3                              SEGMENT_C = 1;
+ 829   3                      } break;
+ 830   2                      case 0x32:
+ 831   2                      {
+ 832   3                              SEGMENT_A = 1;
+ 833   3                              SEGMENT_B = 1;
+ 834   3                              SEGMENT_G = 1;
+ 835   3                              SEGMENT_E = 1;
+ 836   3                              SEGMENT_D = 1;
+ 837   3                      } break;
+ 838   2                      case 0x33:
+ 839   2                      {
+ 840   3                              SEGMENT_A = 1;
+ 841   3                              SEGMENT_B = 1;
+ 842   3                              SEGMENT_C = 1;
+ 843   3                              SEGMENT_D = 1;
+ 844   3                              SEGMENT_G = 1;
+ 845   3                      } break;
+ 846   2                      case 0x34:
+ 847   2                      {
+ 848   3                              SEGMENT_B = 1;
+ 849   3                              SEGMENT_C = 1;
+ 850   3                              SEGMENT_F = 1;
+ 851   3                              SEGMENT_G = 1;
+ 852   3                      } break;
+ 853   2                      case 0x35:
+ 854   2                      {
+ 855   3                              SEGMENT_A = 1;
+ 856   3                              SEGMENT_F = 1;
+ 857   3                              SEGMENT_G = 1;
+ 858   3                              SEGMENT_C = 1;
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 15  
+
+ 859   3                              SEGMENT_D = 1;
+ 860   3                      } break;
+ 861   2                      case 0x36:
+ 862   2                      {
+ 863   3                              SEGMENT_A = 1;
+ 864   3                              SEGMENT_F = 1;
+ 865   3                              SEGMENT_G = 1;
+ 866   3                              SEGMENT_E = 1;
+ 867   3                              SEGMENT_D = 1;
+ 868   3                              SEGMENT_C = 1;
+ 869   3                      } break;
+ 870   2                      case 0x37:
+ 871   2                      {
+ 872   3                              SEGMENT_A = 1;
+ 873   3                              SEGMENT_B = 1;
+ 874   3                              SEGMENT_C = 1;
+ 875   3                      } break;
+ 876   2                      case 0x38:
+ 877   2                      {
+ 878   3                              SEGMENT_A = 1;
+ 879   3                              SEGMENT_B = 1;
+ 880   3                              SEGMENT_C = 1;
+ 881   3                              SEGMENT_D = 1;
+ 882   3                              SEGMENT_E = 1;
+ 883   3                              SEGMENT_F = 1;
+ 884   3                              SEGMENT_G = 1;
+ 885   3                      } break;
+ 886   2                      case 0x39:
+ 887   2                      {
+ 888   3                              SEGMENT_A = 1;
+ 889   3                              SEGMENT_B = 1;
+ 890   3                              SEGMENT_C = 1;
+ 891   3                              SEGMENT_D = 1;
+ 892   3                              SEGMENT_F = 1;
+ 893   3                              SEGMENT_G = 1;
+ 894   3                      } break;
+ 895   2              }
+ 896   1      
+ 897   1              if (FlagPoint == 1) SEGMENT_POINT = 1;
+ 898   1              switch (LedNumber)
+ 899   1              {
+ 900   2                      case 1: LED1 = 0; break;
+ 901   2                      case 2: LED2 = 0; break;
+ 902   2                      case 3: LED3 = 0; break;
+ 903   2                      case 4: LED4 = 0; break;
+ 904   2                      case 5: LED5 = 0; break;
+ 905   2                      case 6: LED6 = 0; break;
+ 906   2              }       
+ 907   1      }
+ 908          
+ 909          void LedsSwitchOff(void)
+ 910          {
+ 911   1              LED1 = 1;
+ 912   1              LED2 = 1;
+ 913   1              LED3 = 1;
+ 914   1              LED4 = 1;
+ 915   1              LED5 = 1;
+ 916   1              LED6 = 1;
+ 917   1      
+ 918   1              SEGMENT_A = 0;
+ 919   1              SEGMENT_B = 0;
+ 920   1              SEGMENT_C = 0;
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 16  
+
+ 921   1              SEGMENT_D = 0;
+ 922   1              SEGMENT_E = 0;
+ 923   1              SEGMENT_F = 0;
+ 924   1              SEGMENT_G = 0;
+ 925   1              SEGMENT_POINT = 0;
+ 926   1      }
+ 927          
+ 928          //-------------------------
+ 929          // Initialize
+ 930          //-------------------------
+ 931          // Called when a DEV_CONFIGURED interrupt is received.
+ 932          // - Enables all peripherals needed for the application
+ 933          //
+ 934          void Initialize(void)
+ 935          {
+ 936   1              Port_Init();                           // Initialize crossbar and GPIO
+ 937   1              OSCILLATOR_Init ();
+ 938   1      //      OSCICN |= 0x83;                                                 // задаём частоту
+ 939   1              Timer0_Init();                          // Initialize timer2
+ 940   1              Timer1_Init(); // smbus SCL
+ 941   1              Timer3_Init(); // smbus
+ 942   1              SMBus_Init ();
+ 943   1              Ext_Interrupt_Init();
+ 944   1      }
+ 945          
+ 946          void OSCILLATOR_Init (void)
+ 947          {
+ 948   1      #ifdef EXTERNAL_CRYSTAL
+                      int i;
+                  OSCXCN    = 0x67;
+                  for (i = 0; i < 256; i++);  // Wait 1ms for initialization
+                  while (!(OSCXCN & 0x80));           // Wait for crystal osc. to settle
+                      RSTSRC = 0x06;                          // Enable missing clock detector and
+                                                              // VDD Monitor reset
+              
+              //      CLKMUL = 0x00;
+                      CLKSEL = 0x01;                          // Select external oscillator as system
+                                                              // clock source
+              //      CLKMUL |= 0x80;
+              //    for (i = 0; i < 256; i++);  // Wait 1ms for initialization
+              //    CLKMUL |= 0xC0;
+              //      while (!(CLKMUL & 0x20));           // 
+                      
+                      OSCICN = 0x03;                          // Disable the internal oscillator.
+              #else
+ 966   1              OSCICN = 0x83;                                                  // задаём частоту
+ 967   1              RSTSRC |= 0x04;                         // Enable missing clock detector and
+ 968   1      #endif
+ 969   1      }
+ 970          
+ 971          //-------------------------
+ 972          // Timer_Init
+ 973          //-------------------------
+ 974          // Timer initialization
+ 975          // - 1 mhz timer 2 reload, used to check if switch pressed on overflow and
+ 976          // used for ADC continuous conversion
+ 977          //
+ 978          void Timer0_Init(void)
+ 979          {
+ 980   1              TL0 = 0;
+ 981   1              TH0 = 1;
+ 982   1      
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 17  
+
+ 983   1              TMOD = 0x02;    //      00 - 13bit, 01 - 16bit, 02 - 8 bit;;
+ 984   1                                              //      T0M1=0; // 16-РАЗРЯДНЫЙ ТАЙМЕР
+ 985   1      
+ 986   1      #ifdef EXTERNAL_CRYSTAL
+                      CKCON = 0x03; 
+              #else
+ 989   1              CKCON = 0x00; // делитель на 12 (01 - на 4, 10 - на 48, на 8  - EXT CLK)
+ 990   1      #endif
+ 991   1              TCON = 0x10;                        // Timer0 ON
+ 992   1      }
+ 993          
+ 994          void Timer1_Init (void)
+ 995          {
+ 996   1      #if ((SYSCLK/SMB_FREQUENCY/3) < 255)
+ 997   1         #define SCALE 1
+ 998   1            CKCON |= 0x08;                   // Timer1 clock source = SYSCLK
+ 999   1      #elif ((SYSCLK/SMB_FREQUENCY/4/3) < 255)
+                 #define SCALE 4
+                    CKCON |= 0x01;
+                    CKCON &= ~0x0A;                  // Timer1 clock source = SYSCLK / 4
+              #endif
+1004   1      
+1005   1         TMOD |= 0x20;                        // Timer1 in 8-bit auto-reload mode
+1006   1      
+1007   1         TH1 = -(SYSCLK/SMB_FREQUENCY/12/3); // Timer1 configured to overflow at 1/3
+1008   1                                             // the rate defined by SMB_FREQUENCY
+1009   1      
+1010   1         TL1 = TH1;                          // Init Timer1
+1011   1      
+1012   1         TR1 = 1;                            // Timer1 enabled
+1013   1      }
+1014          
+1015          
+1016          void Timer3_Init (void)
+1017          {
+1018   1         TMR3CN = 0x00;                      // Timer3 configured for 16-bit auto-
+1019   1                                             // reload, low-byte interrupt disabled
+1020   1      
+1021   1         CKCON &= ~0x40;                     // Timer3 uses SYSCLK/12
+1022   1         TMR3RL = -(SYSCLK/12/40);           // Timer3 configured to overflow after
+1023   1         TMR3 = TMR3RL;                      // ~25ms (for SMBus low timeout detect)
+1024   1      
+1025   1         EIE1 |= 0x80;                       // Timer3 interrupt enable
+1026   1         TMR3CN |= 0x04;                     // Start Timer3
+1027   1      }
+1028          
+1029          void Port_Init(void)
+1030          {
+1031   1      #ifdef EXTERNAL_CRYSTAL
+                      P0MDIN &= ~0x0C;                    // P0.2, P0.3 are analog 
+              #endif
+1034   1      
+1035   1      #ifdef EXTERNAL_CRYSTAL
+                      P0SKIP  |= 0x0C;
+              #endif
+1038   1      
+1039   1              P0MDOUT = 0xFF; // все на выход
+1040   1              P0MDOUT &= ~0x7F; // bit6,5,4,3 - клавиатура, bit2 вход /INT0, /INT1, bit0,1 - I2C EEprom
+1041   1      
+1042   1              P1MDOUT = 0xFF;  // все на выход
+1043   1      
+1044   1              P2MDOUT = 0xFF;  // все на выход
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 18  
+
+1045   1              P2MDOUT &= ~0x20; // Int0 дополнение - вход
+1046   1      
+1047   1      //      P2MDOUT &= ~0xE0; // bit 5,6,7 input
+1048   1      
+1049   1              P0 |= 0x78; // p0.7, p0.6, p0.5 - клавиатура
+1050   1              P0 |= 0x0C; // p0.2  - вход /INT0
+1051   1              P0 &= ~0x03; // p0.0 , p0.1 - TX / RX I2C
+1052   1      
+1053   1              P2 |= 0xE0; 
+1054   1      
+1055   1              XBR0    = 0x04;                                         // SMBUS enabled
+1056   1              XBR1    = 0x40;                     // Enable Crossbar and weak pull-ups
+1057   1      }
+1058          
+1059          //
+1060          // SMBUS INIT
+1061          //
+1062          //
+1063          void SMBus_Init (void)
+1064          {
+1065   1              SMB0CF = 0x5D;                      // Use Timer1 overflows as SMBus clock
+1066   1                                             // source;
+1067   1                                             // Disable slave mode;
+1068   1                                             // Enable setup & hold time extensions;
+1069   1                                             // Enable SMBus Free timeout detect;
+1070   1                                             // Enable SCL low timeout detect;
+1071   1      
+1072   1              SMB0CF |= 0x80;                     // Enable SMBus;
+1073   1      }
+1074          
+1075          void Ext_Interrupt_Init (void)
+1076          {
+1077   1              IP = 0x05;// int1, int0 высокий приоритет
+1078   1      
+1079   1      //      if (KEY1 == 0) TCON &= ~0x01;                        // /INT 0 если активен (bit = 1 если фронтом)
+1080   1      //      else TCON |= 0x01; // фронтом
+1081   1              TCON |= 0x05; // фронтом
+1082   1              IT01CF &= ~0x0A;        // полярность /INT0 ( 0 - низкий активный уровень)1
+1083   1      // выбор активности или HIGH или LOW
+1084   1      //      if (KEY2 == 1) IT01CF &= ~0x08; // полярность /INT0 ( 0 - низкий активный уровень)1
+1085   1      //      else IT01CF |= 0x08; // 1 - высокий
+1086   1      
+1087   1      //      if (KEY3 == 0) TCON &= ~0x04;                        // /INT 1 если активен (bit = 1 если фронтом)
+1088   1      //      else TCON |= 0x04; // фронтом
+1089   1      
+1090   1      // выбор активности или HIGH или LOW
+1091   1      //      if (KEY4 == 0) IT01CF &= ~0x80; // полярность /INT1 ( 0 - низкий активный уровень)
+1092   1      //      else IT01CF |= 0x80; // 1 - высокий
+1093   1      
+1094   1              IT01CF |= 0x02; // 
+1095   1              IT01CF &= ~0x05; // выбор порта P0.2 для /INT0
+1096   1      
+1097   1              IT01CF |= 0x30; // 
+1098   1              IT01CF &= ~0x40; // выбор порта P0.3 для /INT1
+1099   1      
+1100   1              EX0 = 1;                            // Enable /INT0 interrupts
+1101   1              EX1 = 1;                            // Enable /INT1 interrupts
+1102   1      }
+1103          
+1104          
+1105          //-----------------------------------------------------------------------------
+1106          // EEPROM_ByteWrite ()
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 19  
+
+1107          //-----------------------------------------------------------------------------
+1108          //
+1109          // Return Value : None
+1110          // Parameters   :
+1111          //   1) unsigned char addr - address to write in the EEPROM
+1112          //                        range is full range of character: 0 to 255
+1113          //
+1114          //   2) unsigned char dat - data to write to the address <addr> in the EEPROM
+1115          //                        range is full range of character: 0 to 255
+1116          //
+1117          // This function writes the value in <dat> to location <addr> in the EEPROM
+1118          // then polls the EEPROM until the write is complete.
+1119          //
+1120          void EEPROM_ByteWrite(U16 addr, unsigned char dat)
+1121          {
+1122   1         while (SMB_BUSY);                   // Wait for SMBus to be free.
+1123   1         SMB_BUSY = 1;                       // Claim SMBus (set to busy)
+1124   1      
+1125   1              WORD_ADDR_HIGH = addr >> 8;                   // Set the target address in the
+1126   1              WORD_ADDR_LOW = addr & 0xFF;
+1127   1      
+1128   1         // Set SMBus ISR parameters
+1129   1      #ifdef EEPROM_24C128
+1130   1              SMB_SENDWORDADDR_HIGH = 1;
+1131   1      #endif
+1132   1      #ifdef EEPROM_24C16
+                      SMB_SENDWORDADDR_HIGH = 0;
+              #endif
+1135   1              SMB_RW = WRITE;                     // Mark next transfer as a write
+1136   1              SMB_SENDWORDADDR_LOW = 1;               // Send Word Address after Slave Address
+1137   1      
+1138   1              SMB_RANDOMREAD = 0;                 // Do not send a START signal after
+1139   1                                             // the word address
+1140   1              SMB_ACKPOLL = 1;                    // Enable Acknowledge Polling (The ISR
+1141   1                                             // will automatically restart the
+1142   1                                             // transfer if the slave does not
+1143   1                                             // acknoledge its address.
+1144   1      
+1145   1         // Specify the Outgoing Data
+1146   1              SMB_SINGLEBYTE_OUT = dat;           // Store <dat> (local variable) in a
+1147   1                                             // global variable so the ISR can read
+1148   1                                             // it after this function exits
+1149   1      
+1150   1         // The outgoing data pointer points to the <dat> variable
+1151   1              pSMB_DATA_OUT = &SMB_SINGLEBYTE_OUT;
+1152   1      
+1153   1      //      SMB_DATA_LEN = 1;                   // Specify to ISR that the next transfer
+1154   1                                             // will contain one data byte
+1155   1      
+1156   1         // Initiate SMBus Transfer
+1157   1              STA = 1;
+1158   1      }
+1159          
+1160          
+1161          //-----------------------------------------------------------------------------
+1162          // EEPROM_ByteRead ()
+1163          //-----------------------------------------------------------------------------
+1164          //
+1165          // Return Value :
+1166          //   1) unsigned char data - data read from address <addr> in the EEPROM
+1167          //                        range is full range of character: 0 to 255
+1168          //
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 20  
+
+1169          // Parameters   :
+1170          //   1) unsigned char addr - address to read data from the EEPROM
+1171          //                        range is full range of character: 0 to 255
+1172          //
+1173          // This function returns a single byte from location <addr> in the EEPROM then
+1174          // polls the <SMB_BUSY> flag until the read is complete.
+1175          //
+1176          unsigned char EEPROM_ByteRead(U16 addr)
+1177          {
+1178   1         unsigned char retval;               // Holds the return value
+1179   1      
+1180   1         
+1181   1         while (SMB_BUSY);                   // Wait for SMBus to be free.
+1182   1         SMB_BUSY = 1;                       // Claim SMBus (set to busy)
+1183   1      
+1184   1      
+1185   1              WORD_ADDR_HIGH = addr >> 8;                   // Set the target address in the
+1186   1              WORD_ADDR_LOW = addr & 0xFF; 
+1187   1      
+1188   1         // Set SMBus ISR parameters
+1189   1      #ifdef EEPROM_24C128
+1190   1              SMB_SENDWORDADDR_HIGH = 1;
+1191   1      #endif
+1192   1      #ifdef EEPROM_24C16
+                      SMB_SENDWORDADDR_HIGH = 0;
+              #endif
+1195   1      
+1196   1         SMB_SENDWORDADDR_LOW = 1;               // Send Word Address after Slave Address
+1197   1         SMB_RW = WRITE;                     // A random read starts as a write
+1198   1                                             // then changes to a read after
+1199   1                                             // the repeated start is sent. The
+1200   1                                             // ISR handles this switchover if
+1201   1                                             // the <SMB_RANDOMREAD> bit is set.
+1202   1         SMB_RANDOMREAD = 1;                 // Send a START after the word address
+1203   1         SMB_ACKPOLL = 1;                    // Enable Acknowledge Polling
+1204   1      
+1205   1      
+1206   1         // Specify the Incoming Data
+1207   1         pSMB_DATA_IN = &retval;             // The incoming data pointer points to
+1208   1                                             // the <retval> variable.
+1209   1      
+1210   1      //   SMB_DATA_LEN = 1;                   // Specify to ISR that the next transfer
+1211   1                                             // will contain one data byte
+1212   1      
+1213   1         // Initiate SMBus Transfer
+1214   1         STA = 1;
+1215   1         while(SMB_BUSY);                    // Wait until data is read
+1216   1      
+1217   1         return retval;
+1218   1      
+1219   1      }
+1220          
+1221          void Suspend_Device(void)
+1222          {
+1223   1         // Disable peripherals before calling USB_Suspend()
+1224   1      //      P0MDIN = 0x0;                       // Port 0 configured as analog input
+1225   1      //      P1MDIN = 0x00;                       // Port 1 configured as analog input
+1226   1      //      P2MDIN = 0x0;
+1227   1      //      ADC0CN &= ~0x80;                     // Disable ADC0
+1228   1      //      ET0 = 0;
+1229   1      //      ET2 = 0;                             // Disable Timer 2 Interrupts
+1230   1      
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 21  
+
+1231   1              USB_Suspend();                       // Put the device in suspend state
+1232   1                                                                                      // Once execution returns from USB_Suspend(), device leaves suspend state.
+1233   1                                                                                      // Reenable peripherals
+1234   1      //      ADC0CN |= 0x80;                      // Enable ADC0
+1235   1      //      P0MDIN = 0xFF;
+1236   1      //      P1MDIN = 0xFF;                       // Port 1 pin 7 set as analog input
+1237   1      //      P2MDIN = 0xFF;
+1238   1      //      ET0 = 1;
+1239   1      //      ET2 = 1;                                                        // Enable Timer 2 Interrupts
+1240   1      }
+1241          
+1242          //
+1243          //  IIII  SS  RRR                                   
+1244          //   II  S  S R  R                                  
+1245          //   II  SS   R  R                                  
+1246          //   II   SS  RRR                                   
+1247          //   II    SS R  R                                  
+1248          //   II  S  S R  R                                  
+1249          //  IIII  SS  R  R                                  
+1250          //
+1251          //
+1252          //
+1253          //-----------------------------------------------------------------------------
+1254          // /INT0 ISR
+1255          //-----------------------------------------------------------------------------
+1256          //
+1257          // Whenever a negative edge appears on P0.0, LED1 is toggled.
+1258          // The interrupt pending flag is automatically cleared by vectoring to the ISR
+1259          //
+1260          //-----------------------------------------------------------------------------
+1261          void INT0_ISR (void) interrupt 0
+1262          {
+1263   1              Counter++;
+1264   1      }
+1265          void INT1_ISR (void) interrupt 2
+1266          {
+1267   1              Counter--;
+1268   1      }
+1269          
+1270          //-----------------------------------------------------------------------------
+1271          // SMBus Interrupt Service Routine (ISR)
+1272          //-----------------------------------------------------------------------------
+1273          //
+1274          void SMBus_ISR (void) interrupt 7
+1275          {
+1276   1         bit FAIL = 0;                       // Used by the ISR to flag failed
+1277   1                                             // transfers
+1278   1      
+1279   1         static char i;                      // Used by the ISR to count the
+1280   1                                             // number of data bytes sent or
+1281   1                                             // received
+1282   1      
+1283   1         static bit SEND_START = 0;          // Send a start
+1284   1      
+1285   1         switch (SMB0CN & 0xF0)              // Status vector
+1286   1         {
+1287   2            // Master Transmitter/Receiver: START condition transmitted.
+1288   2            case SMB_MTSTA:
+1289   2               SMB0DAT = TARGET;             // Load address of the target slave
+1290   2               SMB0DAT &= 0xFE;              // Clear the LSB of the address for the
+1291   2                                             // R/W bit
+1292   2               SMB0DAT |= SMB_RW;            // Load R/W bit
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 22  
+
+1293   2      
+1294   2      #ifdef EEPROM_24C16
+                              SMB0DAT = SMB0DAT | ((WORD_ADDR_HIGH & 0x07)<<1);
+              #endif
+1297   2      
+1298   2               STA = 0;                      // Manually clear START bit
+1299   2               i = 0;                        // Reset data byte counter
+1300   2               break;
+1301   2      
+1302   2            // Master Transmitter: Data byte (or Slave Address) transmitted
+1303   2            case SMB_MTDB:
+1304   2               if (ACK)                      // Slave Address or Data Byte
+1305   2               {                             // Acknowledged?
+1306   3                  if (SEND_START)
+1307   3                  {
+1308   4                     STA = 1;
+1309   4                     SEND_START = 0;
+1310   4                     break;
+1311   4                  }
+1312   3      
+1313   3                  if(SMB_SENDWORDADDR_HIGH)       // Are we sending the word address?
+1314   3                  {
+1315   4                     SMB_SENDWORDADDR_HIGH = 0;   // Clear flag
+1316   4                     SMB0DAT = WORD_ADDR_HIGH;    // Send word address
+1317   4                     break;
+1318   4                  }
+1319   3      
+1320   3                  if(SMB_SENDWORDADDR_LOW)       // Are we sending the word address?
+1321   3                  {
+1322   4                     SMB_SENDWORDADDR_LOW = 0;   // Clear flag
+1323   4                     SMB0DAT = WORD_ADDR_LOW;    // Send word address
+1324   4      
+1325   4                     if (SMB_RANDOMREAD)
+1326   4                     {
+1327   5                        SEND_START = 1;      // Send a START after the next ACK cycle
+1328   5                        SMB_RW = READ;
+1329   5                     }
+1330   4      
+1331   4                     break;
+1332   4                  }
+1333   3      
+1334   3                  if (SMB_RW==WRITE)         // Is this transfer a WRITE?
+1335   3                  {
+1336   4      
+1337   4                     if (i < 1)   // Is there data to send?
+1338   4                     {
+1339   5      //                  // send data byte
+1340   5                        SMB0DAT = *pSMB_DATA_OUT;
+1341   5      //
+1342   5                        // increment data out pointer
+1343   5                        pSMB_DATA_OUT++;
+1344   5      
+1345   5                        // increment number of bytes sent
+1346   5                        i++;
+1347   5                     }
+1348   4                     else
+1349   4                     {
+1350   5                       STO = 1;              // Set STO to terminte transfer
+1351   5                       SMB_BUSY = 0;         // Clear software busy flag
+1352   5                     }
+1353   4                  }
+1354   3                  else {}                    // If this transfer is a READ,
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 23  
+
+1355   3                                             // then take no action. Slave
+1356   3                                             // address was transmitted. A
+1357   3                                             // separate 'case' is defined
+1358   3                                             // for data byte recieved.
+1359   3               }
+1360   2               else                          // If slave NACK,
+1361   2               {
+1362   3                  if(SMB_ACKPOLL)
+1363   3                  {
+1364   4                     STA = 1;                // Restart transfer
+1365   4                  }
+1366   3                  else
+1367   3                  {
+1368   4                     FAIL = 1;               // Indicate failed transfer
+1369   4                  }                          // and handle at end of ISR
+1370   3               }
+1371   2               break;
+1372   2      
+1373   2            // Master Receiver: byte received
+1374   2            case SMB_MRDB:
+1375   2               if ( i < 1 )       // Is there any data remaining?
+1376   2               {
+1377   3                  *pSMB_DATA_IN = SMB0DAT;   // Store received byte
+1378   3                  pSMB_DATA_IN++;            // Increment data in pointer
+1379   3                  i++;                       // Increment number of bytes received
+1380   3                  ACK = 1;                   // Set ACK bit (may be cleared later
+1381   3                                             // in the code)
+1382   3      
+1383   3               }
+1384   2      
+1385   2               if (i == 1)        // This is the last byte
+1386   2               {
+1387   3                  SMB_BUSY = 0;              // Free SMBus interface
+1388   3                  ACK = 0;                   // Send NACK to indicate last byte
+1389   3                                             // of this transfer
+1390   3                  STO = 1;                   // Send STOP to terminate transfer
+1391   3               }
+1392   2      
+1393   2               break;
+1394   2      
+1395   2            default:
+1396   2               FAIL = 1;                     // Indicate failed transfer
+1397   2                                             // and handle at end of ISR
+1398   2               break;
+1399   2         }
+1400   1      
+1401   1         if (FAIL)                           // If the transfer failed,
+1402   1         {
+1403   2            SMB0CF &= ~0x80;                 // Reset communication
+1404   2            SMB0CF |= 0x80;
+1405   2            STA = 0;
+1406   2            STO = 0;
+1407   2            ACK = 0;
+1408   2      
+1409   2            SMB_BUSY = 0;                    // Free SMBus
+1410   2      
+1411   2            FAIL = 0;
+1412   2         }
+1413   1      
+1414   1         SI = 0;                             // Clear interrupt flag
+1415   1      
+1416   1      }
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 24  
+
+1417          
+1418          //-------------------------
+1419          // Timer0_ISR
+1420          //-------------------------
+1421          // Called when timer 2 overflows, check to see if switch is pressed,
+1422          // then watch for release.
+1423          //
+1424          INTERRUPT(Timer0_ISR, INTERRUPT_TIMER0)
+1425          {
+1426   1              unsigned char i;
+1427   1              static int low_counter=0;  // Define counter variable
+1428   1      
+1429   1              TL0 = TIMER0_RELOAD_LOW;            // Reinit Timer0 Low register
+1430   1      
+1431   1      //      if ((low_counter2++) == Timer0_RateEncoder )
+1432   1      //      {
+1433   1      //              EncoderScan5();
+1434   1      //              low_counter2 = 0;
+1435   1      //      }
+1436   1              if ((low_counter++) == Timer0_Rate)
+1437   1              {
+1438   2      //              if (LcdMode = 0) j = 5; else j = 6;
+1439   2                      for (i=0;i<(5 + LcdMode);i++) 
+1440   2                      {
+1441   3                              if (i == 4) FlagPoint = 1; else FlagPoint = 0;
+1442   3                              if (LcdMode == 0) FlagPoint = 1;
+1443   3                              OutSymbol(i+1,0x30 | OutputBuffer[i]);
+1444   3                              Del     (200);
+1445   3                      }
+1446   2                      low_counter = 0;
+1447   2              }
+1448   1      }
+1449          //-------------------------
+1450          // Timer2_ISR
+1451          //-------------------------
+1452          // Called when timer 2 overflows, check to see if switch is pressed,
+1453          // then watch for release.
+1454          //
+1455          INTERRUPT(Timer2_ISR, INTERRUPT_TIMER2)
+1456          {
+1457   1              TF2H = 0;                              // Clear Timer2 interrupt flag
+1458   1              ET2=1;
+1459   1      }
+1460          
+1461          //-----------------------------------------------------------------------------
+1462          // Timer3 Interrupt Service Routine (ISR)
+1463          //-----------------------------------------------------------------------------
+1464          //
+1465          // A Timer3 interrupt indicates an SMBus SCL low timeout.
+1466          // The SMBus is disabled and re-enabled if a timeout occurs.
+1467          //
+1468          void Timer3_ISR (void) interrupt 14
+1469          {
+1470   1         SMB0CF &= ~0x80;                    // Disable SMBus
+1471   1         SMB0CF |= 0x80;                     // Re-enable SMBus
+1472   1         TMR3CN &= ~0x80;                    // Clear Timer3 interrupt-pending flag
+1473   1         SMB_BUSY = 0;                       // Free bus
+1474   1      }
+1475          
+1476          INTERRUPT(USB_API_TEST_ISR, INTERRUPT_USBXpress)
+1477          {
+1478   1              unsigned char INTVAL = Get_Interrupt_Source();
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 25  
+
+1479   1      
+1480   1         if (INTVAL & RX_COMPLETE)
+1481   1         {
+1482   2                      Block_Read(In_Packet, sizeof(In_Packet));
+1483   2      
+1484   2                      switch (In_Packet[0])
+1485   2                      {
+1486   3                      default:;
+1487   3                      }
+1488   2              }
+1489   1      
+1490   1         if (INTVAL & DEV_SUSPEND)
+1491   1         {
+1492   2              Suspend_Device();
+1493   2         }
+1494   1      
+1495   1         if (INTVAL & DEV_CONFIGURED)
+1496   1         {
+1497   2      //      Initialize();
+1498   2         }
+1499   1      }
+1500          
+1501          //
+1502          //
+1503          //
+1504          //
+1505          
+1506          //;=============================================================================================
+1507          //; ВРЕМЕННЫЕ ЗАДЕРЖКИ
+1508          //;
+1509          // 1 мкс = 24 такта
+1510          //; Формула: 8+(2+((R0-1)*3)+2)+(2+(((R2-1)*3)+2))+9
+1511          //; Данные:  R0 = 140, R0=79
+1512          //;          R1 = 253
+1513          //; Итого:   8+(2+((140-1)*3)+2)+(2+(((253-1)*3)+2)+(2+(((79-1)*3)+2))+2+9 = 1440
+1514          //;---------------------------------------------------------------------------------------------
+1515          /*
+1516          void Del_10mks(void)
+1517          {
+1518                  #pragma asm
+1519                  push    00h                                                     ; 2 такта             | 6 тактов
+1520                  mov   R0,#75                                            ; 2 такта             |
+1521                  djnz  R0,$                                                      ; (74*3)+2=224 такта  | 227 тактов
+1522                  nop                                                                     ; 1 такт              |
+1523                  
+1524                  pop     00h                                                     ; 2 такта             | 7 тактов
+1525                  ret                                                                     ; Возврат 5 тактов    |
+1526                  #pragma endasm
+1527          }
+1528          
+1529          void Del_500mks(void)
+1530          {
+1531                  #pragma asm
+1532                  push    00h                                                     ; 2 такта             |
+1533                  push    01h                                                     ; 2 такта             |
+1534                  push    02h                                                     ; 2 такта             | 12 тактов
+1535                                                                                                  ;                     |
+1536                  mov   R1,#20                                            ; 2 такта             |
+1537                          
+1538                  mov   R0,#195                                           ; 2 такта             | (589*20)-1=
+1539                  djnz  R0,$                                                      ; (194*3)+2=584 такта | 11779 тактов
+1540                  djnz    R1,$-4                                          ; 3 такта             |
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 26  
+
+1541          
+1542                  mov   R2,#65                                            ; 2 такта             |
+1543                  djnz  R2,$                                                      ; (64*3)+2=194 тактов | 198 тактов
+1544                  nop                                                                     ; 1 такт              |
+1545                  nop                                                                     ; 1 такт              |
+1546                                                          
+1547                  pop     02h                                                     ; 2 такта             |
+1548                  pop     01h                                                     ; 2 такта             | 11 тактов
+1549                  pop     00h                                                     ; 2 такта             |
+1550                  ret                                                                     ; Возврат 5 тактов    |
+1551                  #pragma endasm
+1552          }
+1553          
+1554          void Del_10ms(void)
+1555          {
+1556                  #pragma asm
+1557                  push    00h                                                     ; 2 такта             |
+1558                  push    01h                                                     ; 2 такта             |
+1559                  push    02h                                                     ; 2 такта             | 14 тактов
+1560                  push    03h                                                     ; 2 такта             |
+1561                                                                                                                                          ;                     |
+1562                  mov   R2,#6                                                     ; 2 такта             |                                 
+1563                                                                                  
+1564                  mov   R1,#168   ;              | 2 такта +           |
+1565                  mov   R0,#78    ; 2 такта +    |                     | (39988*6)-1=
+1566                  djnz    R0,$            ; (77*3)+2=233 | (((235+3)*168)-1)=  | 239927 тактов
+1567                  djnz  R1,$-4    ;              |    55249 тактов     |   
+1568                  djnz    R2,$-8  ;              | + 3 такта           |
+1569          
+1570                  mov   R3,#15                                            ; 2 такта             |
+1571                  djnz  R3,$                                                      ; (14*3)+2=44 тактов  | 46 тактов
+1572                                                          
+1573                  pop     03h                                                     ; 2 такта             |
+1574                  pop     02h                                                     ; 2 такта             |
+1575                  pop     01h                                                     ; 2 такта             | 13 тактов
+1576                  pop     00h                                                     ; 2 такта             |
+1577                  ret                                                                     ; Возврат 5 тактов    |
+1578                  #pragma endasm
+1579          }
+1580          
+1581          void Del_25ms(void)
+1582          {
+1583                  #pragma asm
+1584                  push    00h                                                     ; 2 такта             |
+1585                  push    01h                                                     ; 2 такта             |
+1586                  push    02h                                                     ; 2 такта             | 14 тактов
+1587                  push    03h                                                     ; 2 такта             |
+1588                                                                                                                                          ;                     |
+1589                  mov   R2,#15                                            ; 2 такта             |                                 
+1590                                                  
+1591                  mov   R1,#168   ;              | 2 такта +           |
+1592                  mov   R0,#78    ; 2 такта +    |                     | (39988*15)-1=
+1593                  djnz    R0,$            ; (77*3)+2=233 | (((235+3)*168)-1)=  | 599819 тактов
+1594                  djnz  R1,$-4    ;              |    55249 тактов     |   
+1595                  djnz    R2,$-8  ;              | + 3 такта           |
+1596          
+1597                  mov   R3,#51                                            ; 2 такта             |
+1598                  djnz  R3,$                                                      ; (50*3)+2=152 тактов | 154 тактов
+1599                                                          
+1600                  pop     03h                                                     ; 2 такта             |
+1601                  pop     02h                                                     ; 2 такта             |
+1602                  pop     01h                                                     ; 2 такта             | 13 тактов
+C51 COMPILER V8.08   MAIN                                                                  03/17/2014 09:09:45 PAGE 27  
+
+1603                  pop     00h                                                     ; 2 такта             |
+1604                  ret                                                                     ; Возврат 5 тактов    |
+1605                  #pragma endasm
+1606          }
+1607          
+1608          void Del_100ms(void)
+1609          {
+1610                  #pragma asm
+1611                  push    00h                                                     ; 2 такта             |
+1612                  push    01h                                                     ; 2 такта             |
+1613                  push    02h                                                     ; 2 такта             | 14 тактов
+1614                  push    03h                                                     ; 2 такта             |
+1615                                                                                                  ;                     |
+1616                  mov   R2,#60                                            ; 2 такта             |                                 
+1617                                                                          
+1618                  mov   R1,#168   ;              | 2 такта +           |
+1619                  mov   R0,#78    ; 2 такта +    |                     | (39988*60)-1=
+1620                  djnz    R0,$            ; (77*3)+2=233 | (((235+3)*168)-1)=  | 2399279 тактов
+1621                  djnz  R1,$-4    ;              |    55249 тактов     |   
+1622                  djnz    R2,$-8  ;              | + 3 такта           |
+1623          
+1624                  mov   R3,#231                                           ; 2 такта             |
+1625                  djnz  R3,$                                                      ; (230*3)+2=692 тактов| 694 тактов
+1626                  
+1627                  pop     03h                                                     ; 2 такта             |
+1628                  pop     02h                                                     ; 2 такта             |
+1629                  pop     01h                                                     ; 2 такта             | 13 тактов
+1630                  pop     00h                                                     ; 2 такта             |
+1631                  ret                                                                     ; Возврат 5 тактов    |
+1632                  #pragma endasm
+1633          }
+1634          */
+1635          
+1636          void Del(int a)
+1637          {
+1638   1              int i;
+1639   1              for (i=0;i<a;i++)
+1640   1              {
+1641   2              }
+1642   1      }
+1643          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3352    ----
+   CONSTANT SIZE    =     76    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     60      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =     19       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
